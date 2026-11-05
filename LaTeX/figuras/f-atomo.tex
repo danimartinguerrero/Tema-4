@@ -1,0 +1,51 @@
+% Figura: modelo de nube electrónica uniforme (átomo sin polarizar / polarizado)
+% y campo de la nube en función de la distancia a su centro.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \shade[inner color=acentoA!38!fondo, outer color=acentoA!14!fondo] (0,0) circle (1.15);
+  \draw[acentoA!80!fondo, line width=0.6pt] (0,0) circle (1.15);
+  \draw[tenue, dashed, line width=0.4pt] (0,0) -- (-40:1.15) node[midway, below left=-1pt, etiq] {$a$};
+  \fill[cargapos] (0,0) circle (0.1);
+  \node[etiq, above=2pt] at (0,0.05) {$+q$};
+  \node[etiq] at (0.72,0.72) {$-q$};
+  \node[etiq] at (0,1.55) {$\vE=\vcero$};
+\end{tikzpicture}
+\caption{Átomo sin polarizar}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.3\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \shade[inner color=acentoA!38!fondo, outer color=acentoA!14!fondo] (0,0) circle (1.15);
+  \draw[acentoA!80!fondo, line width=0.6pt] (0,0) circle (1.15);
+  \fill[texto] (0,0) circle (0.035);
+  \draw[campoP, line width=0.9pt] (0,0) -- (0.42,0);
+  \node[etiq, below=1pt] at (0.21,0) {$d$};
+  \fill[cargapos] (0.42,0) circle (0.1);
+  \node[etiq, above=2pt] at (0.42,0.05) {$+q$};
+  \node[etiq] at (-0.62,0.72) {$-q$};
+  \draw[vecE] (-0.7,1.55) -- (0.7,1.55) node[right, etiq] {$\vE$};
+\end{tikzpicture}
+\caption{Átomo polarizado}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.36\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.6cm, height=4.1cm, axis lines=left, xmin=0, xmax=3.2, ymin=0, ymax=1.18,
+  xlabel={$r/a$}, ylabel={$E_{\text{nube}}\big/\tfrac{q}{4\pi\eo a^{2}}$},
+  xtick={0,1,2,3}, ytick={0,0.5,1}, ylabel style={yshift=-3pt}]
+  \addplot[curvaE, domain=0:1, samples=2] {x};
+  \addplot[curvaE, domain=1:3.2, samples=80] {1/x^2};
+  \draw[equipot] (axis cs:1,0) -- (axis cs:1,1.18);
+  \node[etiqt, anchor=west] at (axis cs:0.08,0.86) {$\propto r$};
+  \node[etiqt, anchor=west] at (axis cs:1.75,0.52) {$\propto 1/r^{2}$};
+\end{axis}
+\end{tikzpicture}
+\caption{Campo de la nube}
+\end{subfigure}
+\caption{Modelo atómico de nube uniforme. (a) Sin campo aplicado, el centro de la nube electrónica
+(carga $-q$, radio $a$) coincide con el núcleo y el momento dipolar es nulo. (b) Un campo externo
+desplaza el núcleo una distancia $d\ll a$ respecto al centro de la nube, y aparece $\vp=q\vec d$.
+(c) Campo de la propia nube: dentro crece linealmente con $r$ (ley de Hooke electrostática),
+fuera decae como el de una carga puntual; el equilibrio se alcanza en la rama lineal.}
+\label{fig:atomo}
+\end{figure}

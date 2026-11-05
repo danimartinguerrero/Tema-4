@@ -1,0 +1,360 @@
+% =============================================================================
+\section{Seminarios prácticos}\label{sec:seminarios}
+% =============================================================================
+
+Esta sección resuelve con detalle los doce problemas de la relación del tema~\cite{DFA-problemas}. Cada
+problema sigue la estructura de los temas anteriores: el enunciado, la idea que guía la resolución, la
+resolución paso a paso y un comentario sobre la interpretación del resultado y sus comprobaciones. La guía
+de métodos que acompaña a estos apuntes~\cite{Guia-T4} recoge los mismos problemas en formato de ficha.
+
+\subsection{Cómo plantear un problema de dieléctricos}\label{sec:plantear}
+
+Todo problema de dieléctricos empieza por identificar qué es dato: la polarización (electretes), la carga
+libre (conductores cargados en medios lineales) o los potenciales (baterías). La \cref{tab:traduccion}
+traduce cada situación a la herramienta adecuada, y la \cref{tab:decision}, el método que conviene.
+
+\begin{table}[H]
+\centering
+\caption{Traducción de la situación física a ecuaciones.}\label{tab:traduccion}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Situación & Qué se sabe y qué se usa\\
+\midrule
+Electrete ($\vP$ dada) & $\rhoP=-\divg\vP$, $\sigmaP=\vP\cdot\nn$; si $\rhof=0$ y $\vP$ es irrotacional, $\vD=\vcero$\\
+Carga libre en medio \LHI{} & Gauss para $\vD$ con la carga libre; después $\vE=\vD/\varepsilon$ y $\vP=(\varepsilon-\eo)\vE$\\
+Interfase sin carga libre & $D_n$ continua y $\vE_t$ continuo\\
+Conductor en equilibrio & $\vE=\vD=\vcero$ dentro; $D_n=\sigmaf$ en su superficie; volumen equipotencial\\
+Batería $V_0$ entre placas & $\int\vE\cdot\dl=V_0$ entre placas a lo largo de cualquier camino\\
+Placas unidas por un cable & $\phi_1=\phi_2$, es decir, $\int\vE\cdot\dl=0$ de una placa a otra\\
+Condensador aislado & la carga libre de cada placa se conserva\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Mapa de decisión: qué método conviene según lo que pide el enunciado.}\label{tab:decision}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{4.6cm}l@{}}
+\toprule
+Lo que pide el enunciado & Método & Problemas\\
+\midrule
+$\vP$ dada, sin simetría que permita usar Gauss & M1. Cargas ligadas y superposición & 4.1, 4.4, 4.5\\
+$\vP$ dada con simetría esférica o cilíndrica & M2. $\vD$ por Gauss, $\vE=(\vD-\vP)/\eo$ & 4.6, 4.7\\
+Carga libre en medios \LHI{} con simetría & M3. Gauss para $\vD$ & 4.2, 4.3, 4.8\\
+Condensadores parcialmente llenos & M4. Serie y paralelo & 4.8, 4.10--4.12\\
+Electretes entre placas conectadas & M5. $D$ continuo y $\oint\vE\cdot\dl=0$ & 4.9\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{metodo}{Los cinco métodos}
+\begin{description}[leftmargin=0pt, itemsep=0.35em, font=\normalfont\bfseries\color{acentoA}]
+  \item[M1. Cargas ligadas y superposición.] Calcular $\rhoP$ y $\sigmaP$ con el \cref{teo:densidades}; comprobar $\QP=0$; obtener $\phi$ o $\vE$
+        integrando como para cargas libres (anillos, discos, capas). Útil para campos sobre un eje.
+  \item[M2. $\vD$ por Gauss con $\vP$ dada.] Si hay simetría, Gauss para $\vD$ con la carga libre encerrada da $\vD$ directamente
+        (a menudo $\vD=\vcero$, \cref{prop:D-nulo}); luego $\vE=(\vD-\vP)/\eo$. Comprobar con Gauss para $\vE$ y las cargas ligadas.
+  \item[M3. Gauss para $\vD$ en medios lineales.] (1) $\vD$ con la carga libre; (2) $\vE=\vD/\varepsilon$ en cada medio; (3) $\vP=\vD-\eo\vE$;
+        (4) $\rhoP$, $\sigmaP$; (5) potencial y capacidad, $C=Q/\Delta\phi$.
+  \item[M4. Serie y paralelo.] Interfase paralela a las placas: $\vD$ común, los campos se suman en $\Delta\phi$, capacidades
+        en serie. Interfase perpendicular: $\vE$ común, las cargas se suman, capacidades en paralelo.
+  \item[M5. Electrete entre placas conectadas.] $D$ continuo en las interfases sin carga libre, $\vE=(\vD-\vP)/\eo$ en cada capa, y la
+        condición del circuito ($\int\vE\cdot\dl=0$ o $V_0$) fija $D$, que es la carga inducida en las placas.
+\end{description}
+\end{metodo}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.1. Esfera uniformemente polarizada}\label{sec:p41}
+
+\begin{problema}[Esfera uniformemente polarizada]\label{prob:esfera-polarizada}
+Sea una esfera de radio $a$ uniformemente polarizada con polarización $\vP=P\,\uv z$. Calcula el potencial y el campo eléctrico a lo
+largo del eje $z$.
+\end{problema}
+
+\begin{resolucion}
+\idea No hay simetría que permita usar Gauss ($\vD$ no es nulo: $\vP$ tiene componente tangencial en la superficie). Calculamos
+las cargas ligadas e integramos su potencial sobre el eje (método M1).
+
+\paso{Paso 1: densidades ligadas} Como $\vP$ es uniforme, $\rhoP=-\divg\vP=0$. En la superficie $\nn=\uv r$, y con $\theta'$ el ángulo polar del
+punto fuente,
+\[
+  \sigmaP(\theta')=\vP\cdot\uv r=P\cos\theta' .
+\]
+Es positiva en el hemisferio $z>0$ y negativa en el otro (\cref{fig:p41}\,(a)); su integral es nula, como exige la \cref{prop:QP-nula}.
+
+\paso{Paso 2: potencial en el eje} Para un punto $(0,0,z)$ con $z>0$, la distancia a un punto de la superficie es
+$R=\sqrt{a^2+z^2-2az\cos\theta'}$ y $\dd S'=a^2\sen\theta'\,\dd\theta'\,\dd\varphi'$. Con $u=\cos\theta'$,
+\[
+  \phi(z)=\frac{1}{4\pi\eo}\oiint\frac{\sigmaP}{R}\,\dd S'=\frac{Pa^2}{2\eo}\int_{-1}^{1}\frac{u\,\dd u}{\sqrt{a^2+z^2-2azu}}\equiv\frac{Pa^2}{2\eo}\,I(z).
+\]
+El cambio $s=\sqrt{a^2+z^2-2azu}$, con $u=(a^2+z^2-s^2)/2az$ y $\dd u=-s\,\dd s/(az)$, da
+\[
+  I(z)=\frac{1}{2a^2z^2}\int_{\abs{a-z}}^{a+z}\big(a^2+z^2-s^2\big)\,\dd s
+      =\frac{1}{2a^2z^2}\Big[(a^2+z^2)\,s-\frac{s^3}{3}\Big]_{\abs{a-z}}^{a+z}.
+\]
+Si $z>a$, el corchete vale $2a(a^2+z^2)-\frac13\big[(z+a)^3-(z-a)^3\big]=2a(a^2+z^2)-\frac13(6az^2+2a^3)=\frac43a^3$; si $0<z<a$, vale
+$2z(a^2+z^2)-\frac13\big[(a+z)^3-(a-z)^3\big]=\frac43z^3$. Por tanto,
+\[
+  I(z)=\begin{cases}\dfrac{2a}{3z^2}, & z\geq a,\\[2mm] \dfrac{2z}{3a^2}, & 0\leq z\leq a.\end{cases}
+\]
+Como $\sigmaP$ es impar bajo la reflexión $z\to-z$, el potencial también lo es, $\phi(-z)=-\phi(z)$. En conclusión,
+\begin{equation}\label{eq:p41-phi}
+  \phi(z)=\begin{cases}\dfrac{Pa^3}{3\eo}\,\dfrac{z}{\abs{z}^3}, & \abs z\geq a,\\[3mm] \dfrac{P}{3\eo}\,z, & \abs z\leq a.\end{cases}
+\end{equation}
+
+\paso{Paso 3: campo en el eje} Por simetría de revolución, en el eje $\vE=E_z\,\uv z$ con $E_z=-\dd\phi/\dd z$:
+\begin{equation}\label{eq:p41-E}
+  \recuadro{E_z(z)=\frac{2Pa^3}{3\eo\abs{z}^3}\quad(\abs z>a),\qquad E_z(z)=-\frac{P}{3\eo}\quad(\abs z<a).}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Interpretación y comprobaciones]\label{obs:p41}
+(a) Fuera, \eqref{eq:p41-phi} es el potencial en el eje de un dipolo $\vp=\frac43\pi a^3\vP$ situado en el centro, $p/(4\pi\eo z^2)$: el dipolo
+total de la esfera, como predice la \cref{obs:momento-ligado}. (b) Dentro, $\phi=Pz/3\eo$; de hecho, el potencial interior es
+$\phi=\vP\cdot\vr/3\eo$ en todos los puntos, y el campo es \emph{uniforme} y opuesto a la polarización, $\vE=-\vP/3\eo$: es el \emph{campo
+despolarizante} (\cref{fig:esfera-polarizada}). (c) En los polos, $E_z$ salta de $-P/3\eo$ a $2P/3\eo$, es decir, $P/\eo=\sigmaP(0)/\eo$, como exige
+\eqref{eq:salto-En}. (d) Dentro, $\vD=\eo\vE+\vP=\frac23\vP\neq\vcero$ aunque no haya carga libre: $\vP$ tiene componente tangencial en la superficie.
+Este resultado es la pieza clave de la esfera dieléctrica (\cref{ej:esfera-dielectrica}) y de la cavidad esférica (\cref{obs:lorentz}).
+\end{observacion}
+
+\input{figuras/f-p41}
+\input{figuras/f-esfera-polarizada}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.2. Carga libre en un dieléctrico}\label{sec:p42}
+
+\begin{problema}[Esfera cargada en un dieléctrico]\label{prob:carga-en-dielectrico}
+Una esfera de radio $a$ y carga $Q$ está situada en un dieléctrico lineal, isótropo y homogéneo de permitividad $\varepsilon$. Calcula
+$\vE$, $\vD$ y $\vP$ en el medio dieléctrico.
+\end{problema}
+
+\begin{resolucion}
+\idea Un material que se polariza en respuesta a un campo tiene que tener cerca alguna carga libre que lo cree: aquí, la de
+la esfera, que supondremos conductora. Conocemos la carga libre, no la ligada, así que usamos Gauss para $\vD$ (método M3).
+
+\paso{Paso 1: $\vD$ por Gauss} Por la simetría esférica (dieléctrico \LHI{} que llena todo el espacio exterior), $\vD=D(r)\,\uv r$.
+Con una esfera gaussiana de radio $r>a$,
+\[
+  \oiint_S\vD\cdot\dS=D(r)\,4\pi r^2=Q
+  \quad\Longrightarrow\quad
+  \vD=\frac{Q}{4\pi r^2}\,\uv r .
+\]
+\paso{Paso 2: campo y polarización} En el medio \LHI{},
+\[
+  \recuadro{\vE=\frac{\vD}{\varepsilon}=\frac{Q}{4\pi\varepsilon r^2}\,\uv r,\qquad
+  \vP=\vD-\eo\vE=(\varepsilon-\eo)\,\frac{Q}{4\pi\varepsilon r^2}\,\uv r .}
+\]
+\paso{Paso 3: cargas ligadas} Como $\divg(\uv r/r^2)=0$ para $r>0$, $\rhoP=0$, en acuerdo con la \cref{prop:rhoP-rhof}. En la superficie
+del dieléctrico en contacto con la esfera, la normal exterior al dieléctrico es $\nn=-\uv r$:
+\[
+  \sigmaP(a)=\vP\cdot\nn=-\frac{Q}{4\pi a^2}\,\frac{\varepsilon-\eo}{\varepsilon}.
+\]
+\paso{Paso 4: comprobación con Gauss para $\vE$} La carga total encerrada por una esfera de radio $r>a$ es
+\[
+  Q+4\pi a^2\sigmaP=Q-Q\,\frac{\varepsilon-\eo}{\varepsilon}=\frac{\eo}{\varepsilon}\,Q
+  \quad\Longrightarrow\quad
+  E\,4\pi r^2=\frac{Q}{\varepsilon},\quad E=\frac{Q}{4\pi\varepsilon r^2}. \qedhere
+\]
+\end{resolucion}
+
+\begin{observacion}[Apantallamiento]\label{obs:p42}
+La carga ligada negativa que se pega a la esfera apantalla parcialmente su carga, y el campo es $\er$ veces menor que en el vacío
+(\cref{fig:p42}). En el límite $\varepsilon\to\infty$ el apantallamiento es total y $\vE\to\vcero$: un dieléctrico de permitividad infinita se comporta como un
+conductor. El potencial de la esfera es $Q/4\pi\varepsilon a$, y su capacidad, $C=4\pi\varepsilon a$, $\er$ veces la del vacío. Si el dieléctrico fuera
+finito, en su superficie exterior aparecería la carga ligada opuesta, $+Q(\varepsilon-\eo)/\varepsilon$, que garantiza $\QP=0$; el resultado anterior solo es
+exacto si esa superficie es una esfera concéntrica o está en el infinito.
+\end{observacion}
+
+\input{figuras/f-p42}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.3. Condensador plano con dieléctrico}\label{sec:p43}
+
+\begin{problema}[Condensador plano con dieléctrico]\label{prob:condensador-dielectrico}
+Analiza los campos en el interior de un condensador plano cuando las densidades de carga de las placas son $\pm\sigma$ y entre ellas
+se introduce un dieléctrico de permitividad $\varepsilon$. Las placas tienen área $A$ y están separadas una distancia $d$. Calcula la capacidad.
+\end{problema}
+
+\begin{resolucion}
+\idea Despreciando los efectos de borde el problema tiene simetría plana; conocemos la carga libre de las placas y usamos Gauss
+para $\vD$ (método M3). Tomamos $\uv z$ de la placa positiva a la negativa (\cref{fig:p43}).
+
+\paso{Paso 0: sin dieléctrico} El campo de dos planos con $\pm\sigma$ es $\sigma/\eo$ entre ellos, y $C_0=\dfrac{Q}{\phi_+-\phi_-}=\dfrac{\sigma A}{(\sigma/\eo)\,d}=\eo\dfrac{A}{d}$.
+
+\paso{Paso 1: $\vD$ por Gauss} Con la caja $S'$ de la \cref{fig:p43}, con una cara dentro de la placa inferior (donde $\vD=\vcero$) y la otra
+en el dieléctrico, de área $S'$: $D\,S'=\sigma S'$. Con la caja $S$ en la placa superior, $-D\,S=-\sigma S$. En ambos casos
+\[
+  \vD=\sigma\,\uv z .
+\]
+\paso{Paso 2: campo, polarización y cargas ligadas}
+\[
+  \vE=\frac{\vD}{\varepsilon}=\frac{\sigma}{\varepsilon}\,\uv z,\qquad
+  \vP=\vD-\eo\vE=\frac{\varepsilon-\eo}{\varepsilon}\,\sigma\,\uv z,\qquad
+  \sigmaP=\vP\cdot\nn=\pm\frac{\varepsilon-\eo}{\varepsilon}\,\sigma ,
+\]
+con el signo $+$ en la cara adyacente a la placa negativa ($\nn=\uv z$) y $-$ junto a la positiva.
+
+\paso{Paso 3: capacidad} $\phi_+-\phi_-=E\,d=\sigma d/\varepsilon$ y
+\[
+  \recuadro{C=\frac{\sigma A}{\sigma d/\varepsilon}=\varepsilon\,\frac{A}{d},\qquad \frac{C}{C_0}=\frac{\varepsilon}{\eo}=\er .}
+\]
+\paso{Paso 4: comprobación con Gauss para $\vE$} En la caja $S'$, la carga total encerrada es $(\sigma-\sigmaP)S'$:
+$E\,S'=\dfrac{1}{\eo}\Big(\sigma-\sigma\dfrac{\varepsilon-\eo}{\varepsilon}\Big)S'=\dfrac{\sigma}{\varepsilon}\,S'$. Es una comprobación, no otra forma de resolverlo: para
+usarla hay que conocer antes $\sigmaP$.
+\end{resolucion}
+
+\begin{observacion}[Carga fija o potencial fijo]\label{obs:p43}
+Si el condensador está aislado (carga fija), introducir el dieléctrico reduce la diferencia de potencial en el factor $\er$; si está
+conectado a una batería (potencial fijo), la batería suministra carga hasta multiplicarla por $\er$. En ambos casos $C=\er C_0$: la
+capacidad solo depende de la geometría y del material.
+\end{observacion}
+
+\input{figuras/f-p43}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.4. Electrete cilíndrico}\label{sec:p44}
+
+\begin{problema}[Cilindro uniformemente polarizado]\label{prob:cilindro-polarizado}
+Sea un cilindro de radio $a$ y longitud $2\ell$ de material dieléctrico uniformemente polarizado en la dirección de su eje. Calcula los
+campos $\vE$ y $\vD$ en los puntos del eje y obtén expresiones aproximadas si consideramos un cilindro muy largo ($a\ll\ell$) o muy corto
+($a\gg\ell$). Representa las líneas de $\vE$, $\vD$ y $\vP$.
+\end{problema}
+
+\begin{resolucion}
+\idea $\vD\neq\vcero$ aunque no haya carga libre, porque $\rot\vP\neq\vcero$ en la pared lateral (\cref{ej:stokes}), y sin simetría no podemos usar Gauss.
+Sustituimos el cilindro por sus cargas ligadas, que son dos discos, y superponemos sus campos (método M1).
+
+\paso{Paso 1: cargas ligadas} Con $\vP=P\,\uv z$ uniforme, $\rhoP=0$; en las caras $z=\pm\ell$, $\nn=\pm\uv z$ y $\sigmaP=\pm P$; en la pared lateral,
+$\vP\perp\nn$ y $\sigmaP=0$ (\cref{fig:p44}\,(a)).
+
+\paso{Paso 2: campo de un disco} El campo en el eje de un disco de radio $a$ y densidad $\sigma$, a distancia $z$ de su centro, es~\cite{T1}
+\[
+  \vE_{\text{disco}}(z)=\frac{\sigma}{2\eo}\left(\frac{z}{\abs z}-\frac{z}{\sqrt{a^2+z^2}}\right)\uv z .
+\]
+\paso{Paso 3: superposición} Sumamos el disco $+P$ en $z=\ell$ y el disco $-P$ en $z=-\ell$, y usamos los ángulos de la \cref{fig:p44}\,(b),(c),
+\[
+  \cos\theta_1=\frac{z-\ell}{\sqrt{a^2+(z-\ell)^2}},\qquad \cos\theta_2=\frac{z+\ell}{\sqrt{a^2+(z+\ell)^2}} :
+\]
+\[
+  E_z(z)=\frac{P}{2\eo}\Big[\sgn(z-\ell)-\sgn(z+\ell)+\cos\theta_2-\cos\theta_1\Big].
+\]
+Fuera ($\abs z>\ell$) los signos se cancelan; dentro ($\abs z<\ell$) su diferencia vale $-2$. Así,
+\begin{equation}\label{eq:p44-E}
+  \recuadro{\begin{aligned}
+    \vE&=\frac{P}{2\eo}\big(\cos\theta_2-\cos\theta_1\big)\,\uv z, &&\abs z>\ell,\\
+    \vE&=-\frac{P}{2\eo}\big(2+\cos\theta_1-\cos\theta_2\big)\,\uv z, &&\abs z<\ell.
+  \end{aligned}}
+\end{equation}
+\paso{Paso 4: desplazamiento} Fuera, $\vD=\eo\vE$; dentro, $\vD=\eo\vE+P\,\uv z$. En ambos casos
+\begin{equation}\label{eq:p44-D}
+  \recuadro{\vD=\frac{P}{2}\big(\cos\theta_2-\cos\theta_1\big)\,\uv z\qquad\text{en todo el eje}.}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Comprobaciones]\label{obs:p44-comprobaciones}
+$D_z$ es continua en las caras, como debe ser sin carga libre (\cref{teo:frontera}), mientras que $E_z$ salta en $P/\eo=\sigmaP/\eo$ (\cref{cor:otras}). En el
+centro, $z=0$, $\cos\theta_2=-\cos\theta_1=\ell/\sqrt{a^2+\ell^2}$ y $E_z(0)=-\dfrac{P}{\eo}\Big(1-\dfrac{\ell}{\sqrt{a^2+\ell^2}}\Big)$: es la fórmula que usamos para las
+cavidades (\cref{sec:cavidades}).
+\end{observacion}
+
+\paso{Límites} \emph{Cilindro largo} ($a\ll\ell$). Para puntos interiores lejos de los extremos, $\theta_2\simeq0$ y $\theta_1\simeq\pi$, de modo que
+$\cos\theta_2\simeq1$ y $\cos\theta_1\simeq-1$:
+\[
+  \vEint\simeq\frac{\vP}{2\eo}\big[-2+1-(-1)\big]\simeq\vcero,\qquad \vD_{\mathrm{int}}\simeq\frac{\vP}{2}\big[1-(-1)\big]=\vP ;
+\]
+fuera, cerca de una cara, solo sobrevive el disco próximo, $\vEext\simeq\frac{\vP}{2\eo}(1-\cos\theta_1)$ y $\vD_{\mathrm{ext}}\simeq\frac{\vP}{2}(1-\cos\theta_1)$, que decaen
+rápidamente: el campo se concentra en los extremos (\cref{fig:p44-perfiles}, tercera columna).
+
+\emph{Cilindro corto} ($a\gg\ell$). Para $\abs z\lesssim\ell\ll a$, ambos ángulos son próximos a $\pi/2$ y $\cos\theta_{1,2}\simeq0$:
+\[
+  \vEext\simeq\vcero,\quad \vD_{\mathrm{ext}}\simeq\vcero,\qquad \vEint\simeq-\frac{\vP}{\eo},\quad \vD_{\mathrm{int}}\simeq\vcero :
+\]
+el electrete se comporta como un condensador plano con densidades $\pm P$ en las caras (\cref{fig:p44-perfiles}, segunda columna).
+
+\begin{observacion}[Líneas de campo]\label{obs:p44-lineas}
+La \cref{fig:cilindro-lineas} muestra las tres familias. $\vP$ es uniforme y solo existe dentro. $\vE$ nace en la cara positiva y muere en la
+negativa: fuera es el campo de dos discos; dentro se opone a $\vP$. $\vD$ forma líneas cerradas que atraviesan el cilindro en el sentido de $\vP$
+y se cierran por fuera como las de un imán de barra: la analogía es exacta, $\vD$ es formalmente el campo de un solenoide con «corriente»
+superficial $\vP\times\nn$.
+\end{observacion}
+
+\input{figuras/f-p44}
+\input{figuras/f-p44-perfiles}
+\input{figuras/f-cilindro-lineas}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.5. Cubo con polarización radial}\label{sec:p45}
+
+\begin{problema}[Cubo con polarización radial]\label{prob:cubo}
+Sea un cubo de material dieléctrico de lado $\ell$ centrado en el origen que presenta una polarización radial $\vP=A\vr$, donde $A$ es una
+constante y $\vr$ el vector de posición de cada punto. Obtén las densidades ligadas de carga y demuestra que la carga ligada total es cero.
+\end{problema}
+
+\begin{resolucion}
+\idea Aplicación directa del \cref{teo:densidades}, en cartesianas porque la frontera es un cubo.
+
+\paso{Paso 1: densidad volúmica} Con $\vP=A(x\,\uv x+y\,\uv y+z\,\uv z)$ y $\partial x_i/\partial x_i=1$,
+\[
+  \rhoP=-\divg\vP=-A\Big(\frac{\partial x}{\partial x}+\frac{\partial y}{\partial y}+\frac{\partial z}{\partial z}\Big)=-3A .
+\]
+\paso{Paso 2: densidades superficiales} En la cara $y=\ell/2$, $\nn=\uv y$ y $\sigmaP=\vP\cdot\uv y=Ay=A\ell/2$; en la cara $y=-\ell/2$, $\nn=-\uv y$ y
+$\sigmaP=-Ay=A\ell/2$. Por simetría, lo mismo en las otras cuatro caras:
+\[
+  \recuadro{\rhoP=-3A,\qquad \sigmaP=\frac{A\ell}{2}\ \text{(uniforme en cada cara)}.}
+\]
+\paso{Paso 3: carga total}
+\[
+  \QP=\int_V\rhoP\,\dd V+\oiint_S\sigmaP\,\dd S=-3A\,\ell^3+6\cdot\frac{A\ell}{2}\,\ell^2=0 . \qedhere
+\]
+\end{resolucion}
+
+\begin{observacion}[Más allá de la neutralidad]\label{obs:p45}
+También el momento dipolar total se anula, $\int\vP\,\dd V=A\int\vr\,\dd V=\vcero$ por simetría (\cref{obs:momento-ligado}): lejos del cubo, el campo
+decae más deprisa que el de un dipolo. Obsérvese que $\sigmaP$ es uniforme en cada cara aunque $\vP$ no lo sea, porque en una cara solo cuenta la
+componente normal, que es constante (\cref{fig:p45}).
+\end{observacion}
+
+\input{figuras/f-p45}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.6. Electrete esférico entre conductores}\label{sec:p46}
+
+\begin{problema}[Capa esférica de electrete]\label{prob:electrete-esferico}
+El espacio entre dos superficies esféricas conductoras concéntricas de espesor despreciable y radios $a$ y $4a$, respectivamente, está
+parcialmente lleno con una capa esférica de electrete de radio interno $a$ y externo $2a$. Dicho electrete presenta una polarización dada
+por $\vP=\dfrac{k}{r^2}\,\uv r$, donde $k$ es una constante y $r$ la distancia al centro del sistema. Calcula $\vE$ y $\vD$ para $0<r<\infty$ y
+representa gráficamente.
+\end{problema}
+
+\begin{resolucion}
+\idea Simetría esférica y $\vP$ radial: sin carga libre, $\vD=\vcero$ (\cref{ej:radial}) y $\vE=-\vP/\eo$ (método M2). Lo comprobamos con
+Gauss para $\vE$ y las cargas ligadas. Los conductores, neutros, no adquieren carga.
+
+\paso{Paso 1: cargas ligadas} En $a<r<2a$, $\rhoP=-\dfrac{1}{r^2}\dfrac{\dd}{\dd r}\Big(r^2\dfrac{k}{r^2}\Big)=0$. En las superficies del electrete,
+\[
+  \sigmaP(a)=\vP\cdot(-\uv r)=-\frac{k}{a^2},\qquad \sigmaP(2a)=\vP\cdot\uv r=\frac{k}{4a^2},
+\]
+con carga total $-\dfrac{k}{a^2}\,4\pi a^2+\dfrac{k}{4a^2}\,4\pi(2a)^2=-4\pi k+4\pi k=0$.
+
+\paso{Paso 2: $\vD$} Por simetría, $\vD=D(r)\,\uv r$, y no hay carga libre en ningún sitio (los conductores son neutros y, como veremos, no se induce
+carga en ellos): $D\,4\pi r^2=0$ y $\vD=\vcero$ para todo $r$.
+
+\paso{Paso 3: campo} $\vE=(\vD-\vP)/\eo=-\vP/\eo$:
+\begin{equation}\label{eq:p46}
+  \recuadro{\vE=\vcero\ (r<a),\qquad \vE=-\frac{k}{\eo r^2}\,\uv r\ \ (a<r<2a),\qquad \vE=\vcero\ (r>2a);\qquad \vD=\vcero .}
+\end{equation}
+\paso{Paso 4: comprobación con Gauss para $\vE$} Para $a<r<2a$ solo se encierra $\sigmaP(a)$: $E\,4\pi r^2=-4\pi k/\eo$, de donde $E=-k/\eo r^2$. Para $r>2a$ la
+carga ligada encerrada es nula y $E=0$.
+\end{resolucion}
+
+\begin{observacion}[Potencial y papel de los conductores]\label{obs:p46}
+Con $\phi(\infty)=0$, el potencial es nulo para $r\geq2a$ y, dentro del electrete,
+$\phi(r)=-\int_{2a}^{r}E_r\,\dd r'=\dfrac{k}{\eo}\Big(\dfrac{1}{2a}-\dfrac1r\Big)$, que en $r=a$ vale $-k/2\eo a$, el potencial de la esfera interior
+(\cref{fig:p46}). Como $D_n=\sigmaf=0$ en ambos conductores, en ellos no se induce carga: son irrelevantes. El campo, dirigido hacia dentro (de la
+carga ligada positiva exterior a la negativa interior), solo existe dentro del electrete.
+\end{observacion}
+
+\input{figuras/f-p46}
+
+\input{tema4/s8b-seminarios}

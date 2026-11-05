@@ -1,0 +1,64 @@
+% Figura: deducción de las condiciones de frontera (cilindro de Gauss y circuito
+% rectangular) e interpretación del salto de la componente normal de P.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.33\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (-1.8,-1.4) rectangle (1.8,0);
+  \fill[dielecB] (-1.8,0) rectangle (1.8,1.4);
+  \draw[texto, line width=0.6pt] (-1.8,0) -- (1.8,0);
+  \node[etiq, anchor=west] at (-1.75,1.12) {$2$};
+  \node[etiq, anchor=west] at (-1.75,-1.12) {$1$};
+  % cilindro
+  \fill[fondo!50!dielecB] (-0.7,-0.42) rectangle (0.7,0.42);
+  \draw[gauss] (-0.7,-0.42) -- (-0.7,0.42) (0.7,-0.42) -- (0.7,0.42);
+  \draw[gauss] (0,0.42) ellipse (0.7 and 0.16);
+  \draw[gauss] (-0.7,-0.42) arc (180:360:0.7 and 0.16);
+  \draw[gauss, densely dotted] (0.7,-0.42) arc (0:180:0.7 and 0.16);
+  \draw[vecn] (0,0.42) -- (0,1.2) node[right, etiq] {$\nn$};
+  \draw[vecn] (0,-0.58) -- (0,-1.3) node[right, etiq] {$-\nn$};
+  \node[etiqt] at (-1.12,0.62) {$\Delta S$};
+  \draw[cota] (1.0,-0.42) -- (1.0,0.42) node[midway, right, etiq] {$h\!\to\!0$};
+\end{tikzpicture}
+\caption{Normal de $\vD$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (-1.8,-1.4) rectangle (1.8,0);
+  \fill[dielecB] (-1.8,0) rectangle (1.8,1.4);
+  \draw[texto, line width=0.6pt] (-1.8,0) -- (1.8,0);
+  \node[etiq, anchor=west] at (-1.75,1.12) {$2$};
+  \node[etiq, anchor=west] at (-1.75,-1.12) {$1$};
+  \draw[acentoB, line width=0.7pt] (-0.8,-0.35) rectangle (0.8,0.35);
+  \draw[acentoB, line width=0.7pt, flechamedio] (-0.8,-0.35) -- (0.8,-0.35);
+  \draw[acentoB, line width=0.7pt, flechamedio] (0.8,0.35) -- (-0.8,0.35);
+  \node[etiqt] at (0,0.62) {$\Delta\ell$};
+  \draw[vecn] (-1.3,0) -- (-1.3,0.75) node[right, etiq] {$\nn$};
+  \draw[vecn] (-1.3,0) -- (-0.55,0) node[pos=0.55, below=1pt, etiq] {$\tu$};
+  \draw[cota] (1.1,-0.35) -- (1.1,0.35) node[midway, right, etiq] {$h\!\to\!0$};
+\end{tikzpicture}
+\caption{Tangencial de $\vE$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.32\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (-1.7,-1.4) rectangle (1.7,0);
+  \fill[dielecB] (-1.7,0) rectangle (1.7,1.4);
+  \draw[texto, line width=0.6pt] (-1.7,0) -- (1.7,0);
+  \node[etiq, anchor=west] at (-1.65,1.12) {$2$};
+  \node[etiq, anchor=west] at (-1.65,-1.12) {$1$};
+  \draw[vecP] (-0.45,-1.15) -- (-0.45,-0.05) node[pos=0.35, left, etiq] {$\vP_1$};
+  \draw[vecP] (0.45,0.05) -- (0.45,0.85) node[pos=0.6, right, etiq] {$\vP_2$};
+  \draw[vecn] (1.25,0) -- (1.25,0.65) node[right, etiq] {$\nn$};
+  \node[cpos] at (-0.45,0.17) {$+P_{1n}$};
+  \node[cneg] at (0.45,-0.2) {$-P_{2n}$};
+\end{tikzpicture}
+\caption{$\sigmaP=P_{1n}-P_{2n}$}
+\end{subfigure}
+\caption{Condiciones de frontera entre dos medios; $\nn$ es la normal unitaria del medio 1 al 2.
+(a) Cilindro de Gauss de bases $\Delta S$ y altura $h\to0$: el flujo lateral desaparece y queda
+$(D_{2n}-D_{1n})\Delta S=\sigmaf\,\Delta S$. (b) Circuito rectangular de lados $\Delta\ell$ y $h\to0$:
+la circulación de $\vE$ da $(E_{2t}-E_{1t})\Delta\ell=0$. (c) Cada medio aporta a la interfase la carga
+ligada $\vP\cdot\nn_{\mathrm{ext}}$ de su propia cara: $+P_{1n}$ el medio 1 (su normal exterior es $\nn$)
+y $-P_{2n}$ el medio 2 (su normal exterior es $-\nn$).}
+\label{fig:frontera}
+\end{figure}

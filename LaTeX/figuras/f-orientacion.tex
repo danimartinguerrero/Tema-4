@@ -1,0 +1,62 @@
+% Figura: (a) par sobre un dipolo en un campo uniforme; (b) y (c) orientación
+% térmica de dipolos permanentes sin campo y con campo.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.38\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \foreach \y in {-1.6,-1.07,...,1.62}
+    \draw[campoE!55!fondo, line width=0.45pt, flechamedio=0.96] (-2.4,\y) -- (2.4,\y);
+  \node[etiq, text=campoE] at (2.62,1.6) {$\vE$};
+  \fill[dielec, draw=texto!60!fondo, line width=0.4pt, rotate=40] (0,0) ellipse (0.6 and 1.45);
+  \coordinate (m) at (220:1.08); \coordinate (p) at (40:1.08);
+  \draw[texto, line width=0.6pt] (m) -- (p);
+  \draw[vecP, line width=1.2pt] (0,0) -- (40:0.7);
+  \node[etiq] at (128:0.36) {$\vp$};
+  \draw[texto!60!fondo, dashed, line width=0.35pt] (0,0) -- (1.05,0);
+  \draw[tenue, line width=0.4pt] (0.5,0) arc (0:40:0.5);
+  \node[etiqm, font=\footnotesize] at (17:0.72) {$\theta$};
+  \fill[cargapos] (p) circle (0.085); \fill[carganeg] (m) circle (0.085);
+  \draw[draw=cargapos, line width=1.0pt, -{Stealth[length=2.2mm]}] (p) -- ++(1.05,0);
+  \node[etiqf, anchor=south] at ($(p)+(0.8,0.14)$) {$\vF_{+}=q\vE$};
+  \draw[draw=carganeg, line width=1.0pt, -{Stealth[length=2.2mm]}] (m) -- ++(-1.05,0);
+  \node[etiqf, anchor=north] at ($(m)+(-0.8,-0.14)$) {$\vF_{-}=-q\vE$};
+  \node[etiqf, font=\footnotesize, anchor=north west] at ($(p)+(0.06,-0.1)$) {$+q$};
+  \node[etiqf, font=\footnotesize, anchor=south east] at ($(m)+(-0.06,0.1)$) {$-q$};
+  \node[etiq] at (0,-2.15) {$\vtau=\vp\times\vE$\quad($\otimes$, entrante)};
+\end{tikzpicture}
+\caption{Par de fuerzas sobre $\vp$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.29\textwidth}\centering
+\begin{tikzpicture}[scale=0.82]
+  \fill[dielec, rounded corners=2pt] (0,0) rectangle (3.2,3.2);
+  \pgfmathsetseed{17}
+  \foreach \i in {0,...,5} \foreach \j in {0,...,5} {
+    \pgfmathsetmacro{\ang}{360*rnd}
+    \draw[campoP, line width=0.75pt, -{Stealth[length=1.5mm,width=1.2mm]}]
+      ({0.32+0.51*\i-0.17*cos(\ang)},{0.32+0.51*\j-0.17*sin(\ang)}) --
+      ({0.32+0.51*\i+0.17*cos(\ang)},{0.32+0.51*\j+0.17*sin(\ang)});
+  }
+  \node[etiq] at (1.6,3.55) {$\vE=\vcero$};
+\end{tikzpicture}
+\caption{$\langle\vp\rangle=\vcero$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.29\textwidth}\centering
+\begin{tikzpicture}[scale=0.82]
+  \fill[dielec, rounded corners=2pt] (0,0) rectangle (3.2,3.2);
+  \pgfmathsetseed{17}
+  \foreach \i in {0,...,5} \foreach \j in {0,...,5} {
+    \pgfmathsetmacro{\ang}{110*(rnd-0.5)}
+    \draw[campoP, line width=0.75pt, -{Stealth[length=1.5mm,width=1.2mm]}]
+      ({0.32+0.51*\i-0.17*cos(\ang)},{0.32+0.51*\j-0.17*sin(\ang)}) --
+      ({0.32+0.51*\i+0.17*cos(\ang)},{0.32+0.51*\j+0.17*sin(\ang)});
+  }
+  \draw[vecE] (0.7,3.55) -- (2.5,3.55) node[right, etiq] {$\vE$};
+\end{tikzpicture}
+\caption{$\langle\vp\rangle\neq\vcero$}
+\end{subfigure}
+\caption{Sustancias polares. (a) En un campo uniforme la fuerza neta sobre un dipolo es nula, pero
+el par $\vtau=\vp\times\vE$ tiende a alinearlo con el campo. (b) Sin campo, la agitación térmica
+orienta los dipolos al azar y el momento medio es nulo. (c) Con campo, la orientación es parcial:
+el par compite con la agitación térmica, y el momento medio, no nulo, tiene la dirección de $\vE$.}
+\label{fig:orientacion}
+\end{figure}

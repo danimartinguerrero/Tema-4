@@ -1,0 +1,84 @@
+% =============================================================================
+\clearpage
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+\section{Formulario del Tema 4}\label{sec:formulario}
+% =============================================================================
+
+La \cref{tab:formulario} reúne las expresiones centrales del tema, con la referencia al enunciado en que se demuestran.
+
+\begin{table}[H]
+\centering
+\caption{Formulario del Tema 4. Materiales dieléctricos ($\nn$: normal exterior al dieléctrico, o del medio 1 al 2 en una interfase).}
+\label{tab:formulario}
+\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.7cm}@{}}
+\toprule
+Magnitud o resultado & Expresión & Referencia\\
+\midrule
+\multicolumn{3}{@{}l}{\textit{Modelo microscópico}}\\
+Polarizabilidad & $\vp=\alpha\vE$;\quad nube uniforme: $\alpha=4\pi\eo a^3$ & \cref{prop:polarizabilidad}\\
+Dipolo en campo uniforme & $\vF=\vcero$,\quad $\vtau=\vp\times\vE$,\quad $U=-\vp\cdot\vE$ & \cref{prop:par}\\
+\multicolumn{3}{@{}l}{\textit{Polarización y carga ligada}}\\
+Vector polarización & $\vP=\dd\vp/\dd V$ & \cref{def:polarizacion}\\
+Densidades de polarización & $\rhoP=-\divg\vP$,\quad $\sigmaP=\vP\cdot\nn$ & \cref{teo:densidades}\\
+Potencial & $\phi=\dfrac{1}{4\pi\eo}\Big[\displaystyle\int\frac{\rhoP}{R}\dd V'+\oiint\frac{\sigmaP}{R}\dd S'\Big]$ & \cref{teo:densidades}\\
+Neutralidad & $\QP=0$;\quad $\qPenc=-\oiint_S\vP\cdot\dS$ & \cref{prop:QP-nula}, \cref{lem:qP-enc}\\
+\multicolumn{3}{@{}l}{\textit{Vector desplazamiento}}\\
+Definición & $\vD=\eo\vE+\vP$ & \cref{def:D}\\
+Ley de Gauss & $\divg\vD=\rhof$,\quad $\oiint_S\vD\cdot\dS=\qfenc$ & \cref{teo:gauss-D}\\
+Rotacional & $\rot\vD=\rot\vP$;\quad $\rhof=0$ y $\vP$ irrotacional $\Leftrightarrow$ $\vD\equiv\vcero$ & \cref{prop:D-nulo}\\
+\multicolumn{3}{@{}l}{\textit{Medios lineales, homogéneos e isótropos}}\\
+Relación constitutiva & $\vP=\eo\chi\vE$,\quad $\vD=\varepsilon\vE$,\quad $\varepsilon=\eo(1+\chi)=\er\eo$ & \cref{def:LHI}, \cref{def:permitividad}\\
+Carga ligada de volumen & $\rhoP=-(1-\eo/\varepsilon)\,\rhof$ & \cref{prop:rhoP-rhof}\\
+Un único medio & $\vE=\dfrac{1}{4\pi\varepsilon}\displaystyle\int\frac{\rhof\,\uv R}{R^2}\dd V'$ & \cref{prop:un-medio}\\
+\multicolumn{3}{@{}l}{\textit{Condiciones de frontera}}\\
+Fundamentales & $D_{2n}-D_{1n}=\sigmaf$,\quad $\vE_{2t}=\vE_{1t}$,\quad $\phi_1=\phi_2$ & \cref{teo:frontera}\\
+Derivadas & $\eo(E_{2n}-E_{1n})=\sigmaf+\sigmaP$,\ \ $\sigmaP=P_{1n}-P_{2n}$;\quad $\vD_{2t}-\vD_{1t}=\vP_{2t}-\vP_{1t}$ & \cref{cor:otras}\\
+Medios \LHI{} & $\varepsilon_2E_{2n}-\varepsilon_1E_{1n}=\sigmaf$;\quad $\tan\theta_2/\varepsilon_2=\tan\theta_1/\varepsilon_1$ si $\sigmaf=0$ & \cref{prop:refraccion}\\
+\multicolumn{3}{@{}l}{\textit{Resultados de referencia}}\\
+Esfera uniformemente polarizada & dentro $\vE=-\vP/3\eo$, $\vD=\tfrac23\vP$; fuera, dipolo $\tfrac43\pi a^3\vP$ & \cref{prob:esfera-polarizada}\\
+Esfera dieléctrica en $\vE_0$ & $\vEint=\dfrac{3}{\er+2}\vE_0$ & \cref{ej:esfera-dielectrica}\\
+Condensador plano lleno & $C=\er C_0=\varepsilon A/d$ & \cref{prob:condensador-dielectrico}\\
+Cavidades & aguja: $\vEcav=\vE_d$;\quad lenteja: $\vDcav=\vD_d$;\quad esfera: $\vEcav=\vE_d+\vP_d/3\eo$ & \cref{prop:acicular}, \cref{prop:lenticular}, \cref{obs:lorentz}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =============================================================================
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0.25em}
+\small
+\bibitem{T1} D.~Martín Guerrero. \emph{Leyes básicas de la electrostática en el vacío} (Electromagnetismo I, Tema 1). Apuntes formalizados con
+  seminarios prácticos. Grado en Física, Universidad de Salamanca, 2026.
+\bibitem{T2} D.~Martín Guerrero. \emph{Desarrollo multipolar} (Electromagnetismo I, Tema 2). Apuntes formalizados con seminarios prácticos. Grado
+  en Física, Universidad de Salamanca, 2026.
+\bibitem{T3} D.~Martín Guerrero. \emph{Conductores en equilibrio electrostático} (Electromagnetismo I, Tema 3). Apuntes formalizados con seminarios
+  prácticos. Grado en Física, Universidad de Salamanca, 2026.
+\bibitem{T0} D.~Martín Guerrero. \emph{Herramientas matemáticas para el electromagnetismo} (Electromagnetismo I, Tema 0). Apuntes formalizados con
+  seminarios prácticos. Grado en Física, Universidad de Salamanca, 2026.
+\bibitem{DFA-teoria} Departamento de Física Aplicada. \emph{Electromagnetismo I. Tema IV: Materiales dieléctricos}. Apuntes de teoría. Material de la
+  asignatura. Grado en Física, Universidad de Salamanca, 2025.
+\bibitem{DFA-figuras} Departamento de Física Aplicada. \emph{Electromagnetismo I. Tema 4: Materiales dieléctricos (figuras)}. Material de la asignatura
+  (figuras elaboradas con Mathematica). Grado en Física, Universidad de Salamanca, 2025.
+\bibitem{DFA-problemas} Departamento de Física Aplicada. \emph{Electromagnetismo I. Tema 4: Materiales dieléctricos (relación de problemas)}. Material
+  de la asignatura. Grado en Física, Universidad de Salamanca, curso 2025-2026.
+\bibitem{Guia-T4} D.~Martín Guerrero. \emph{Tema 4. Dieléctricos: formulario, métodos y fichas de los doce problemas}. Guías de estudio de
+  Electromagnetismo I. Grado en Física, Universidad de Salamanca, 2026.
+\bibitem{Griffiths} D.~J. Griffiths. \emph{Introduction to Electrodynamics}. 4.ª ed. Cap.~4: «Electric fields in matter» (§4.1--§4.4; tablas 4.1 y 4.2).
+  Cambridge University Press, 2017.
+\bibitem{Wangsness} R.~K. Wangsness. \emph{Electromagnetic Fields}. 2.ª ed. Cap.~10: «Electrostatics in the presence of matter». John Wiley \& Sons, 1986.
+\bibitem{Purcell} E.~M. Purcell y D.~J. Morin. \emph{Electricity and Magnetism}. 3.ª ed. Cap.~10: «Electric fields in matter». Cambridge University
+  Press, 2013.
+\bibitem{Feynman} R.~P. Feynman, R.~B. Leighton y M.~Sands. \emph{The Feynman Lectures on Physics. Volume II}. Caps.~10 y 11: «Dielectrics» e «Inside
+  dielectrics». Addison-Wesley, 1964.
+\bibitem{Jackson} J.~D. Jackson. \emph{Classical Electrodynamics}. 3.ª ed. §4.3--§4.6: polarización, desplazamiento, condiciones de contorno con
+  dieléctricos, relación de Clausius--Mossotti. John Wiley \& Sons, 1999.
+\bibitem{Landau} L.~D. Landau, E.~M. Lifshitz y L.~P. Pitaevskii. \emph{Electrodynamics of Continuous Media}. 2.ª ed. §6--§8: dieléctricos, campo en
+  cavidades y elipsoides en un campo uniforme. Pergamon Press, 1984.
+\bibitem{Osborn} J.~A. Osborn. «Demagnetizing factors of the general ellipsoid». \emph{Physical Review} 67 (1945), 351--357.
+  doi:\href{https://doi.org/10.1103/PhysRev.67.351}{10.1103/PhysRev.67.351}.
+\bibitem{CODATA} E.~Tiesinga, P.~J. Mohr, D.~B. Newell y B.~N. Taylor. «CODATA recommended values of the fundamental physical constants: 2018».
+  \emph{Reviews of Modern Physics} 93 (2021), 025010. doi:\href{https://doi.org/10.1103/RevModPhys.93.025010}{10.1103/RevModPhys.93.025010}.
+\end{thebibliography}

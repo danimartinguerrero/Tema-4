@@ -1,0 +1,169 @@
+% =============================================================================
+\section{Condiciones de frontera}\label{sec:frontera}
+% =============================================================================
+
+Las ecuaciones $\divg\vD=\rhof$ y $\rot\vE=\vcero$ valen en el interior de cada medio, pero en una interfase entre
+dos dieléctricos, o entre un dieléctrico y el vacío o un conductor, los campos pueden ser discontinuos y
+las derivadas dejan de tener sentido. Sus formas integrales, en cambio, siguen valiendo, y de ellas se
+deducen las relaciones entre los campos a uno y otro lado. Repasamos la deducción del Tema~1~\cite{T1},
+ahora con $\vD$.
+
+Sea $\Sigma$ una superficie que separa los medios~1 y~2, con normal unitaria $\nn$ dirigida de~1 a~2 y
+posiblemente con una densidad de carga libre $\sigmaf$. Para un campo $\vec F$, escribimos $F_n=\vec F\cdot\nn$ y
+$\vec F_t=\vec F-F_n\nn$.
+
+\input{figuras/f-frontera}
+
+\subsection{Las dos condiciones fundamentales}\label{sec:condiciones}
+
+\begin{teorema}[Condiciones de frontera]\label{teo:frontera}
+En cada punto de $\Sigma$ en que los campos son acotados a ambos lados:
+\begin{enumerate}
+  \item la componente normal de $\vD$ salta en la densidad de carga libre,
+        \begin{equation}\label{eq:frontera-D}
+          D_{2n}-D_{1n}=\sigmaf
+          \qquad\Longleftrightarrow\qquad
+          \nn\cdot(\vD_2-\vD_1)=\sigmaf ;
+        \end{equation}
+  \item la componente tangencial de $\vE$ es continua,
+        \begin{equation}\label{eq:frontera-E}
+          \vE_{2t}=\vE_{1t}
+          \qquad\Longleftrightarrow\qquad
+          \nn\times(\vE_2-\vE_1)=\vcero ;
+        \end{equation}
+  \item el potencial es continuo, $\phi_1=\phi_2$ sobre $\Sigma$.
+\end{enumerate}
+\end{teorema}
+
+\begin{proof}
+(i) Aplicamos la forma integral de la ley de Gauss para $\vD$ a un cilindro de bases $\Delta S$, paralelas a $\Sigma$ a uno
+y otro lado, y altura $h$ (\cref{fig:frontera}\,(a)); las bases son tan pequeñas que $\vD$ es prácticamente uniforme en
+cada una. Al hacer $h\to0$, el área lateral tiende a cero y, como $\vD$ es acotado, su flujo desaparece. Solo quedan las
+bases, con normales exteriores $\nn$ (en el medio~2) y $-\nn$ (en el medio~1):
+\[
+  \oiint\vD\cdot\dS\ \xrightarrow{\;h\to0\;}\ \vD_2\cdot\nn\,\Delta S+\vD_1\cdot(-\nn)\,\Delta S=(D_{2n}-D_{1n})\,\Delta S .
+\]
+En cuanto a la carga libre encerrada, la volúmica es $\rhof\,\Delta S\,h\to0$ y solo sobrevive la superficial, $\sigmaf\,\Delta S$.
+Igualando y dividiendo por $\Delta S$ se obtiene \eqref{eq:frontera-D}.
+
+(ii) Como el campo electrostático es conservativo, $\oint_C\vE\cdot\dl=0$ para cualquier curva cerrada. Tomamos un rectángulo
+de lados $\Delta\ell$ paralelos a $\Sigma$, según una dirección tangente $\tu$, y lados $h$ perpendiculares (\cref{fig:frontera}\,(b)).
+Al hacer $h\to0$ los lados perpendiculares no contribuyen y
+\[
+  \vE_2\cdot(-\tu)\,\Delta\ell+\vE_1\cdot\tu\,\Delta\ell=0
+  \quad\Longrightarrow\quad (E_{2t}-E_{1t})\,\Delta\ell=0 ,
+\]
+para cualquier dirección tangente $\tu$, lo que equivale a \eqref{eq:frontera-E}.
+
+(iii) Sean $P_1$ y $P_2$ dos puntos a uno y otro lado de $\Sigma$, separados una distancia $h$ según la normal. Entonces
+$\phi(P_2)-\phi(P_1)=-\int_{P_1}^{P_2}\vE\cdot\dl$, que en módulo no supera $h\,\sup\abs{\vE}$ y tiende a cero con $h$ porque $\vE$ es acotado.
+\end{proof}
+
+\begin{observacion}[Continuidad de $\phi$ y de $\vE_t$ son equivalentes]\label{obs:phi-Et}
+Si $\phi$ es continuo, $\phi_1=\phi_2$ en todos los puntos de $\Sigma$: ambos potenciales coinciden como funciones sobre la
+superficie, y también sus derivadas a lo largo de ella, $E_{1t}=-\partial\phi_1/\partial t=-\partial\phi_2/\partial t=E_{2t}$. Recíprocamente, si
+$\vE_t$ es continuo, para dos puntos $A$ y $B$ de la frontera, recorriéndola justo por encima y justo por debajo,
+$\phi_2(B)-\phi_2(A)=-\int_A^BE_{2t}\,\dd\ell=-\int_A^BE_{1t}\,\dd\ell=\phi_1(B)-\phi_1(A)$, de modo que $\phi_2-\phi_1$ es constante a lo largo
+de $\Sigma$; el argumento de (iii) muestra que esa constante es nula. Las dos condiciones son la misma
+información; la (iii) es la que se usa al resolver la ecuación de Laplace.
+\end{observacion}
+
+\subsection{Las otras dos componentes}\label{sec:otras-componentes}
+
+Las condiciones \eqref{eq:frontera-D} y \eqref{eq:frontera-E} no dicen nada directamente de $E_n$ ni de $\vD_t$. Se obtienen
+de ellas despejando $\vE=(\vD-\vP)/\eo$.
+
+\begin{corolario}[Saltos de $E_n$ y de $\vD_t$]\label{cor:otras}
+En las mismas condiciones del \cref{teo:frontera}:
+\begin{enumerate}[start=4]
+  \item la componente normal de $\vE$ salta en la carga total, libre y ligada, dividida por $\eo$:
+        \begin{equation}\label{eq:salto-En}
+          E_{2n}-E_{1n}=\frac{1}{\eo}\big(\sigmaf+\sigmaP\big),
+          \qquad \sigmaP=P_{1n}-P_{2n} ;
+        \end{equation}
+  \item la componente tangencial de $\vD$ salta como la de $\vP$:
+        \begin{equation}\label{eq:salto-Dt}
+          \vD_{2t}-\vD_{1t}=\vP_{2t}-\vP_{1t} .
+        \end{equation}
+\end{enumerate}
+\end{corolario}
+
+\begin{proof}
+(iv) Sustituyendo $D_n=\eo E_n+P_n$ en \eqref{eq:frontera-D},
+$(\eo E_{2n}+P_{2n})-(\eo E_{1n}+P_{1n})=\sigmaf$, es decir, $\eo(E_{2n}-E_{1n})=\sigmaf+P_{1n}-P_{2n}$. Que $P_{1n}-P_{2n}$ es la carga ligada neta de la
+interfase se sigue del \cref{teo:densidades}: cada medio aporta $\vP\cdot\nn_{\mathrm{ext}}$ en su propia cara, y la normal exterior del
+medio~1 es $\nn$ mientras que la del medio~2 es $-\nn$ (\cref{fig:frontera}\,(c)).
+(v) Tomando componentes tangenciales en $\vD=\eo\vE+\vP$ y usando \eqref{eq:frontera-E},
+$\vD_{2t}-\vD_{1t}=\eo(\vE_{2t}-\vE_{1t})+(\vP_{2t}-\vP_{1t})=\vP_{2t}-\vP_{1t}$.
+\end{proof}
+
+\begin{observacion}[Lectura de los saltos]\label{obs:lectura-saltos}
+La ecuación \eqref{eq:salto-En} es la condición del vacío con la carga total: el campo $\vE$ «ve» todas las cargas. La
+\eqref{eq:salto-Dt} es la versión superficial de $\rot\vD=\rot\vP$: como $\vD$ no es conservativo, su componente tangencial no tiene
+por qué conservarse. Dos casos particulares: en la cara de un dieléctrico en el vacío ($\vP_2=\vcero$) se recupera
+$\sigmaP=\vP\cdot\nn$; y junto a un conductor en equilibrio ($\vE_1=\vD_1=\vcero$ en el metal), $D_{2n}=\sigmaf$ es la carga libre del conductor y
+$\eo E_{2n}=\sigmaf+\sigmaP$ incluye la carga ligada del dieléctrico adyacente.
+\end{observacion}
+
+\subsection{Medios lineales: ley de refracción}\label{sec:refraccion}
+
+Si ambos medios son \LHI{}, $\vD_1=\varepsilon_1\vE_1$ y $\vD_2=\varepsilon_2\vE_2$, y las condiciones fundamentales toman la forma
+\begin{equation}\label{eq:frontera-LHI}
+  \varepsilon_2E_{2n}-\varepsilon_1E_{1n}=\sigmaf,\qquad
+  \frac{\vD_{2t}}{\varepsilon_2}-\frac{\vD_{1t}}{\varepsilon_1}=\vcero .
+\end{equation}
+Si $\varepsilon_1\neq\varepsilon_2$, ni $E_n$ ni $\vD_t$ son continuos, aunque no haya carga libre en la interfase. Esta discontinuidad del
+campo se traduce en una refracción de sus líneas.
+
+\begin{proposicion}[Ley de refracción de las líneas de campo]\label{prop:refraccion}
+En una interfase sin carga libre entre dos medios \LHI{}, si $\theta_1$ y $\theta_2$ son los ángulos que forman $\vE_1$ y $\vE_2$ con la
+normal,
+\begin{equation}\label{eq:refraccion}
+  \boxed{\;\frac{\tan\theta_2}{\varepsilon_2}=\frac{\tan\theta_1}{\varepsilon_1}\; .}
+\end{equation}
+Las líneas de $\vD$ se refractan con los mismos ángulos, pues $\vD\parallel\vE$ en cada medio.
+\end{proposicion}
+
+\begin{proof}
+Con $\sigmaf=0$, $E_{2t}=E_{1t}$ y $\varepsilon_2E_{2n}=\varepsilon_1E_{1n}$. Como $\tan\theta_i=E_{it}/E_{in}$ (\cref{fig:refraccion}\,(a)),
+\[
+  \frac{\tan\theta_2}{\tan\theta_1}=\frac{E_{2t}}{E_{1t}}\,\frac{E_{1n}}{E_{2n}}=1\cdot\frac{\varepsilon_2}{\varepsilon_1}. \qedhere
+\]
+\end{proof}
+
+Al pasar a un medio de mayor permitividad, $\theta_2>\theta_1$: la línea se aleja de la normal y tiende a «tumbarse» a lo largo
+de la interfase (\cref{fig:refraccion}\,(b)). En el límite $\varepsilon_2\to\infty$, las líneas del medio~1 llegan perpendiculares a la
+interfase, como a la superficie de un conductor~\cite{T3}.
+
+\input{figuras/f-refraccion}
+
+\begin{ejemplo}[Esfera dieléctrica en un campo uniforme]\label{ej:esfera-dielectrica}
+Una esfera de radio $a$ y permitividad $\varepsilon=\er\eo$ se coloca en un campo uniforme $\vE_0=E_0\,\uv z$. Busquemos una solución en
+la que la esfera se polariza \emph{uniformemente}. Por el \cref{prob:esfera-polarizada}, una esfera con polarización uniforme
+$\vP$ crea en su interior el campo uniforme $-\vP/3\eo$, y fuera, el de un dipolo $\vp=\tfrac43\pi a^3\vP$. El campo interior total es
+$\vE_{\mathrm{int}}=\vE_0-\vP/3\eo$, y la relación constitutiva exige $\vP=\eo\chi\vE_{\mathrm{int}}$. Resolviendo este sistema autoconsistente,
+\[
+  \vE_{\mathrm{int}}=\vE_0-\frac{\chi}{3}\vE_{\mathrm{int}}
+  \quad\Longrightarrow\quad
+  \vE_{\mathrm{int}}=\frac{3}{\er+2}\,\vE_0 ,\qquad
+  \vP=3\eo\,\frac{\er-1}{\er+2}\,\vE_0 .
+\]
+En coordenadas esféricas, el potencial correspondiente es
+\[
+  \phi_{\mathrm{int}}=-\frac{3}{\er+2}\,E_0\,r\cos\theta,
+  \qquad
+  \phi_{\mathrm{ext}}=-E_0\,r\cos\theta+\frac{\er-1}{\er+2}\,\frac{E_0a^3\cos\theta}{r^2}.
+\]
+\emph{Comprobación.} Ambos son armónicos ($r\cos\theta=z$ y $\cos\theta/r^2$ es el potencial de un dipolo); $\phi_{\mathrm{ext}}\to-E_0z$ en el
+infinito; en $r=a$ los dos valen $-3E_0a\cos\theta/(\er+2)$, y las componentes radiales de $\vD$ coinciden:
+\[
+  -\varepsilon\,\frac{\partial\phi_{\mathrm{int}}}{\partial r}=\frac{3\er\eo E_0\cos\theta}{\er+2}
+  =-\eo\,\frac{\partial\phi_{\mathrm{ext}}}{\partial r}\bigg|_{r=a}=\eo E_0\cos\theta\Big(1+2\,\frac{\er-1}{\er+2}\Big).
+\]
+Por el teorema de unicidad~\cite{T3,Jackson}, que se extiende sin cambios a medios \LHI{} a trozos, esta es la solución.
+El campo interior es uniforme y más débil que el aplicado; las líneas de $\vD$, continuas, se concentran en la esfera
+(\cref{fig:esfera-dielectrica}). En el límite $\er\to\infty$, $\vE_{\mathrm{int}}\to\vcero$ y el dipolo inducido tiende a $4\pi\eo a^3\vE_0$: se
+recupera la esfera conductora del Tema~3~\cite{T3}.
+\end{ejemplo}
+
+\input{figuras/f-esfera-dielectrica}

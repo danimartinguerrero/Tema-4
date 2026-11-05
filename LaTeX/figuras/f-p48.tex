@@ -1,0 +1,59 @@
+% Figura: problema 4.8. Condensador esférico con dos dieléctricos hemisféricos.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.5\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \fill[dielec] (0,2.1) arc (90:270:2.1) -- cycle;
+  \fill[dielecB] (0,-2.1) arc (-90:90:2.1) -- cycle;
+  \draw[texto!70!fondo, line width=0.5pt] (0,-2.1) -- (0,2.1);
+  \draw[texto, line width=1.1pt] (0,0) circle (2.1);
+  \shade[ball color=conductorluz] (0,0) circle (0.85);
+  \draw[texto, line width=0.6pt] (0,0) circle (0.85);
+  \draw[gauss] (0,0) circle (1.5);
+  \node[etiq] at (-0.9,1.62) {$\varepsilon_1$};
+  \node[etiq] at (0.9,1.62) {$\varepsilon_2$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.6mm]}] (0,0) -- (40:0.85);
+  \node[font=\small, text=black] at (0.12,0.12) [above left=-1pt] {$a$};
+  \draw[acentoB, line width=0.5pt, -{Stealth[length=1.6mm]}] (0,0) -- (-25:1.5);
+  \node[etiq, text=acentoB] at (-20:1.25) [below=1pt] {$r$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.6mm]}] (0,0) -- (-125:2.1);
+  \node[etiq] at (-125:1.75) [left=1pt] {$b$};
+  \node[etiq] at (-1.55,0.25) {$Q$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.5mm]}] (-1.38,0.18) -- (165:0.9);
+  % tierra
+  \draw[texto, line width=0.6pt] (2.1,0) -- (2.75,0) -- (2.75,-0.25);
+  \pic at (2.75,-0.25) {tierra};
+  \node[etiqt, anchor=west] at (2.82,0.15) {$\phi=0$};
+\end{tikzpicture}
+\caption{Geometría y superficie gaussiana}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.47\textwidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \newcommand{\mini}[1]{\begin{scope}[shift={(0,#1)}]
+     \fill[dielec] (0,2.1) arc (90:270:2.1) -- cycle;
+     \fill[dielecB] (0,-2.1) arc (-90:90:2.1) -- cycle;
+     \draw[texto, line width=0.6pt] (0,0) circle (2.1);
+     \fill[fondo] (0,0) circle (0.95);\end{scope}}
+  % (i) interfase: sin carga
+  \mini{5.6}
+  \draw[acentoC, line width=1.6pt] (0,0.95+5.6) -- (0,2.1+5.6) (0,-0.95+5.6) -- (0,-2.1+5.6);
+  \draw[texto, line width=0.5pt] (0,5.6) circle (0.95);
+  \node[etiq, anchor=west, align=left, font=\footnotesize] at (2.5,5.6) {interfase plana: $E_n=D_n=0$,\\ sin carga libre ni ligada};
+  % (ii) carga total uniforme
+  \mini{0}
+  \draw[acentoA, line width=2.0pt] (0,0) circle (0.95);
+  \node[etiq, anchor=west, align=left, font=\footnotesize] at (2.5,0) {carga total en $r=a$:\\ $\sigmaf+\sigmaP=\eo E(a)$, uniforme};
+  % (iii) carga libre mayor en el medio de mayor permitividad
+  \mini{-5.6}
+  \draw[cargapos, line width=1.0pt] (0,0.95-5.6) arc (90:270:0.95);
+  \draw[cargapos, line width=2.6pt] (0,-0.95-5.6) arc (-90:90:0.95);
+  \node[etiq, anchor=west, align=left, font=\footnotesize] at (2.5,-5.6) {carga libre: $\sigma_{\mathrm{f},i}=\varepsilon_i E(a)$,\\ mayor donde $\varepsilon$ es mayor};
+\end{tikzpicture}
+\caption{Reparto de la carga en $r=a$ ($\varepsilon_2>\varepsilon_1$)}
+\end{subfigure}
+\caption{\Cref{prob:dos-hemisferios}. (a) Esfera interior de radio $a$ y carga $Q$; esfera exterior de radio $b$ a tierra; el hueco
+está lleno por dos dieléctricos separados por un plano ecuatorial. (b) El campo es radial e igual en ambos
+medios, pero la carga libre de la esfera interior no es uniforme: se concentra en el hemisferio del
+dieléctrico de mayor permitividad, de modo que la carga total (libre más ligada) sí resulta uniforme.}
+\label{fig:p48}
+\end{figure}

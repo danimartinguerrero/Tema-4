@@ -1,0 +1,54 @@
+% Figura: problema 4.6. Capa esférica de electrete P = k/r^2 entre conductores.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.36\textwidth}\centering
+\begin{tikzpicture}[scale=0.62]
+  \draw[texto, line width=0.9pt] (0,0) circle (4.0);
+  \fill[dielec] (0,0) circle (2.0);
+  \fill[fondo] (0,0) circle (1.0);
+  \draw[borde] (0,0) circle (2.0);
+  \draw[texto, line width=0.9pt] (0,0) circle (1.0);
+  \foreach \t in {0,45,...,315}
+    \draw[campoP, line width=0.85pt, -{Stealth[length=1.6mm]}] (\t:1.12) -- (\t:1.88);
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.5mm]}] (0,0) -- (115:1.0);
+  \node[etiq] at (150:0.45) {$a$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.5mm]}] (0,0) -- (-65:2.0);
+  \node[etiq, fill=dielec, inner sep=1pt] at (-80:1.5) {$2a$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.5mm]}] (0,0) -- (200:4.0);
+  \node[etiq] at (200:3.0) [above=1pt] {$4a$};
+  \node[etiq, text=campoP] at (28:2.45) {$\vP$};
+\end{tikzpicture}
+\caption{Geometría}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.62\textwidth}\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 2, horizontal sep=1.1cm, vertical sep=0.95cm},
+   width=5.0cm, height=3.25cm, axis lines=left, xmin=0, xmax=5, xtick={1,2,4}, xticklabels={$a$,$2a$,$4a$},
+   tick label style={font=\tiny}, label style={font=\footnotesize}, clip=false, xlabel={$r$}]
+  \nextgroupplot[ymin=0, ymax=1.15, ytick={0.25,1}, yticklabels={$\frac{k}{4a^2}$,$\frac{k}{a^2}$}, ylabel={$P$}]
+    \addplot[curvaP, solid, domain=1:2, samples=40] {1/x^2};
+    \addplot[curvaP, solid] coordinates {(0,0) (1,0)}; \addplot[curvaP, solid] coordinates {(2,0) (5,0)};
+    \draw[equipot] (axis cs:1,0) -- (axis cs:1,1.15) (axis cs:2,0) -- (axis cs:2,1.15) (axis cs:4,0) -- (axis cs:4,1.15);
+  \nextgroupplot[ymin=-1.15, ymax=0.15, ytick={-1,-0.25,0}, yticklabels={$-\frac{k}{\eo a^2}$,$-\frac{k}{4\eo a^2}$,$0$}, ylabel={$E_r$}]
+    \addplot[curvaE, domain=1:2, samples=40] {-1/x^2};
+    \addplot[curvaE] coordinates {(0,0) (1,0)}; \addplot[curvaE] coordinates {(2,0) (5,0)};
+    \draw[equipot] (axis cs:1,-1.15) -- (axis cs:1,0.15) (axis cs:2,-1.15) -- (axis cs:2,0.15) (axis cs:4,-1.15) -- (axis cs:4,0.15);
+  \nextgroupplot[ymin=-0.6, ymax=0.6, ytick={0}, ylabel={$D_r$}]
+    \addplot[curvaD] coordinates {(0,0) (5,0)};
+    \draw[equipot] (axis cs:1,-0.6) -- (axis cs:1,0.6) (axis cs:2,-0.6) -- (axis cs:2,0.6) (axis cs:4,-0.6) -- (axis cs:4,0.6);
+    \node[etiqt, anchor=north, fill=fondo, inner sep=1pt] at (axis cs:3,-0.12) {$\vD=\vcero$ en todo punto};
+  \nextgroupplot[ymin=-0.6, ymax=0.1, ytick={-0.5,0}, yticklabels={$-\frac{k}{2\eo a}$,$0$}, ylabel={$\phi$}]
+    \addplot[curvaV] coordinates {(0,-0.5) (1,-0.5)};
+    \addplot[curvaV, domain=1:2, samples=40] {0.5-1/x};
+    \addplot[curvaV] coordinates {(2,0) (5,0)};
+    \draw[equipot] (axis cs:1,-0.6) -- (axis cs:1,0.1) (axis cs:2,-0.6) -- (axis cs:2,0.1) (axis cs:4,-0.6) -- (axis cs:4,0.1);
+\end{groupplot}
+\end{tikzpicture}
+\caption{$P$, $E_r$, $D_r$ y $\phi$ frente a $r$}
+\end{subfigure}
+\caption{\Cref{prob:electrete-esferico}. (a) Capa de electrete ($a<r<2a$, sombreada) con $\vP=(k/r^2)\,\uv r$ entre dos
+esferas conductoras neutras de radios $a$ y $4a$. (b) Sin carga libre y con $\vP$ irrotacional, $\vD=\vcero$ en
+todo el espacio; el campo solo existe dentro del electrete, $\vE=-\vP/\eo$, y apunta hacia dentro. El
+potencial ($\phi(\infty)=0$) es nulo fuera de $r=2a$ y constante dentro de $r=a$.}
+\label{fig:p46}
+\end{figure}

@@ -1,0 +1,126 @@
+% =============================================================================
+\section{Cavidades en un dieléctrico}\label{sec:cavidades}
+% =============================================================================
+
+Dentro de un dieléctrico el campo macroscópico $\vE$ es un promedio: no podemos introducir una carga de
+prueba entre las moléculas para medirlo. Lo que sí podemos hacer es practicar una pequeña cavidad y medir
+el campo en su interior. La pregunta es si ese campo coincide con el del medio, y la respuesta es que
+depende de la forma de la cavidad. Dos formas extremas, la aguja y la lenteja, dan respectivamente $\vE$ y
+$\vD/\eo$, y con ello una definición operacional de ambos campos~\cite{DFA-teoria,Landau}.
+
+\subsection{Planteamiento: el principio de superposición}\label{sec:cav-superposicion}
+
+Sea un dieléctrico con campos $\vE_d$, $\vD_d$ y $\vP_d$, uniformes a la escala de la cavidad que vamos a practicar, y sea
+$V_c$ la región de la cavidad, muy pequeña frente a las distancias en que varían los campos.
+
+\begin{proposicion}[Superposición para cavidades]\label{prop:cav-superposicion}
+Si la polarización del medio fuera de la cavidad no se altera al practicarla, el campo en la cavidad es
+\begin{equation}\label{eq:cav-superposicion}
+  \vEcav=\vE_d+\vE_{-\vP_d},
+\end{equation}
+donde $\vE_{-\vP_d}$ es el campo que crearía un cuerpo con la forma de la cavidad y polarización uniforme $-\vP_d$.
+\end{proposicion}
+
+\begin{proof}
+La polarización del medio con cavidad es $\vP=\vP_d-\vP_d\,\mathbb 1_{V_c}$, donde $\mathbb 1_{V_c}$ vale uno en la cavidad y cero fuera.
+El potencial \eqref{eq:phi-P} depende linealmente de $\vP$, así que el campo es la suma del creado por el medio macizo,
+$\vE_d$, y del creado por la polarización $-\vP_d$ restringida a $V_c$ (\cref{fig:cavidades}\,(a)). Las cargas libres, si las hay,
+no cambian.
+\end{proof}
+
+\begin{observacion}[Sobre la hipótesis]\label{obs:cav-hipotesis}
+En un electrete la hipótesis es exacta: su polarización no depende del campo. En un medio \LHI{} la cavidad modifica
+ligeramente el campo y la polarización en sus proximidades, y la \cref{prop:cav-superposicion} es solo aproximada. Los
+resultados de las cavidades acicular y lenticular, sin embargo, son exactos en el límite de forma extrema, porque se
+deducen directamente de las condiciones de frontera, como veremos.
+\end{observacion}
+
+\input{figuras/f-cavidades}
+
+\subsection{Cavidad acicular}\label{sec:acicular}
+
+\begin{definicion}[Cavidad acicular]\label{def:acicular}
+Una \emph{cavidad acicular} es un cilindro de radio $a$ y longitud $2\ell$ con $a\ll\ell$ (una aguja), cuyo eje es paralelo a $\vE_d$.
+\end{definicion}
+
+\begin{proposicion}[Campo en una cavidad acicular]\label{prop:acicular}
+En el centro de una cavidad acicular, en el límite $a/\ell\to0$,
+\begin{equation}\label{eq:acicular}
+  \boxed{\;\vEcav=\vE_d\;},\qquad \vDcav=\eo\vE_d=\vD_d-\vP_d .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+\emph{Por condiciones de frontera.} La superficie de la aguja es casi toda lateral, y en ella $\vE_d$ es tangente. La componente
+tangencial de $\vE$ es continua (\cref{teo:frontera}), luego justo dentro de la pared lateral $\vEcav=\vE_d$. Las caras de los
+extremos tienen área $\pi a^2$, despreciable, y su influencia en el centro desaparece en el límite.
+
+\emph{Por superposición.} El cuerpo de la \cref{prop:cav-superposicion} es un cilindro con polarización axial $-\vP_d$, que equivale a dos
+discos de radio $a$ con densidades $\pm P_d$ en $z=\mp\ell$. En el centro, por el resultado del \cref{prob:cilindro-polarizado} con
+$P\to-P_d$ y $z=0$,
+\[
+  \vE_{-\vP_d}(0)=\frac{\vP_d}{\eo}\left(1-\frac{\ell}{\sqrt{a^2+\ell^2}}\right)=\frac{\vP_d}{\eo}\left(\frac{a^2}{2\ell^2}+\mathcal O\big(a^4/\ell^4\big)\right)
+  \xrightarrow{\;a/\ell\to0\;}\vcero ,
+\]
+como muestra el perfil del cilindro largo, en el que $E\simeq0$ lejos de los extremos (\cref{fig:cavidades}\,(c)).
+\end{proof}
+
+\subsection{Cavidad lenticular}\label{sec:lenticular}
+
+\begin{definicion}[Cavidad lenticular]\label{def:lenticular}
+Una \emph{cavidad lenticular} es un cilindro de radio $a$ y espesor $2\ell$ con $\ell\ll a$ (una lenteja o disco), cuyas caras son
+perpendiculares a $\vE_d$.
+\end{definicion}
+
+\begin{proposicion}[Campo en una cavidad lenticular]\label{prop:lenticular}
+En el centro de una cavidad lenticular, en el límite $\ell/a\to0$,
+\begin{equation}\label{eq:lenticular}
+  \boxed{\;\vDcav=\vD_d\;},\qquad \vEcav=\frac{\vD_d}{\eo}=\vE_d+\frac{\vP_d}{\eo} .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+\emph{Por condiciones de frontera.} Ahora la superficie es casi toda cara, perpendicular a $\vE_d$ y por tanto a $\vD_d$. No hay carga libre
+en ella, y la componente normal de $\vD$ es continua (\cref{teo:frontera}): justo dentro de la cara, $\vDcav=\vD_d$. El borde lateral, de
+área $4\pi a\ell$, es despreciable frente a las caras en el límite.
+
+\emph{Por superposición.} El cuerpo es ahora un disco delgado con $-\vP_d$. En su centro, con la misma fórmula y $\ell/a\to0$,
+\[
+  \vE_{-\vP_d}(0)=\frac{\vP_d}{\eo}\left(1-\frac{\ell}{\sqrt{a^2+\ell^2}}\right)\xrightarrow{\;\ell/a\to0\;}\frac{\vP_d}{\eo},
+\]
+el campo de un condensador plano con densidades $\pm P_d$, como en el perfil del disco delgado (\cref{fig:cavidades}\,(e)). Sumando
+$\vE_d$ se obtiene \eqref{eq:lenticular}.
+\end{proof}
+
+\subsection{Interpretación: definición operacional de $\vE$ y $\vD$}\label{sec:cav-interpretacion}
+
+Las dos proposiciones anteriores, debidas esencialmente a Kelvin, permiten definir los campos macroscópicos mediante
+medidas: \emph{$\vE$ es la fuerza por unidad de carga que actúa sobre una carga de prueba en una cavidad acicular
+paralela al campo, y $\vD/\eo$ es la que actúa en una cavidad lenticular perpendicular a él}. La diferencia entre ambas
+es $\vP/\eo$: es el campo de las cargas ligadas de las caras del disco, que la aguja evita y la lenteja no.
+
+\begin{observacion}[La cavidad esférica y el campo de Lorentz]\label{obs:lorentz}
+Para una cavidad esférica, el cuerpo de la \cref{prop:cav-superposicion} es una esfera con $-\vP_d$, que crea en su interior el campo
+uniforme $+\vP_d/3\eo$ (\cref{prob:esfera-polarizada}). Por tanto,
+\[
+  \vEcav=\vE_d+\frac{\vP_d}{3\eo},
+\]
+a medio camino entre la aguja y la lenteja. Es el llamado \emph{campo local de Lorentz}: una estimación del campo que actúa
+sobre una molécula, que «ve» a sus vecinas como un medio continuo a partir de cierta distancia. Si cada molécula
+responde con $\vp=\alpha\vE_{\mathrm{loc}}$ y hay $N$ por unidad de volumen, $\vP=N\alpha\,(\vE+\vP/3\eo)$, y despejando $\chi=P/(\eo E)$ se obtiene
+la relación de Clausius--Mossotti~\cite{Griffiths,Jackson},
+\[
+  \frac{\er-1}{\er+2}=\frac{N\alpha}{3\eo},
+\]
+que liga la polarizabilidad microscópica de la \cref{sec:microscopico} con la permitividad macroscópica de la
+\cref{sec:lineales}.
+\end{observacion}
+
+\begin{observacion}[Cavidad elipsoidal]\label{obs:elipsoide}
+Más en general, una cavidad con forma de elipsoide de revolución cuyo eje es paralelo a $\vE_d$ tiene en su interior un campo
+uniforme $\vEcav=\vE_d+N\,\vP_d/\eo$, donde el \emph{factor de despolarización} $N\in[0,1]$ solo depende de la relación de aspecto~\cite{Osborn,Landau}.
+Vale $N\to0$ para la aguja, $N=1/3$ para la esfera y $N\to1$ para la lenteja: las tres cavidades de esta sección son puntos de
+una misma curva (\cref{fig:despolarizacion}).
+\end{observacion}
+
+\input{figuras/f-despolarizacion}

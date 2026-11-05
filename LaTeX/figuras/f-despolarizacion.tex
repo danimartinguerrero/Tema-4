@@ -1,0 +1,28 @@
+% Figura: factor de despolarización N de un esferoide de revolución (eje paralelo
+% al campo) en función de su relación de aspecto m = c/a.  Datos: scripts/lineas_campo.py
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10.5cm, height=5.4cm, xmode=log, axis lines=left, xmin=0.01, xmax=100,
+  ymin=0, ymax=1.08, grid=major, xlabel={relación de aspecto $m=c/a$ (eje paralelo / eje transversal)},
+  ylabel={$N(m)$}, ytick={0,0.3333,1}, yticklabels={$0$,$\tfrac13$,$1$},
+  xtick={0.01,0.1,1,10,100}, xticklabels={$10^{-2}$,$10^{-1}$,$1$,$10$,$10^{2}$}, clip=false]
+  \addplot[curvaE, line width=1.1pt] table[x=m, y=N] {datos/despolarizacion.dat};
+  \addplot[only marks, mark=*, mark size=1.8pt, color=acentoC] coordinates {(1,0.3333)};
+  % iconos de forma
+  \draw[texto, fill=dielecB, line width=0.4pt] (axis cs:0.016,0.42) ellipse [x radius=0.05cm, y radius=0.36cm];
+  \node[etiqt, anchor=west] at (axis cs:0.022,0.42) {lenteja: $N\to1$,\; $\vDcav=\vD_d$};
+  \draw[texto, fill=dielecB, line width=0.4pt] (axis cs:1,0.58) circle (0.17cm);
+  \node[etiqt, anchor=west] at (axis cs:1.35,0.58) {esfera: $N=\tfrac13$ (campo de Lorentz)};
+  \draw[texto, fill=dielecB, line width=0.4pt] (axis cs:30,0.25) ellipse [x radius=0.42cm, y radius=0.05cm];
+  \node[etiqt, anchor=south] at (axis cs:30,0.29) {aguja: $N\to0$, $\vEcav=\vE_d$};
+  \draw[vecE] (axis cs:0.013,0.15) -- (axis cs:0.04,0.15);
+  \node[etiqt, anchor=west] at (axis cs:0.042,0.15) {$\vE_d$};
+\end{axis}
+\end{tikzpicture}
+\caption{Factor de despolarización $N$ de una cavidad con forma de esferoide de revolución cuyo eje,
+de semieje $c$, es paralelo a $\vE_d$ (el otro semieje es $a$). El campo en la cavidad es
+$\vEcav=\vE_d+N\,\vP_d/\eo$, que interpola entre los dos casos límite del texto: la aguja ($m\to\infty$) y la
+lenteja ($m\to0$). La esfera da el campo local de Lorentz, $\vE_d+\vP_d/3\eo$.}
+\label{fig:despolarizacion}
+\end{figure}

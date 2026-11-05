@@ -1,0 +1,425 @@
+% =============================================================================
+%  Guía de métodos del Tema 4. Materiales dieléctricos
+% =============================================================================
+\thispagestyle{plain}
+\newcommand{\ficha}[3]{\par\addvspace{1.1em}\noindent{\color{acentoA}\bfseries Problema #1.\ #2}\hfill
+  {\small\sffamily\color{acentoC}#3}\par\nopagebreak\smallskip}
+
+\begin{center}
+  {\small\color{tenue}\espaciado{Electromagnetismo I}\quad$\cdot$\quad\espaciado{Tema 4}}\\[1.0em]
+  {\fuentetitulo\fontsize{22}{26}\selectfont Materiales dieléctricos}\\[0.5em]
+  {\large Repaso teórico, métodos de resolución y fichas de problemas}\\[0.8em]
+  {\color{acentoA}\rule{2.6cm}{0.6pt}}\\[0.8em]
+  \begin{minipage}{0.86\textwidth}\centering\small\itshape
+  Polarización y cargas ligadas, vector desplazamiento, medios lineales, condiciones de frontera,
+  cavidades y condensadores con dieléctricos, aplicados a los doce problemas de la relación
+  \end{minipage}
+\end{center}
+
+\begin{consejo}[Cómo usar esta guía]
+La \cref{gsec:teoria} resume la teoría de los apuntes en lo que hace falta para resolver problemas. La
+\cref{gsec:traducir} traduce cada situación física a ecuaciones, la \cref{gsec:mapa} decide el método y las
+secciones~\ref{gsec:m1}--\ref{gsec:m5} lo desarrollan paso a paso, con consejos y trampas. La
+\cref{gsec:fichas} resuelve en formato ficha los doce problemas, y la \cref{gsec:control} cierra con una
+lista de control. Se toma siempre $\phi(\infty)=0$; $\nn$ es la normal exterior al dieléctrico.
+\end{consejo}
+
+{\small\tableofcontents}
+\newpage
+
+% =============================================================================
+\section{Lo esencial de la teoría}\label{gsec:teoria}
+% =============================================================================
+
+\subsection{De los átomos a la polarización}
+
+Un dieléctrico no tiene cargas libres: sus cargas solo pueden desplazarse a escala atómica. En un campo,
+cada átomo o molécula se convierte en un dipolo (sustancias no polares, $\vp=\alpha\vE$, con $\alpha=4\pi\eo a^3$ en el
+modelo de nube uniforme) o alinea parcialmente el dipolo permanente que ya tenía (sustancias polares, par
+$\vtau=\vp\times\vE$). A escala macroscópica, el material queda descrito por el \emph{vector polarización}
+\begin{equation}\label{geq:P}
+  \vP=\frac{\dd\vp}{\dd V}\qquad[\si{C/m^2}].
+\end{equation}
+
+\subsection{Cargas ligadas: el resultado central}
+
+Un dieléctrico polarizado crea el mismo campo que dos densidades de carga ordinarias,
+\begin{equation}\label{geq:ligadas}
+  \recuadro{\rhoP=-\divg\vP,\qquad \sigmaP=\vP\cdot\nn,}\qquad\qquad \QP=\int\rhoP\,\dd V+\oiint\sigmaP\,\dd S=0 .
+\end{equation}
+\begin{itemize}
+  \item $\vP$ uniforme $\Rightarrow$ $\rhoP=0$: solo hay carga en las caras por donde $\vP$ entra ($-$) o sale ($+$).
+  \item $\sigmaP=P\cos\theta$ con $\theta$ el ángulo entre $\vP$ y la normal \emph{exterior}; en una cara paralela a $\vP$, $\sigmaP=0$.
+  \item La carga ligada total es siempre nula: es la primera comprobación de cualquier cálculo.
+\end{itemize}
+
+\subsection{El vector desplazamiento}
+
+Con $\vD=\eo\vE+\vP$, la ley de Gauss solo involucra la carga libre:
+\begin{equation}\label{geq:gaussD}
+  \recuadro{\divg\vD=\rhof,\qquad \oiint_S\vD\cdot\dS=\qfenc .}
+\end{equation}
+Pero $\rot\vD=\rot\vP$: $\vD$ no queda fijado solo por la carga libre. \textbf{$\vD=\vcero$ si y solo si no hay carga libre y
+$\vP$ es irrotacional} (también en las superficies, donde basta que $\vP$ sea normal a ellas). Las polarizaciones radiales en
+geometrías esféricas o cilíndricas lo cumplen; los cuerpos uniformemente polarizados, no.
+
+\subsection{Medios lineales, homogéneos e isótropos}
+
+\begin{equation}\label{geq:LHI}
+  \vP=\eo\chi\vE,\qquad \vD=\varepsilon\vE,\qquad \varepsilon=\eo(1+\chi)=\er\eo,\qquad \vP=(\varepsilon-\eo)\vE .
+\end{equation}
+\begin{itemize}
+  \item Dentro de un medio \LHI{} sin carga libre no hay carga ligada de volumen: $\rhoP=-(1-\eo/\varepsilon)\rhof$.
+  \item Si un único medio llena todo el espacio, todo es como en el vacío con $\eo\to\varepsilon$: los campos se dividen por $\er$.
+  \item Con varios medios, $\oiint\vE\cdot\dS=q/\varepsilon$ \textbf{no vale}: hay que trabajar con $\vD$.
+\end{itemize}
+
+\subsection{Condiciones de frontera}
+
+Con $\nn$ del medio 1 al 2:
+\begin{equation}\label{geq:frontera}
+  \recuadro{D_{2n}-D_{1n}=\sigmaf,\qquad \vE_{2t}=\vE_{1t}}\qquad
+  \eo(E_{2n}-E_{1n})=\sigmaf+\sigmaP,\qquad \vD_{2t}-\vD_{1t}=\vP_{2t}-\vP_{1t}.
+\end{equation}
+Sin carga libre y en medios \LHI{}: $D_n$ y $\vE_t$ continuas, y las líneas se refractan según
+$\tan\theta_2/\varepsilon_2=\tan\theta_1/\varepsilon_1$ (al pasar a mayor $\varepsilon$, se alejan de la normal). Junto a un conductor, $D_n=\sigmaf$.
+
+\subsection{Cavidades y resultados de referencia}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Cavidad (o cuerpo) & Campo en su interior & Por qué\\
+\midrule
+Aguja paralela a $\vE_d$ & $\vEcav=\vE_d$ & $\vE_t$ continua en la pared lateral\\
+Lenteja perpendicular a $\vE_d$ & $\vDcav=\vD_d$, \ $\vEcav=\vE_d+\vP_d/\eo$ & $D_n$ continua en las caras\\
+Esfera & $\vEcav=\vE_d+\vP_d/3\eo$ & esfera polarizada con $-\vP_d$\\
+Esfera uniformemente polarizada & $\vE=-\vP/3\eo$, \ $\vD=\tfrac23\vP$ & problema 4.1\\
+Esfera dieléctrica en $\vE_0$ & $\vEint=3\vE_0/(\er+2)$ & autoconsistencia\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =============================================================================
+\section{Traducir la situación física a ecuaciones}\label{gsec:traducir}
+% =============================================================================
+
+Antes de calcular nada, conviene escribir qué es dato y qué incógnita. En dieléctricos hay tres tipos de dato:
+la polarización (electretes), la carga libre (conductores cargados) o los potenciales (baterías y cables).
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Situación & Ecuación que aporta\\
+\midrule
+Electrete: $\vP$ dada & $\rhoP$, $\sigmaP$ por \eqref{geq:ligadas}; $\vD=\vcero$ si $\rhof=0$ y $\vP$ irrotacional\\
+Medio \LHI{} & $\vD=\varepsilon\vE$, $\vP=(\varepsilon-\eo)\vE$ en cada medio\\
+Conductor cargado ($Q$) & Gauss para $\vD$ con $\qfenc=Q$; $D_n=\sigmaf$ en su superficie\\
+Interfase sin carga libre & $D_n$ continua, $\vE_t$ continuo\\
+Batería $V_0$ & $\int_{-}^{+}\vE\cdot\dl=V_0$ por cualquier camino entre las placas\\
+Placas unidas por un cable & $\int\vE\cdot\dl=0$ entre ellas\\
+Condensador aislado & la carga de cada placa no cambia al introducir el dieléctrico\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =============================================================================
+\needspace{14\baselineskip}
+\section{Mapa de decisión}\label{gsec:mapa}
+% =============================================================================
+
+\begin{center}
+\begin{tikzpicture}[
+   caja/.style={draw=acentoA, fill=caja, rounded corners=2pt, line width=0.5pt, align=center,
+                font=\small, text=texto, inner sep=4pt, minimum height=0.8cm},
+   preg/.style={draw=acentoB, fill=caja, rounded corners=6pt, line width=0.5pt, align=center,
+                font=\small, text=texto, inner sep=4pt},
+   meto/.style={draw=acentoC, fill=caja, rounded corners=2pt, line width=0.6pt, align=center,
+                font=\small\bfseries, text=acentoC, inner sep=4pt, minimum width=1.2cm},
+   lin/.style={draw=tenue, line width=0.5pt, -{Stealth[length=1.8mm]}},
+   si/.style={font=\scriptsize, text=tenue, fill=fondo, inner sep=1pt}]
+  \node[preg] (dato) at (0,0) {¿Qué es dato?};
+  \node[caja] (P) at (-4.6,-1.5) {la polarización $\vP$\\(electrete)};
+  \node[caja] (Q) at (0,-1.5) {la carga libre\\en medios \LHI{}};
+  \node[caja] (V) at (4.6,-1.5) {potenciales: batería\\o placas unidas};
+  \draw[lin] (dato) -- (P); \draw[lin] (dato) -- (Q); \draw[lin] (dato) -- (V);
+  \node[preg] (sim) at (-4.6,-3.2) {¿simetría esférica\\o cilíndrica?};
+  \draw[lin] (P) -- (sim);
+  \node[meto] (M2) at (-5.9,-4.9) {M2};
+  \node[meto] (M1) at (-3.3,-4.9) {M1};
+  \draw[lin] (sim) -- node[si, left] {sí} (M2);
+  \draw[lin] (sim) -- node[si, right] {no} (M1);
+  \node[meto] (M3) at (0,-3.2) {M3};
+  \draw[lin] (Q) -- (M3);
+  \node[preg] (cap) at (4.6,-3.2) {¿hay un electrete\\entre las placas?};
+  \draw[lin] (V) -- (cap);
+  \node[meto] (M5) at (3.3,-4.9) {M5};
+  \node[meto] (M4) at (5.9,-4.9) {M4};
+  \draw[lin] (cap) -- node[si, left] {sí} (M5);
+  \draw[lin] (cap) -- node[si, right] {no} (M4);
+  \node[font=\scriptsize, text=tenue, align=center, text width=13cm] at (0,-5.95)
+    {M1: cargas ligadas y superposición\enspace$\cdot$\enspace M2: $\vD$ por Gauss\enspace$\cdot$\enspace M3: Gauss para $\vD$\enspace$\cdot$\enspace
+     M4: serie y paralelo\enspace$\cdot$\enspace M5: $D$ continuo y circuito};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{4.8cm}l@{}}
+\toprule
+Lo que pide el enunciado & Método & Problemas\\
+\midrule
+$\vP$ dada, campo en un eje, sin simetría para Gauss & M1. Cargas ligadas y superposición & 4.1, 4.4, 4.5\\
+$\vP$ radial en esferas o cilindros & M2. $\vD$ por Gauss, $\vE=(\vD-\vP)/\eo$ & 4.6, 4.7\\
+Conductor cargado en uno o varios medios \LHI{} & M3. Gauss para $\vD$ & 4.2, 4.3, 4.8\\
+Condensador parcialmente lleno & M4. Serie y paralelo & 4.8, 4.10--4.12\\
+Electrete entre placas conectadas & M5. $D$ continuo y circuito & 4.9\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =============================================================================
+\section{M1: cargas ligadas y superposición}\label{gsec:m1}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Escribir $\vP$ en las coordenadas de la frontera (cartesianas para un cubo, esféricas para una esfera\ldots).
+  \item $\rhoP=-\divg\vP$ en el volumen; $\sigmaP=\vP\cdot\nn$ en cada cara, con $\nn$ \textbf{exterior al dieléctrico}.
+  \item Comprobar $\QP=0$.
+  \item Calcular $\phi$ o $\vE$ como si fueran cargas libres, superponiendo piezas conocidas: disco
+        $E_z=\frac{\sigma}{2\eo}\big(\frac{z}{\abs z}-\frac{z}{\sqrt{a^2+z^2}}\big)$, plano $\sigma/2\eo$, capa esférica, anillo.
+  \item $\vD=\eo\vE+\vP$ \emph{solo} donde $\vP\neq\vcero$; fuera, $\vD=\eo\vE$.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+En un eje de simetría, integra el potencial (escalar) en lugar del campo: es una sola integral, y el campo sale derivando.
+Para la esfera polarizada, el cambio $s=R=\sqrt{a^2+z^2-2azu}$ convierte la integral en un polinomio.
+\end{consejo}
+
+\begin{trampa}
+\begin{itemize}
+  \item Olvidar que en la cara inferior $\nn=-\uv z$: el signo de $\sigmaP$ cambia de una cara a otra.
+  \item Calcular $\vD$ con Gauss «porque no hay carga libre»: en un cuerpo uniformemente polarizado $\vD\neq\vcero$.
+\end{itemize}
+\end{trampa}
+
+% =============================================================================
+\section{M2: $\vD$ por Gauss con $\vP$ dada}\label{gsec:m2}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Comprobar la simetría: $\vP=f(r)\uv r$ (esférica) o $f(\rho)\uv\rho$ (cilíndrica), y que no hay carga libre.
+  \item Gauss para $\vD$ con superficies concéntricas: $\qfenc=0\Rightarrow\vD=\vcero$ en todo el espacio.
+  \item $\vE=(\vD-\vP)/\eo=-\vP/\eo$ dentro del material, $\vE=\vcero$ fuera.
+  \item Comprobación: Gauss para $\vE$ con las cargas ligadas encerradas (de volumen y de superficie).
+  \item Si se pide, potencial integrando desde fuera, donde $\phi=0$.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Los conductores neutros que rodean al electrete no hacen nada: como $D_n=\sigmaf=0$ en su superficie, no se induce carga
+en ellos. No pierdas tiempo con ellos más allá de comprobarlo.
+\end{consejo}
+
+% =============================================================================
+\section{M3: Gauss para $\vD$ en medios lineales}\label{gsec:m3}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Identificar la carga libre (la del conductor) y la simetría.
+  \item Gauss para $\vD$: $\oiint\vD\cdot\dS=\qfenc$. Si la superficie atraviesa varios medios, cada trozo lleva su $\varepsilon_i$.
+  \item $\vE=\vD/\varepsilon$ en cada medio; $\vP=\vD-\eo\vE=(\varepsilon-\eo)\vE$.
+  \item Cargas ligadas: $\rhoP=0$ en medios \LHI{} sin carga libre; $\sigmaP=\vP\cdot\nn$ en cada cara.
+  \item Potencial $\Delta\phi=-\int\vE\cdot\dl$ y capacidad $C=Q/\Delta\phi$.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Para comprobar, usa Gauss para $\vE$ con \emph{todas} las cargas: $\eo\oiint\vE\cdot\dS=\qfenc+\qPenc$. Si sale lo mismo, los signos de
+$\sigmaP$ están bien. Recuerda que esto es una comprobación: para usarlo de entrada habría que conocer ya $\sigmaP$.
+\end{consejo}
+
+% =============================================================================
+\section{M4: condensadores con dieléctricos, serie y paralelo}\label{gsec:m4}
+% =============================================================================
+
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  % serie
+  \fill[dielec] (0,0) rectangle (3.2,1.0);
+  \draw[placa] (-0.1,0) -- (3.3,0); \draw[placa] (-0.1,2.2) -- (3.3,2.2);
+  \draw[texto!60!fondo, line width=0.4pt] (0,1.0) -- (3.2,1.0);
+  \draw[vecD] (0.7,0.12) -- (0.7,0.9); \draw[vecD] (0.7,1.15) -- (0.7,2.05);
+  \draw[vecE] (1.8,0.35) -- (1.8,0.7); \draw[vecE] (1.8,1.15) -- (1.8,2.05);
+  \node[etiq, anchor=west, font=\footnotesize] at (2.3,0.5) {$\varepsilon$};
+  \node[etiq, anchor=west, font=\footnotesize] at (2.3,1.6) {$\eo$};
+  \node[etiq, align=center, font=\small] at (1.6,-0.65) {serie: $\vD$ común};
+  % paralelo
+  \begin{scope}[xshift=5.4cm]
+  \fill[dielec] (0,0) rectangle (1.6,2.2); \fill[dielecB] (1.6,0) rectangle (3.2,2.2);
+  \draw[placa] (-0.1,0) -- (3.3,0); \draw[placa] (-0.1,2.2) -- (3.3,2.2);
+  \draw[texto!60!fondo, line width=0.4pt] (1.6,0) -- (1.6,2.2);
+  \draw[vecE] (0.8,0.3) -- (0.8,1.9); \draw[vecE] (2.4,0.3) -- (2.4,1.9);
+  \node[etiq, font=\footnotesize] at (0.45,1.1) {$\varepsilon_1$};
+  \node[etiq, font=\footnotesize] at (2.05,1.1) {$\varepsilon_2$};
+  \node[etiq, align=center, font=\small] at (1.6,-0.65) {paralelo: $\vE$ común};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Mirar la orientación de las interfases respecto a las placas.
+  \item \textbf{Paralelas a las placas} (capas): sin carga libre en ellas, $D_n$ continua $\Rightarrow$ $\vD$ \emph{común}, $E_i=D/\varepsilon_i$,
+        y $V_0=\sum_iE_id_i$. Capacidades en serie, $1/C=\sum_i d_i/(\varepsilon_iA)$.
+  \item \textbf{Perpendiculares a las placas} (columnas): $\vE_t$ continua $\Rightarrow$ $\vE$ \emph{común}, $E=V_0/d$, y $\sigma_i=\varepsilon_iE$.
+        Capacidades en paralelo, $C=\sum_i\varepsilon_iA_i/d$.
+  \item Una lámina conductora es una capa con $\varepsilon\to\infty$: anula su campo y resta su espesor a la separación.
+\end{pasos}
+\end{metodo}
+
+\begin{trampa}
+\begin{itemize}
+  \item Confundir qué es continuo: \emph{$D$ normal} y \emph{$E$ tangencial}. En capas, $E$ salta; en columnas, $D$ salta.
+  \item Olvidar que, con batería, $V_0$ es dato y la carga es incógnita; con el condensador aislado, al revés.
+\end{itemize}
+\end{trampa}
+
+% =============================================================================
+\section{M5: electrete entre placas conectadas}\label{gsec:m5}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Simetría plana: campos normales a las placas. Sin carga libre en el hueco, $D$ es constante en todas las capas.
+  \item En cada capa, $\eo E_i=D-P_i$ (con $P_i=0$ en el aire).
+  \item Condición de circuito: $\sum_iE_id_i=0$ (cable) o $=V_0$ (batería). Es una ecuación lineal en $D$.
+  \item $D$ es la carga libre inducida en la placa inferior ($\sigma=D$) y menos la de la superior.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Comprueba con superposición de planos: cada plano cargado crea $\sigma/2\eo$ a cada lado. Con las cuatro hojas de carga
+(dos placas, dos caras del electrete) debes recuperar los mismos campos.
+\end{consejo}
+
+% =============================================================================
+\needspace{12\baselineskip}
+\section{Fichas de los doce problemas}\label{gsec:fichas}
+% =============================================================================
+
+\ficha{4.1}{Esfera uniformemente polarizada: $\phi$ y $\vE$ en el eje}{M1}
+\begin{itemize}
+  \item $\rhoP=0$, $\sigmaP=P\cos\theta'$. Integral en el eje con $R=\sqrt{a^2+z^2-2az\cos\theta'}$: $\phi=\frac{Pa^2}{2\eo}\int_{-1}^1\frac{u\,\dd u}{R}$.
+  \item Fuera, $\phi=\dfrac{Pa^3}{3\eo}\dfrac{z}{\abs z^3}$ (dipolo $\frac43\pi a^3P$); dentro, $\phi=\dfrac{Pz}{3\eo}$.
+\end{itemize}
+\[
+  \recuadro{E_z=\frac{2Pa^3}{3\eo\abs z^3}\ (\abs z>a),\qquad E_z=-\frac{P}{3\eo}\ (\abs z<a)}
+\]
+\emph{Comprobación:} salto en el polo $=P/\eo=\sigmaP/\eo$. Dentro $\vD=\frac23\vP\neq\vcero$.
+
+\ficha{4.2}{Esfera conductora con carga $Q$ en un dieléctrico}{M3}
+\begin{itemize}
+  \item Gauss: $D\,4\pi r^2=Q$. Luego $\vE=\vD/\varepsilon$, $\vP=(\varepsilon-\eo)\vE$; $\rhoP=0$, $\sigmaP(a)=-\frac{Q}{4\pi a^2}\frac{\varepsilon-\eo}{\varepsilon}$.
+\end{itemize}
+\[
+  \recuadro{\vD=\frac{Q}{4\pi r^2}\uv r,\qquad \vE=\frac{Q}{4\pi\varepsilon r^2}\uv r,\qquad \vP=(\varepsilon-\eo)\frac{Q}{4\pi\varepsilon r^2}\uv r}
+\]
+\emph{Comprobación:} carga total encerrada $Q+4\pi a^2\sigmaP=Q\eo/\varepsilon$. Con $\varepsilon\to\infty$, apantallamiento total.
+
+\ficha{4.3}{Condensador plano lleno de dieléctrico}{M3}
+\begin{itemize}
+  \item Caja gaussiana con una cara en el metal: $D=\sigma$. $E=\sigma/\varepsilon$, $P=\sigma(\varepsilon-\eo)/\varepsilon=\abs{\sigmaP}$.
+\end{itemize}
+\[
+  \recuadro{C=\varepsilon\frac{A}{d}=\er C_0}
+\]
+\emph{Comprobación:} la carga ligada junto a cada placa es de signo opuesto al de la placa.
+
+\ficha{4.4}{Electrete cilíndrico: $\vE$ y $\vD$ en el eje}{M1}
+\begin{itemize}
+  \item Dos discos $\pm P$ en $z=\pm\ell$. Con $\cos\theta_{1}=\frac{z-\ell}{\sqrt{a^2+(z-\ell)^2}}$ y $\cos\theta_2=\frac{z+\ell}{\sqrt{a^2+(z+\ell)^2}}$:
+  \item fuera $\vE=\frac{\vP}{2\eo}(\cos\theta_2-\cos\theta_1)$; dentro $\vE=-\frac{\vP}{2\eo}(2+\cos\theta_1-\cos\theta_2)$; en todo el eje $\vD=\frac{\vP}{2}(\cos\theta_2-\cos\theta_1)$.
+  \item Largo ($a\ll\ell$): $\vEint\simeq\vcero$, $\vD_{\text{int}}\simeq\vP$. Corto ($a\gg\ell$): $\vEint\simeq-\vP/\eo$, $\vD\simeq\vcero$ (condensador plano).
+\end{itemize}
+\emph{Clave:} $\vD\neq\vcero$ porque $\rot\vP\neq\vcero$ en la pared lateral; sus líneas se cierran como las de un imán.
+
+\ficha{4.5}{Cubo con $\vP=A\vr$}{M1}
+\[
+  \recuadro{\rhoP=-3A,\qquad \sigmaP=\frac{A\ell}{2},\qquad \QP=-3A\ell^3+6\cdot\frac{A\ell}{2}\ell^2=0}
+\]
+\emph{Detalle:} en la cara $x=\ell/2$, $\vP\cdot\uv x=Ax=A\ell/2$ es constante aunque $\vP$ no lo sea.
+
+\ficha{4.6}{Capa de electrete $\vP=(k/r^2)\uv r$ entre conductores}{M2}
+\begin{itemize}
+  \item $\rhoP=0$; $\sigmaP(a)=-k/a^2$, $\sigmaP(2a)=k/4a^2$; $\QP=0$. Sin carga libre y $\vP$ radial: $\vD=\vcero$.
+\end{itemize}
+\[
+  \recuadro{\vE=-\frac{k}{\eo r^2}\uv r\ \ (a<r<2a),\qquad \vE=\vcero\ \text{fuera},\qquad \vD=\vcero}
+\]
+\emph{Extra:} $\phi(a)=-k/2\eo a$; en los conductores no se induce carga.
+
+\ficha{4.7}{Electrete coaxial $\vP=(kr/2)\uv r$}{M2}
+\[
+  \recuadro{\vD=\vcero,\qquad \vE=-\frac{kr}{2\eo}\uv r\ \ (a<r<b),\qquad \vE=\vcero\ \text{fuera}}
+\]
+\emph{Cargas:} $\rhoP=-k$, $\sigmaP(a)=-ka/2$, $\sigmaP(b)=kb/2$; por unidad de longitud suman cero.
+
+\ficha{4.8}{Esferas concéntricas con dos dieléctricos hemisféricos}{M3, M4}
+\begin{itemize}
+  \item Ensayo $\phi=\phi(r)$: $\vE$ radial es tangente al plano de separación $\Rightarrow$ $E_1=E_2$; $D_n=0$ a ambos lados. Por unicidad, vale.
+  \item Gauss: $(\varepsilon_1+\varepsilon_2)\,2\pi r^2E=Q$.
+\end{itemize}
+\[
+  \recuadro{\phi=\frac{Q}{2\pi(\varepsilon_1+\varepsilon_2)}\Big(\frac1r-\frac1b\Big),\quad C=2\pi(\varepsilon_1+\varepsilon_2)\frac{ab}{b-a},\quad \sigma_i=\frac{\varepsilon_iQ}{2\pi a^2(\varepsilon_1+\varepsilon_2)}}
+\]
+\emph{Lectura:} dos condensadores en paralelo; la carga libre se acumula en el lado de mayor $\varepsilon$, pero libre más ligada es uniforme.
+
+\ficha{4.9}{Electrete en un condensador con las armaduras unidas}{M5}
+\begin{itemize}
+  \item $D$ común; $\eo\Eext=D$, $\eo\Eint=D-P$; cable: $\Eint a+\Eext b=0\Rightarrow D=\frac{a}{a+b}P$.
+\end{itemize}
+\[
+  \recuadro{\vEint=-\frac{b}{\eo(a+b)}\vP,\qquad \vEext=\frac{a}{\eo(a+b)}\vP}
+\]
+\emph{Límites:} sin cable, $\Eext=0$ y $\Eint=-P/\eo$; con $b\to0$, el electrete queda cortocircuitado.
+
+\ficha{4.10}{Dos dieléctricos en paralelo con batería}{M4}
+\[
+  \recuadro{E=\frac{V_0}{d},\qquad Q_i=V_0\frac{A_i\varepsilon_{ri}\eo}{d},\qquad C=\frac{A_1\varepsilon_{r1}\eo}{d}+\frac{A_2\varepsilon_{r2}\eo}{d}}
+\]
+
+\ficha{4.11}{Dieléctrico y aire en serie con batería}{M4}
+\[
+  \recuadro{\Eint=V_0\frac{\eo}{a\eo+b\varepsilon},\qquad \Eext=V_0\frac{\varepsilon}{a\eo+b\varepsilon},\qquad C=A\frac{\varepsilon\eo}{a\eo+b\varepsilon}}
+\]
+\emph{Comprobación:} $C=C_1C_2/(C_1+C_2)$ con $C_1=\eo A/b$, $C_2=\varepsilon A/a$; con $\varepsilon\to\infty$, $C\to\eo A/b$.
+
+\ficha{4.12}{Lámina conductora intercalada}{M4}
+\[
+  \recuadro{C'=\frac{\eo A}{d-e}>C\quad\text{(no depende de la posición de la lámina)}}
+\]
+\emph{Por qué:} $E=0$ en el metal; quedan dos huecos en serie de espesor total $d-e$.
+
+% =============================================================================
+\section{Lista de control}\label{gsec:control}
+% =============================================================================
+
+\begin{metodo}{Antes de entregar}
+\begin{itemize}
+  \item ¿Uso Gauss para $\vD$ solo con la carga \emph{libre}, y Gauss para $\vE$ con \emph{todas}?
+  \item ¿He tomado la normal \emph{exterior al dieléctrico} en cada cara al calcular $\sigmaP$?
+  \item ¿Suma cero la carga ligada total?
+  \item ¿He justificado $\vD=\vcero$ con «sin carga libre \emph{y} $\vP$ irrotacional»?
+  \item ¿Uso $\vE=\vD/\varepsilon$ en cada medio con su propia $\varepsilon$, y nunca $\oiint\vE\cdot\dS=q/\varepsilon$ con varios medios?
+  \item En las interfases: ¿$D$ normal y $E$ tangencial continuos?
+  \item ¿Recupero los límites $\varepsilon\to\eo$ (vacío) y $\varepsilon\to\infty$ (conductor)?
+  \item ¿Tienen las unidades sentido? ($[P]=[D]=\si{C/m^2}$, $[\varepsilon]=\si{F/m}$, $[C]=\si{F}$.)
+\end{itemize}
+\end{metodo}

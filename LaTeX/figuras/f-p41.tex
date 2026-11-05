@@ -1,0 +1,51 @@
+% Figura: problema 4.1. Esfera uniformemente polarizada: geometría y potencial y
+% campo sobre el eje (unidades P a/eps0 y P/eps0).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.4\textwidth}\centering
+\begin{tikzpicture}[scale=1.05]
+  \fill[dielec] (0,0) circle (1.2);
+  \draw[borde] (0,0) circle (1.2);
+  \draw[texto!70!fondo, line width=0.5pt, -{Stealth[length=2mm]}] (-1.75,0) -- (3.3,0) node[below, etiq] {$z$};
+  \foreach \t in {-70,-35,0,35,70} {
+    \node[cpos, fill=fondo, circle, inner sep=0.2pt] at (\t:1.42) {$+$};
+    \node[cneg, fill=fondo, circle, inner sep=0.2pt] at (180-\t:1.42) {$-$};
+  }
+  \draw[vecP] (-0.55,-0.55) -- (0.55,-0.55) node[right, etiq] {$\vP$};
+  % punto del eje y elemento de superficie
+  \coordinate (Z) at (2.75,0);
+  \fill[texto] (Z) circle (0.04);
+  \node[etiq, anchor=south] at (Z) {$z$};
+  \coordinate (Q) at (55:1.2);
+  \fill[acentoB] (Q) circle (0.05);
+  \draw[acentoB, line width=0.5pt] (0,0) -- (Q) node[pos=0.55, left, etiq] {$a$};
+  \draw[acentoB, line width=0.5pt, dashed] (Q) -- (Z) node[pos=0.5, above right=-1pt, etiq] {$R$};
+  \draw[tenue, line width=0.4pt] (0.42,0) arc (0:55:0.42);
+  \node[etiqt] at (27:0.62) {$\theta'$};
+\end{tikzpicture}
+\caption{$\sigmaP=P\cos\theta'$, $\rhoP=0$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.56\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=8.0cm, height=5.0cm, xmin=-3.2, xmax=3.2, ymin=-0.62, ymax=0.82,
+  xlabel={$z/a$}, xtick={-3,-2,-1,0,1,2,3}, ytick={-0.3333,0,0.3333,0.6667}, yticklabels={$-\frac13$,$0$,$\frac13$,$\frac23$},
+  grid=major, xlabel style={yshift=3pt}, clip=false,
+  legend style={at={(0.02,0.98)}, anchor=north west}]
+  \fill[dielec, opacity=0.6] (axis cs:-1,-0.62) rectangle (axis cs:1,0.82);
+  \addplot[curvaV, domain=-3.2:-1, samples=80] {-1/(3*x^2)}; \addlegendentry{$\phi\,/\,(Pa/\eo)$}
+  \addplot[curvaE, domain=-3.2:-1, samples=80] {2/(3*abs(x)^3)}; \addlegendentry{$E_z\,/\,(P/\eo)$}
+  \addplot[curvaV, domain=-1:1, samples=2] {x/3};
+  \addplot[curvaV, domain=1:3.2, samples=80] {1/(3*x^2)};
+  \addplot[curvaE, domain=-1:1, samples=2] {-1/3};
+  \addplot[curvaE, domain=1:3.2, samples=80] {2/(3*x^3)};
+  \draw[equipot] (axis cs:-1,-0.62) -- (axis cs:-1,0.82) (axis cs:1,-0.62) -- (axis cs:1,0.82);
+\end{axis}
+\end{tikzpicture}
+\caption{Potencial y campo sobre el eje}
+\end{subfigure}
+\caption{\Cref{prob:esfera-polarizada}. (a) La polarización uniforme no deja carga de volumen; en la
+superficie, $\sigmaP=P\cos\theta'$ es positiva en el hemisferio hacia el que apunta $\vP$ y negativa en el opuesto.
+(b) Sobre el eje (zona sombreada: interior), el potencial es continuo, lineal dentro y dipolar fuera; el
+campo es uniforme dentro, $E_z=-P/3\eo$, y salta $\sigmaP/\eo=P/\eo$ en los polos.}
+\label{fig:p41}
+\end{figure}

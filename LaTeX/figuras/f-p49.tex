@@ -1,0 +1,59 @@
+% Figura: problema 4.9. Lámina de electrete entre las armaduras de un condensador
+% unidas por un cable; perfiles de E, D, P y phi (a = 1, b = 2).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.52\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \def\a{1.0} \def\b{2.0} \def\L{5.0}
+  \fill[dielec] (0,0) rectangle (\L,\a);
+  \draw[borde] (0,0) rectangle (\L,\a);
+  \fill[conductor] (0,-0.14) rectangle (\L,0);
+  \fill[conductor] (0,\a+\b) rectangle (\L,\a+\b+0.14);
+  \draw[texto, line width=0.5pt] (0,-0.14) rectangle (\L,0) (0,\a+\b) rectangle (\L,\a+\b+0.14);
+  % cable
+  \draw[texto, line width=0.7pt, rounded corners=6pt] (\L,\a+\b+0.07) -- (\L+0.7,\a+\b+0.07) -- (\L+0.7,-0.07) -- (\L,-0.07);
+  % cargas
+  \foreach \x in {0.3,0.95,...,4.4} {
+    \node[cpos, font=\tiny\bfseries] at (\x,-0.07) {$+$};
+    \node[cneg, font=\tiny\bfseries] at (\x,\a+\b+0.07) {$-$};
+    \node[cpos, font=\tiny\bfseries] at (\x+0.32,\a-0.13) {$+$};
+    \node[cneg, font=\tiny\bfseries] at (\x+0.32,0.13) {$-$};
+  }
+  % vectores
+  \draw[vecP] (0.65,0.22) -- (0.65,0.8); \node[etiqm, font=\footnotesize, anchor=west] at (0.7,0.5) {$\vP$};
+  \draw[vecE] (2.2,0.8) -- (2.2,0.32); \node[etiqm, font=\footnotesize, anchor=west] at (2.25,0.52) {$\vEint$};
+  \draw[vecE] (2.2,\a+0.4) -- (2.2,\a+0.4+0.6); \node[etiq, font=\footnotesize, anchor=west] at (2.25,\a+0.75) {$\vEext$};
+  \draw[vecD] (3.7,\a+0.4) -- (3.7,\a+1.0); \node[etiq, font=\footnotesize, anchor=west] at (3.75,\a+0.75) {$\vD$};
+  \draw[vecD] (3.7,0.25) -- (3.7,0.85); \node[etiqm, font=\footnotesize, anchor=west] at (3.75,0.55) {$\vD$};
+  % cotas
+  \draw[cota] (-0.35,0) -- (-0.35,\a) node[midway, left, etiq] {$a$};
+  \draw[cota] (-0.35,\a) -- (-0.35,\a+\b) node[midway, left, etiq] {$b$};
+  \node[etiqt, anchor=south] at (\L/2,\a+\b+0.16) {$\sigma_{\text{sup}}=-\tfrac{a}{a+b}P$};
+  \node[etiqt, anchor=north] at (\L/2,-0.17) {$\sigma_{\text{inf}}=+\tfrac{a}{a+b}P$};
+\end{tikzpicture}
+\caption{Geometría y cargas}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.45\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.3cm, height=5.6cm, xmin=-0.9, xmax=1.15, ymin=0, ymax=3,
+  ytick={0,1,3}, yticklabels={$0$,$a$,$a+b$}, ylabel={altura}, xtick={-0.6667,0,0.3333,0.6667,1},
+  xticklabels={$-\frac23$,$0$,$\frac13$,$\frac23$,$1$}, grid=major,
+  legend style={at={(0.5,1.03)}, anchor=south, legend columns=2, font=\tiny, /tikz/every even column/.append style={column sep=3pt}}]
+  \fill[dielec, opacity=0.6] (axis cs:-0.9,0) rectangle (axis cs:1.15,1);
+  \addplot[curvaP] coordinates {(1,0) (1,1) (0,1) (0,3)}; \addlegendentry{$P$}
+  \addplot[curvaD, line width=2.8pt, opacity=0.45] coordinates {(0.3333,0) (0.3333,3)}; \addlegendentry{$D$}
+  \addplot[curvaE] coordinates {(-0.6667,0) (-0.6667,1)}; \addlegendentry{$\eo E$}
+  \addplot[curvaV] coordinates {(0,0) (0.6667,1) (0,3)}; \addlegendentry{$\phi\,\eo/(Pa)$}
+  \addplot[curvaE, forget plot] coordinates {(0.3333,1) (0.3333,3)};
+  \addplot[curvaE, forget plot, dotted, line width=0.5pt] coordinates {(-0.6667,1) (0.3333,1)};
+\end{axis}
+\end{tikzpicture}
+\caption{Perfiles ($b=2a$, unidades de $P$)}
+\end{subfigure}
+\caption{\Cref{prob:electrete-condensador}. (a) Electrete de espesor $a$ y polarización uniforme $\vP$ sobre la armadura inferior; las
+armaduras están unidas por un cable, de modo que $\phi_{\text{sup}}=\phi_{\text{inf}}$. Sin carga libre en la interfase, $\vD$ es
+el mismo en el electrete y en el aire, y la condición $\oint\vE\cdot\dl=0$ obliga a que $\vE$ cambie de sentido.
+(b) Con $b=2a$: $\eo\Eint=-\tfrac23P$, $\eo\Eext=\tfrac13P$, $D=\tfrac13P$; el potencial sube en el electrete y baja en el aire hasta
+volver al valor inicial. En el aire $D=\eo\Eext$, y ambas curvas coinciden.}
+\label{fig:p49}
+\end{figure}

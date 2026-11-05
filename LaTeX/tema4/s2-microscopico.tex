@@ -1,0 +1,150 @@
+% =============================================================================
+\section{Modelo microscópico de la polarización}\label{sec:microscopico}
+% =============================================================================
+
+Vamos a describir los dieléctricos mediante la \emph{aproximación dipolar}: un dieléctrico polarizado es,
+a escala macroscópica, una distribución de dipolos. Antes de adoptarla conviene justificarla con un
+modelo microscópico sencillo, que además nos dará los órdenes de magnitud. Hay que distinguir dos clases
+de sustancias según que sus moléculas tengan o no momento dipolar en ausencia de campo.
+
+\subsection{Sustancias no polares: el átomo de nube uniforme}\label{sec:no-polares}
+
+En una sustancia no polar el momento dipolar de cada átomo o molécula es nulo, $\vp=\vcero$, a escala
+atómica. El modelo más simple de átomo es un núcleo puntual de carga $+q$ rodeado de una nube electrónica
+esférica de carga $-q$ uniformemente repartida en un radio $a$ (\cref{fig:atomo}). Sin campo aplicado,
+el centro de la nube coincide con el núcleo y el momento dipolar es nulo.
+
+\input{figuras/f-atomo}
+
+Si aplicamos un campo externo $\vE$, el núcleo es empujado en el sentido del campo y la nube en el
+contrario. Supondremos que la nube se desplaza rígidamente, sin deformarse, y que el desplazamiento
+relativo $d$ es pequeño frente a $a$.
+
+\begin{proposicion}[Polarizabilidad del átomo de nube uniforme]\label{prop:polarizabilidad}
+En el modelo de nube uniforme, un campo externo $\vE$ induce el momento dipolar
+\begin{equation}\label{eq:p-atomo}
+  \vp=q\,\vec d=4\pi\eo a^3\,\vE ,
+\end{equation}
+donde $\vec d$ es el desplazamiento del núcleo respecto al centro de la nube.
+\end{proposicion}
+
+\begin{proof}
+El campo de la nube en un punto interior a distancia $r$ de su centro se obtiene con la ley de Gauss: una
+esfera concéntrica de radio $r<a$ encierra la fracción $(r/a)^3$ de la carga $-q$, luego
+\[
+  E_{\text{nube}}(r)\,4\pi r^2=\frac{-q}{\eo}\frac{r^3}{a^3}
+  \quad\Longrightarrow\quad
+  \vE_{\text{nube}}(\vr)=-\frac{q}{4\pi\eo a^3}\,\vr .
+\]
+Es un campo lineal en $\vr$ y dirigido hacia el centro (\cref{fig:atomo}\,(c)). Sobre el núcleo, situado en
+$\vec d$, actúan el campo externo y el de la nube; el equilibrio exige
+\[
+  q\vE+q\,\vE_{\text{nube}}(\vec d)=\vcero
+  \quad\Longrightarrow\quad
+  \vE=\frac{q}{4\pi\eo a^3}\,\vec d ,
+\]
+y multiplicando por $4\pi\eo a^3$ se obtiene \eqref{eq:p-atomo}. La fuerza de la nube es recuperadora y
+proporcional al desplazamiento, como la de un muelle: es la «ley de Hooke» del átomo.
+\end{proof}
+
+El resultado tiene la forma general de la respuesta lineal de un átomo isótropo.
+
+\begin{definicion}[Polarizabilidad]\label{def:polarizabilidad}
+Si el momento dipolar inducido en un átomo o molécula es proporcional al campo que actúa sobre él,
+\begin{equation}\label{eq:alfa}
+  \vp=\alpha\,\vE ,
+\end{equation}
+la constante $\alpha>0$ se llama \emph{polarizabilidad} (atómica o molecular). Sus unidades son
+\[
+  [\alpha]=\frac{\si{C\,m}}{\si{V/m}}=\frac{\si{C^2\,m}}{\si{N}}=\si{F\,m^2},
+\]
+pues $\si{C/V}=\si{F}$. En el modelo de nube uniforme, $\alpha=4\pi\eo a^3$: es proporcional al volumen atómico.
+\end{definicion}
+
+\begin{ejemplo}[El átomo de hidrógeno]\label{ej:hidrogeno}
+Con el radio de Bohr, $a_0\simeq\SI{5.29e-11}{m}$, el modelo predice
+\[
+  \alpha_{\text{mod}}=4\pi\eo a_0^3\simeq 4\pi\,(\SI{8.854e-12}{F/m})(\SI{5.29e-11}{m})^3\simeq\SI{1.65e-41}{F\,m^2},
+\]
+mientras que el valor experimental es $\alpha_{\mathrm H}\simeq\SI{7.42e-41}{F\,m^2}$~\cite{Griffiths}: el modelo da
+$\alpha_{\text{mod}}\simeq0{,}22\,\alpha_{\mathrm H}$. Para un modelo tan tosco, el orden de magnitud y la dependencia con
+$a^3$ son correctos.
+\end{ejemplo}
+
+\begin{observacion}[El resultado cuántico]\label{obs:hidrogeno-cuantico}
+La mecánica cuántica da para el estado fundamental del hidrógeno, de forma exacta,
+$\alpha=\tfrac92\,4\pi\eo a_0^3$~\cite{Griffiths}. El factor $9/2$ es justamente el cociente $1/0{,}22$ del
+\cref{ej:hidrogeno}: la nube real no es una esfera uniforme y rígida, sino que se deforma y es más
+«blanda» que en nuestro modelo.
+\end{observacion}
+
+\begin{ejemplo}[Cuánto se desplaza la nube]\label{ej:desplazamiento}
+Un campo de $E=\SI{5e5}{V/m}$ es muy intenso en el laboratorio, aunque inferior al de ruptura dieléctrica del
+aire ($\sim\SI{3e6}{V/m}$~\cite{T3}). Sobre un átomo de hidrógeno induce
+\[
+  p=\alpha_{\mathrm H}E\simeq(\SI{7.42e-41}{F\,m^2})(\SI{5e5}{V/m})\simeq\SI{3.7e-35}{C\,m},
+\]
+y el núcleo se separa del centro de la nube una distancia
+\[
+  d=\frac{p}{e}\simeq\frac{\SI{3.7e-35}{C\,m}}{\SI{1.602e-19}{C}}\simeq\SI{2.3e-16}{m}=\SI{0.23}{fm}.
+\]
+El desplazamiento es del orden del tamaño de un núcleo y cinco órdenes de magnitud menor que el átomo: la
+hipótesis $d\ll a$ está más que justificada, y con ella la respuesta lineal.
+\end{ejemplo}
+
+\subsection{Sustancias polares: orientación de dipolos permanentes}\label{sec:polares}
+
+En una sustancia polar cada molécula tiene un momento dipolar permanente, $\vp\neq\vcero$, porque los
+centros de carga positiva y negativa no coinciden. El ejemplo típico es el agua
+(\cref{fig:agua}), con $p_{\mathrm{H_2O}}\simeq\SI{6.1e-30}{C\,m}$ \cite{Griffiths}, unas $10^5$ veces el
+dipolo inducido del \cref{ej:desplazamiento}.
+
+\input{figuras/f-agua}
+
+\begin{proposicion}[Dipolo en un campo uniforme]\label{prop:par}
+Sobre un dipolo rígido $\vp=q\vec L$ en un campo uniforme $\vE$ la fuerza neta es nula y el momento de las
+fuerzas respecto a cualquier punto es
+\begin{equation}\label{eq:par}
+  \vtau=\vp\times\vE ,
+\end{equation}
+que tiende a alinear $\vp$ con $\vE$. Su energía potencial es $U=-\vp\cdot\vE$, mínima cuando $\vp\parallel\vE$.
+\end{proposicion}
+
+\begin{proof}
+Con las cargas $\pm q$ en $\vr_\pm$, la fuerza neta es $q\vE-q\vE=\vcero$ y el momento
+$\vtau=\vr_+\times q\vE+\vr_-\times(-q\vE)=q(\vr_+-\vr_-)\times\vE=\vp\times\vE$, independiente del origen.
+Si $\theta$ es el ángulo entre $\vp$ y $\vE$, $\abs{\vtau}=pE\sen\theta$ y el trabajo para girar el dipolo desde
+$\theta=\pi/2$ es $\int_{\pi/2}^{\theta}pE\sen\theta'\,\dd\theta'=-pE\cos\theta=-\vp\cdot\vE$.
+\end{proof}
+
+Sin campo aplicado, la agitación térmica reparte las orientaciones al azar y el momento dipolar medio
+de cualquier volumen macroscópico es nulo. Con campo, el par \eqref{eq:par} compite con la agitación
+térmica y la orientación es solo parcial, pero el momento medio deja de anularse y tiene la dirección de
+$\vE$ (\cref{fig:orientacion}).
+
+\input{figuras/f-orientacion}
+
+\begin{observacion}[Polarizabilidad de orientación]\label{obs:langevin}
+La mecánica estadística (teoría de Langevin y Debye) da, para $pE\ll k_BT$, un momento medio
+$\langle\vp\rangle=\dfrac{p^2}{3k_BT}\,\vE$~\cite{Purcell,Jackson}. Para el agua a temperatura ambiente,
+$p^2/3k_BT\simeq\SI{3e-39}{F\,m^2}$, unas cuarenta veces la polarizabilidad electrónica del hidrógeno: por
+eso las sustancias polares responden mucho más intensamente al campo, y por eso la permitividad relativa
+del agua es tan grande ($\er\simeq80$; \cref{tab:permitividades}).
+\end{observacion}
+
+\subsection{La aproximación dipolar}\label{sec:aprox-dipolar}
+
+Tanto si la sustancia es polar como si no, el resultado es el mismo: un dieléctrico en un campo eléctrico
+adquiere, en cada elemento de volumen macroscópico, un momento dipolar neto en general no nulo.
+
+\begin{definicion}[Aproximación dipolar]\label{def:aprox-dipolar}
+En la \emph{aproximación dipolar}, un dieléctrico polarizado se describe como una distribución continua de
+dipolos puntuales: cada elemento de volumen $\dd V'$ centrado en $\vr\,'$, pequeño a escala macroscópica pero
+con muchas moléculas, posee un momento dipolar $\dd\vp$, y su contribución al potencial en $\vr$ es la de un
+dipolo puntual~\cite{T2},
+\begin{equation}\label{eq:dphi-dipolo}
+  \dd\phi(\vr)=\frac{1}{4\pi\eo}\frac{\dd\vp\cdot\uv R}{R^2}.
+\end{equation}
+Se desprecian los multipolos de orden superior de cada elemento, cuya contribución decae más deprisa con la
+distancia y es irrelevante a escala macroscópica.
+\end{definicion}

@@ -1,0 +1,12 @@
+# Auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+# Los PDF compilados se copian a la raíz del repositorio
+Tema4-*.pdf
+Guia-T4-*.pdf
+__pycache__/

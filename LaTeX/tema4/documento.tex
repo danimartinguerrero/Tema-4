@@ -1,0 +1,79 @@
+% =============================================================================
+%  Cuerpo del Tema 4. Materiales dieléctricos
+% =============================================================================
+\hacerportada
+
+% ------------------------------------------------------------- Página de resumen
+\thispagestyle{empty}
+\begin{center}
+  {\small\color{tenue}\espaciado{Electromagnetismo I}\quad$\cdot$\quad\espaciado{Tema 4}}\\[1.6em]
+  {\fuentetitulo\fontsize{21}{25}\selectfont Materiales dieléctricos}\\[0.9em]
+  {\color{acentoA}\rule{2.6cm}{0.6pt}}\\[1.1em]
+  {\large Daniel Martín Guerrero}\\[0.3em]
+  {\small\itshape\color{tenue} Grado en Física, Facultad de Ciencias, Universidad de Salamanca}
+\end{center}
+\vspace{1.6em}
+
+\noindent
+\begin{minipage}[t]{0.63\textwidth}
+\small
+{\color{acentoA}\espaciado{Resumen.}}\enspace
+Estudiamos la electrostática en presencia de aislantes. Partiendo de un modelo atómico sencillo
+justificamos la \emph{aproximación dipolar}: un dieléctrico polarizado es una distribución continua de
+dipolos, descrita por el vector polarización $\vP$. Demostramos que su campo es el de unas densidades de
+carga ligada $\rhoP=-\divg\vP$ y $\sigmaP=\vP\cdot\nn$, de carga total nula, e introducimos el vector
+desplazamiento $\vD=\eo\vE+\vP$, cuyo flujo solo ve la carga libre; su rotacional, $\rot\vD=\rot\vP$,
+explica cuándo puede anularse. Para medios lineales, homogéneos e isótropos definimos la susceptibilidad
+y la permitividad, y deducimos las condiciones de frontera y la ley de refracción de las líneas de campo.
+Cerramos la teoría con el campo en cavidades aciculares y lenticulares, que da sentido operacional a $\vE$
+y $\vD$. Los seminarios resuelven los doce problemas del tema.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.33\textwidth}\centering\vspace{-0.6em}
+\begin{tikzpicture}
+\begin{axis}[marco, width=5.6cm, xmin=-3, xmax=3, ymin=-2.2, ymax=2.2]
+  \fill[dielec] (axis cs:0,0) circle[radius=1];
+  \input{datos/esfera-dielectrica-D.tex}
+  \draw[texto, line width=0.5pt] (axis cs:0,0) circle[radius=1];
+\end{axis}
+\end{tikzpicture}\\[-0.2em]
+{\scriptsize\color{tenue}\itshape Líneas de $\vD$ en torno a una esfera dieléctrica\\ en un campo uniforme ($\er=4$).}
+\end{minipage}
+
+\vspace{1.4em}
+\noindent{\small{\color{acentoA}\espaciado{Palabras clave.}}\enspace dieléctrico $\cdot$ polarizabilidad
+$\cdot$ vector polarización $\cdot$ carga ligada $\cdot$ vector desplazamiento $\cdot$ electrete $\cdot$
+susceptibilidad $\cdot$ permitividad $\cdot$ condiciones de frontera $\cdot$ refracción de las líneas de
+campo $\cdot$ cavidades}
+
+\vspace{0.6em}
+\noindent{\small{\color{acentoA}\espaciado{Clasificación PACS.}}\enspace 41.20.Cv (electrostática;
+ecuaciones de Poisson y Laplace, problemas de contorno) $\cdot$ 77.22.$-$d (propiedades dieléctricas de
+sólidos y líquidos) $\cdot$ 77.22.Ej (polarización y despolarización)}
+
+\vfill
+\begin{center}
+\small
+$\displaystyle \phi(\vr)=\frac{1}{4\pi\eo}\!\int_{V'}\!\frac{\rhoP}{R}\dd V'+\frac{1}{4\pi\eo}\oiint_{S'}\!\frac{\sigmaP}{R}\dd S'
+\qquad \oiint_S\vD\cdot\dS=\qfenc
+\qquad \frac{\tan\theta_2}{\varepsilon_2}=\frac{\tan\theta_1}{\varepsilon_1}$
+\end{center}
+\vspace{1em}
+\newpage
+
+% ------------------------------------------------------------- Índice
+\thispagestyle{empty}
+\enlargethispage{3\baselineskip}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\input{tema4/s1-introduccion}
+\input{tema4/s2-microscopico}
+\input{tema4/s3-polarizacion}
+\input{tema4/s4-desplazamiento}
+\input{tema4/s5-lineales}
+\input{tema4/s6-frontera}
+\input{tema4/s7-cavidades}
+\input{tema4/s8-seminarios}
+\input{tema4/apendice}

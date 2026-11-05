@@ -1,0 +1,85 @@
+% Figura: problema 4.4. Electrete cilíndrico: circuito de Stokes, discos
+% equivalentes y ángulos theta_1, theta_2 para puntos del eje fuera y dentro.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (0,-0.8) -- (3.6,-0.8) arc (-90:90:0.28 and 0.8) -- (0,0.8) arc (90:270:0.28 and 0.8);
+  \draw[borde] (0,-0.8) -- (3.6,-0.8) (0,0.8) -- (3.6,0.8);
+  \draw[borde] (0,0) ellipse (0.28 and 0.8);
+  \fill[dielecB] (3.6,0) ellipse (0.28 and 0.8);
+  \draw[borde] (3.6,0) ellipse (0.28 and 0.8);
+  \draw[vecP] (0.9,0.1) -- (2.6,0.1) node[above, midway, etiq] {$\vP$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.6mm]}] (3.6,0) -- (3.75,0.72);
+  \node[etiq] at (4.12,0.42) {$a$};
+  \draw[cota] (0,1.15) -- (3.6,1.15) node[midway, above, etiq] {$2\ell$};
+  % circuito de Stokes a caballo de la pared lateral
+  \draw[cargapos, line width=0.7pt] (1.3,-1.05) rectangle (2.3,-0.55);
+  \draw[cargapos, line width=0.7pt, flechamedio] (1.3,-0.55) -- (2.3,-0.55);
+  \draw[cargapos, line width=0.7pt, flechamedio] (2.3,-1.05) -- (1.3,-1.05);
+  \node[etiq, anchor=north, text=cargapos] at (1.8,-1.12) {$\oint\vP\cdot\dl=P\,\Delta\ell\neq0$};
+  % equivalente
+  \node[etiq] at (5.1,0) {$\equiv$};
+  \draw[borde, fill=dielecB] (6.3,0) ellipse (0.28 and 0.8);
+  \draw[borde, fill=dielecB] (9.9,0) ellipse (0.28 and 0.8);
+  \draw[texto!70!fondo, line width=0.5pt] (6.3,0) -- (9.9,0);
+  \node[cneg, font=\small] at (6.3,1.1) {$-\sigmaP$};
+  \node[cpos, font=\small] at (9.9,1.1) {$+\sigmaP$};
+  \draw[cota] (6.3,-1.1) -- (9.9,-1.1) node[midway, below, etiq] {$2\ell$};
+\end{tikzpicture}
+\caption{Circuito de Stokes y discos equivalentes ($\rhoP=0$, $\sigmaP=\pm P$)}
+\end{subfigure}\\[0.9em]
+\begin{subfigure}[b]{0.49\textwidth}\centering
+\begin{tikzpicture}[scale=0.9]
+  \draw[texto!70!fondo, line width=0.5pt, -{Stealth[length=2mm]}] (-2.6,0) -- (4.5,0) node[below, etiq] {$z$};
+  \fill[dielecB, opacity=0.8] (-1.6,0) ellipse (0.3 and 1.3);
+  \fill[dielecB, opacity=0.8] (1.6,0) ellipse (0.3 and 1.3);
+  \draw[borde] (-1.6,0) ellipse (0.3 and 1.3) (1.6,0) ellipse (0.3 and 1.3);
+  \node[cneg, font=\small] at (-1.6,1.6) {$-P$};
+  \node[cpos, font=\small] at (1.6,1.6) {$+P$};
+  \draw[texto, line width=0.4pt] (-1.6,0) -- (-1.6,1.3);
+  \node[etiq, anchor=east] at (-1.95,0.65) {$a$};
+  \coordinate (Z) at (3.6,0);
+  \fill[texto] (Z) circle (0.04);
+  \draw[campoE, line width=0.55pt] (-1.6,1.3) -- (Z);
+  \draw[campoD, line width=0.55pt] (1.6,1.3) -- (Z);
+  \draw[tenue, line width=0.4pt] ($(Z)+(-0.95,0)$) arc (180:{180-atan(1.3/5.2)}:0.95);
+  \node[etiqt] at ($(Z)+(-1.2,0.13)$) {$\theta_2$};
+  \draw[tenue, line width=0.4pt] ($(Z)+(-0.5,0)$) arc (180:{180-atan(1.3/2.0)}:0.5);
+  \node[etiqt] at ($(Z)+(-0.4,0.42)$) {$\theta_1$};
+  \foreach \x/\t in {-1.6/{-\ell},0/0,1.6/\ell} \node[etiqt, anchor=north] at (\x,-0.05) {$\t$};
+  \node[etiqt, anchor=north] at (Z) {$z$};
+\end{tikzpicture}
+\caption{Punto exterior, $z>\ell$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.49\textwidth}\centering
+\begin{tikzpicture}[scale=0.9]
+  \draw[texto!70!fondo, line width=0.5pt, -{Stealth[length=2mm]}] (-2.6,0) -- (3.2,0) node[below, etiq] {$z$};
+  \fill[dielecB, opacity=0.8] (-1.6,0) ellipse (0.3 and 1.3);
+  \fill[dielecB, opacity=0.8] (1.6,0) ellipse (0.3 and 1.3);
+  \draw[borde] (-1.6,0) ellipse (0.3 and 1.3) (1.6,0) ellipse (0.3 and 1.3);
+  \node[cneg, font=\small] at (-1.6,1.6) {$-P$};
+  \node[cpos, font=\small] at (1.6,1.6) {$+P$};
+  \coordinate (Z) at (0.55,0);
+  \fill[texto] (Z) circle (0.04);
+  \draw[campoE, line width=0.55pt] (-1.6,1.3) -- (Z);
+  \draw[campoD, line width=0.55pt] (1.6,1.3) -- (Z);
+  \draw[tenue, line width=0.4pt] ($(Z)+(-0.7,0)$) arc (180:{180-atan(1.3/2.15)}:0.7);
+  \node[etiqt] at ($(Z)+(-0.95,0.2)$) {$\theta_2$};
+  \draw[tenue, line width=0.4pt] ($(Z)+(0.42,0)$) arc (0:{atan(1.3/1.05)}:0.42);
+  \node[etiqt] at ($(Z)+(0.75,0.28)$) {$\pi-\theta_1$};
+  \draw[tenue, line width=0.4pt, densely dotted] ($(Z)+(-0.3,0)$) arc (180:{atan(1.3/1.05)}:0.3);
+  \node[etiqt] at ($(Z)+(-0.05,0.5)$) {$\theta_1$};
+  \foreach \x/\t in {-1.6/{-\ell},1.6/\ell} \node[etiqt, anchor=north] at (\x,-0.05) {$\t$};
+  \node[etiqt, anchor=north] at (0,-0.05) {$0$};
+  \node[etiqt, anchor=north] at (Z) {$z$};
+\end{tikzpicture}
+\caption{Punto interior, $|z|<\ell$}
+\end{subfigure}
+\caption{\Cref{prob:cilindro-polarizado}. (a) En la pared lateral $\vP$ salta de $P\,\uv z$ a $\vcero$: la circulación sobre un
+rectángulo que la atraviesa no se anula, luego $\rot\vP\neq\vcero$ y $\vD$ no tiene por qué anularse. Como $\rhoP=0$,
+el cilindro equivale a dos discos con densidades $\mp P$. (b), (c) Ángulos que el eje forma con las
+rectas que unen el punto con el borde de cada disco: $\cos\theta_1=(z-\ell)/\sqrt{a^2+(z-\ell)^2}$ y
+$\cos\theta_2=(z+\ell)/\sqrt{a^2+(z+\ell)^2}$; para $|z|<\ell$, $\theta_1>\pi/2$.}
+\label{fig:p44}
+\end{figure}

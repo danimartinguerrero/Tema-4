@@ -1,0 +1,62 @@
+% Figura: ley de refracción de las líneas de campo y ángulo refractado.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.46\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  % medio 1 abajo (eps1), medio 2 arriba (eps2 > eps1); tan t2/eps2 = tan t1/eps1
+  \fill[dielec] (-2.4,-1.9) rectangle (2.4,0);
+  \fill[dielecB] (-2.4,0) rectangle (2.4,1.9);
+  \draw[texto, line width=0.6pt] (-2.4,0) -- (2.4,0);
+  \node[etiq, anchor=west] at (-2.35,1.6) {$\varepsilon_2$};
+  \node[etiq, anchor=west] at (-2.35,-1.6) {$\varepsilon_1$};
+  \draw[texto!50!fondo, dashed, line width=0.35pt] (0,-1.9) -- (0,1.9);
+  % E1: ángulo 30 grados con la normal; E2: atan(2.5 tan 30) = 55.3 grados
+  \coordinate (E1) at ({-1.55*sin(30)},{-1.55*cos(30)});
+  \coordinate (E2) at ({1.75*sin(55.3)},{1.75*cos(55.3)});
+  \draw[vecE] (E1) -- (0,0);
+  \draw[vecE] (0,0) -- (E2);
+  \node[etiq, anchor=north east] at ($(E1)+(0.02,-0.02)$) {$\vE_1$};
+  \node[etiq, anchor=west] at ($(E2)+(0.05,0.05)$) {$\vE_2$};
+  % componentes
+  \draw[campoE!60!fondo, dashed, line width=0.4pt] (E2) -- ({1.75*sin(55.3)},0)
+     node[pos=0.5, right, etiq] {$E_{2n}$};
+  \draw[campoE!60!fondo, dashed, line width=0.4pt] (E2) -- (0,{1.75*cos(55.3)})
+     node[pos=0.5, above, etiq] {$E_{2t}$};
+  \draw[campoE!60!fondo, dashed, line width=0.4pt] (E1) -- (0,{-1.55*cos(30)})
+     node[pos=0.5, below, etiq] {$E_{1t}$};
+  \draw[campoE!60!fondo, dashed, line width=0.4pt] (E1) -- ({-1.55*sin(30)},0)
+     node[pos=0.72, left, etiq] {$E_{1n}$};
+  % ángulos
+  \draw[tenue, line width=0.4pt] (0,0.55) arc (90:34.7:0.55);
+  \node[etiqt] at (62:0.78) {$\theta_2$};
+  \draw[tenue, line width=0.4pt] (0,-0.55) arc (-90:-120:0.55);
+  \node[etiqt] at (-105:0.82) {$\theta_1$};
+  \draw[vecn] (-1.75,0) -- (-1.75,0.7) node[right, etiq] {$\nn$};
+\end{tikzpicture}
+\caption{Refracción de $\vE$ ($\varepsilon_2>\varepsilon_1$, $\sigmaf=0$)}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.5\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.9cm, height=5.6cm, axis lines=left, xmin=0, xmax=90, ymin=0, ymax=92,
+  xlabel={$\theta_1$ (grados)}, ylabel={$\theta_2$ (grados)}, xtick={0,30,60,90}, ytick={0,30,60,90},
+  grid=major, clip=false]
+  \foreach \k/\c in {0.25/campoE!45!fondo, 0.5/campoE!70!fondo, 2/campoD!70!fondo, 4/campoD} {
+    \edef\temp{\noexpand\addplot[draw=\c, line width=0.9pt, domain=0:89.5, samples=120]
+      {atan(\k*tan(x))};}\temp
+  }
+  \addplot[draw=tenue, line width=0.6pt, dashed, domain=0:90] {x};
+  \node[etiqf, font=\scriptsize, anchor=west] at (axis cs:5,82) {$\varepsilon_2/\varepsilon_1=4$};
+  \node[etiqf, font=\scriptsize] at (axis cs:38,57.4) {$2$};
+  \node[etiqf, font=\scriptsize] at (axis cs:50,50) {$1$};
+  \node[etiqf, font=\scriptsize] at (axis cs:62,43.2) {$\tfrac12$};
+  \node[etiqf, font=\scriptsize] at (axis cs:76,44.7) {$\tfrac14$};
+\end{axis}
+\end{tikzpicture}
+\caption{$\theta_2=\arctan\!\big[(\varepsilon_2/\varepsilon_1)\tan\theta_1\big]$}
+\end{subfigure}
+\caption{Ley de refracción de las líneas de campo en una interfase sin carga libre. (a) La
+componente tangencial de $\vE$ se conserva y la normal se reduce en el factor $\varepsilon_1/\varepsilon_2$: al
+pasar al medio de mayor permitividad la línea se aleja de la normal. (b) Ángulo refractado para
+varios cocientes de permitividades; la diagonal ($\varepsilon_1=\varepsilon_2$) no tiene refracción.}
+\label{fig:refraccion}
+\end{figure}

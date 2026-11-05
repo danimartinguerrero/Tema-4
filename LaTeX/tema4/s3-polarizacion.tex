@@ -1,0 +1,157 @@
+% =============================================================================
+\section{Polarización y densidades de carga ligada}\label{sec:polarizacion}
+% =============================================================================
+
+\subsection{El vector polarización}\label{sec:vector-P}
+
+\begin{definicion}[Vector polarización]\label{def:polarizacion}
+Se llama \emph{vector polarización} del dieléctrico en el punto $\vr\,'$ al momento dipolar por unidad de
+volumen,
+\begin{equation}\label{eq:P}
+  \vP(\vr\,')\defeq\frac{\dd\vp}{\dd V'} ,
+\end{equation}
+donde $\dd\vp$ es el momento dipolar neto del elemento $\dd V'$. Sus unidades son $\si{C\,m/m^3}=\si{C/m^2}$. Si hay
+$N$ moléculas por unidad de volumen con momento medio $\langle\vp\rangle$, $\vP=N\langle\vp\rangle$. Se dice que el
+dieléctrico está \emph{uniformemente polarizado} si $\vP$ no depende del punto.
+\end{definicion}
+
+Con esta definición, el momento dipolar de cada elemento es $\dd\vp=\vP\,\dd V'$, y el potencial del
+dieléctrico completo se obtiene sumando \eqref{eq:dphi-dipolo}:
+\begin{equation}\label{eq:phi-P}
+  \phi(\vr)=\frac{1}{4\pi\eo}\int_{V'}\frac{\vP(\vr\,')\cdot\uv R}{R^2}\,\dd V' .
+\end{equation}
+Esta expresión es correcta, pero poco transparente. El resultado central del tema es que puede
+reescribirse como el potencial de una distribución de carga ordinaria.
+
+\subsection{Densidades de carga de polarización}\label{sec:densidades}
+
+\begin{lema}[Gradiente de $1/R$]\label{lem:grad-1R}
+Para $\vr\neq\vr\,'$,
+\begin{equation}\label{eq:grad-1R}
+  \grad\Big(\frac1R\Big)=-\frac{\uv R}{R^2},\qquad
+  \grad'\Big(\frac1R\Big)=+\frac{\uv R}{R^2}.
+\end{equation}
+\end{lema}
+
+\begin{proof}
+Para cualquier $n$, $\grad R^n=nR^{n-1}\grad R=nR^{n-1}\uv R$, pues $\grad R=\vR/R$~\cite{T0}. Con $n=-1$ se
+obtiene la primera igualdad. Como $R$ depende de $\vr-\vr\,'$, derivar respecto a $\vr\,'$ cambia el signo,
+$\grad'f(\vr-\vr\,')=-\grad f(\vr-\vr\,')$, de donde la segunda.
+\end{proof}
+
+\begin{teorema}[Densidades de carga de polarización]\label{teo:densidades}
+El potencial \eqref{eq:phi-P} de un dieléctrico polarizado que ocupa la región $V'$, de frontera
+$S'=\partial V'$ con normal exterior $\nn$, es el de una densidad volúmica $\rhoP$ y una densidad superficial
+$\sigmaP$ de carga,
+\begin{equation}\label{eq:phi-densidades}
+  \phi(\vr)=\frac{1}{4\pi\eo}\int_{V'}\frac{\rhoP(\vr\,')}{R}\,\dd V'
+            +\frac{1}{4\pi\eo}\oiint_{S'}\frac{\sigmaP(\vr\,')}{R}\,\dd S' ,
+\end{equation}
+con
+\begin{equation}\label{eq:rhoP-sigmaP}
+  \boxed{\;\rhoP(\vr\,')=-\grad'\!\cdot\vP(\vr\,'),\qquad \sigmaP(\vr\,')=\vP(\vr\,')\cdot\nn .\;}
+\end{equation}
+Se llaman \emph{densidades de carga de polarización} (o de carga ligada).
+\end{teorema}
+
+\begin{proof}
+Por el \cref{lem:grad-1R}, el integrando de \eqref{eq:phi-P} es $\vP\cdot\grad'(1/R)$. La identidad del producto
+$\grad'\!\cdot(f\vA)=f\,\grad'\!\cdot\vA+\vA\cdot\grad'f$, con $f=1/R$ y $\vA=\vP$, da
+\[
+  \frac{\vP\cdot\uv R}{R^2}=\vP\cdot\grad'\Big(\frac1R\Big)
+  =-\frac{\grad'\!\cdot\vP}{R}+\grad'\!\cdot\Big(\frac{\vP}{R}\Big).
+\]
+Integrando en $V'$ y usando la linealidad de la integral,
+\[
+  \phi(\vr)=\frac{1}{4\pi\eo}\left[\int_{V'}\frac{-\grad'\!\cdot\vP}{R}\,\dd V'
+            +\int_{V'}\grad'\!\cdot\Big(\frac{\vP}{R}\Big)\dd V'\right].
+\]
+A la segunda integral se le aplica el teorema de la divergencia de Gauss,
+$\iiint_{V}\grad\cdot\vA\,\dd V=\oiint_{\partial V}\vA\cdot\dS$, con $\dS'=\nn\,\dd S'$:
+\[
+  \iiint_{V'}\grad'\!\cdot\Big(\frac{\vP}{R}\Big)\dd V'=\oiint_{S'}\frac{\vP\cdot\nn}{R}\,\dd S' .
+\]
+Basta llamar $\rhoP$ y $\sigmaP$ a los numeradores para obtener \eqref{eq:phi-densidades}.
+\end{proof}
+
+\begin{observacion}[Sobre el rigor de la deducción]\label{obs:singular}
+Si $\vr$ está dentro del dieléctrico, el integrando de \eqref{eq:phi-P} es singular en $\vr\,'=\vr$, pero solo como
+$1/R^2$, que es integrable en tres dimensiones; basta excluir una bola de radio $\delta$ alrededor de $\vr$ y hacer
+$\delta\to0$, pues la contribución de su superficie es $\mathcal O(\delta)$. Por otra parte, la aproximación dipolar
+promedia sobre volúmenes que contienen muchas moléculas: los campos que obtenemos son \emph{macroscópicos}, y en
+particular \eqref{eq:phi-densidades} no describe las fluctuaciones a escala atómica.
+\end{observacion}
+
+\begin{corolario}[Las cargas ligadas son cargas de verdad]\label{cor:campo-ligadas}
+El campo de un dieléctrico polarizado es $\vE=-\grad\phi$, es decir,
+\begin{equation}\label{eq:E-densidades}
+  \vE(\vr)=\frac{1}{4\pi\eo}\int_{V'}\frac{\rhoP\,\uv R}{R^2}\,\dd V'
+           +\frac{1}{4\pi\eo}\oiint_{S'}\frac{\sigmaP\,\uv R}{R^2}\,\dd S' ,
+\end{equation}
+el mismo que crearían cargas libres con esas densidades. Toda la electrostática del vacío se aplica a ellas.
+\end{corolario}
+
+\begin{proof}
+Se deriva \eqref{eq:phi-densidades} bajo el signo integral usando la primera igualdad de \eqref{eq:grad-1R}.
+\end{proof}
+
+\subsection{Interpretación física}\label{sec:interpretacion}
+
+¿De dónde salen estas cargas, si el dieléctrico es neutro? Pensemos en una cadena de dipolos idénticos
+(\cref{fig:cadena}\,(a)): la carga positiva de cada dipolo compensa la negativa del siguiente, y solo
+«sobran» la carga negativa del primero y la positiva del último. La cadena equivale a dos cargas $\mp q$ en
+sus extremos.
+
+\input{figuras/f-cadena}
+
+Lo mismo ocurre en un bloque uniformemente polarizado (\cref{fig:cadena}\,(b)): cualquier volumen interior
+contiene tantas cabezas como colas de dipolos y es neutro, y solo aparece carga en las caras por las que
+$\vP$ entra (carga negativa) o sale (positiva). Si la polarización no es uniforme
+(\cref{fig:cadena}\,(c)), en un volumen interior entran y salen distintos números de extremos, y queda una
+carga neta: esa es la densidad $\rhoP$.
+
+\begin{ejemplo}[Cálculo directo de $\sigmaP$]\label{ej:sigmaP-directo}
+Sea un cilindro de longitud $\ell$ y sección $A$ uniformemente polarizado según su eje
+(\cref{fig:cilindro-uniforme}\,(a)). Su momento dipolar es $p=P\,A\ell$, y el de un par de cargas $\mp q$ en las
+caras es $p=q\ell$. Igualando, $q=PA$, de modo que la densidad en cada cara es $\sigmaP=q/A=P$. Si la cara
+se corta oblicuamente, con normal $\nn$ formando un ángulo $\theta$ con $\vP$ (\cref{fig:cilindro-uniforme}\,(b)), la
+misma carga se reparte en un área $A'=A/\cos\theta$, y
+\[
+  \sigmaP=\frac{q}{A'}=\frac{PA}{A/\cos\theta}=P\cos\theta=\vP\cdot\nn ,
+\]
+que es exactamente la expresión del \cref{teo:densidades}. En la superficie lateral $\vP\perp\nn$ y $\sigmaP=0$.
+\end{ejemplo}
+
+\input{figuras/f-cilindro-uniforme}
+
+\subsection{La carga de polarización total es nula}\label{sec:carga-total}
+
+Una polarización divergente arrastra carga positiva hacia la superficie y deja un defecto negativo en el
+interior (\cref{fig:cilindro-uniforme}\,(c)): la carga que falta en el volumen aparece en la superficie,
+$\int_{V'}\rhoP\,\dd V'=-\oiint_{S'}\sigmaP\,\dd S'$. Es una consecuencia general.
+
+\begin{proposicion}[Neutralidad de la carga ligada]\label{prop:QP-nula}
+La carga de polarización total de un dieléctrico es nula:
+\begin{equation}\label{eq:QP}
+  \QP=\int_{V'}\rhoP\,\dd V'+\oiint_{S'}\sigmaP\,\dd S'=0 .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+Por el teorema de la divergencia,
+$\int_{V'}\rhoP\,\dd V'=-\int_{V'}\grad'\!\cdot\vP\,\dd V'=-\oiint_{S'}\vP\cdot\nn\,\dd S'=-\oiint_{S'}\sigmaP\,\dd S'$.
+\end{proof}
+
+\begin{observacion}[El momento dipolar de las cargas ligadas]\label{obs:momento-ligado}
+Como el monopolo de las cargas ligadas es nulo, el término dominante de su desarrollo multipolar~\cite{T2} es
+el dipolar, y su momento es el esperado:
+\[
+  \int_{V'}\vr\,'\rhoP\,\dd V'+\oiint_{S'}\vr\,'\sigmaP\,\dd S'=\int_{V'}\vP\,\dd V' .
+\]
+Para la componente $x$, por ejemplo, $\grad'\!\cdot(x'\vP)=x'\grad'\!\cdot\vP+P_x$, y el teorema de la divergencia da
+$\oiint_{S'}x'\vP\cdot\nn\,\dd S'-\int_{V'}x'\grad'\!\cdot\vP\,\dd V'=\int_{V'}P_x\,\dd V'$. Lejos del dieléctrico, su campo es el
+de un dipolo $\vp_{\text{tot}}=\int\vP\,\dd V'$, como debe ser.
+\end{observacion}
+
+La comprobación explícita de \eqref{eq:QP} en un cubo con polarización radial es el \cref{prob:cubo} de
+los seminarios, y en una esfera uniformemente polarizada, el \cref{prob:esfera-polarizada}.

@@ -1,0 +1,130 @@
+% =============================================================================
+\section{Dieléctricos lineales, homogéneos e isótropos}\label{sec:lineales}
+% =============================================================================
+
+Pasamos ahora a los dieléctricos ordinarios, en los que la polarización no es permanente sino la respuesta
+del material al campo que actúa sobre él. Para cerrar el sistema formado por \eqref{eq:gauss-D} y
+$\rot\vE=\vcero$ hace falta una relación entre $\vP$ y $\vE$, que depende del material y debe obtenerse de su
+estructura microscópica o de la experiencia.
+
+\subsection{La relación constitutiva}\label{sec:constitutiva}
+
+Desde el punto de vista macroscópico, si $\vP$ se anula con el campo y este es débil frente a los campos
+atómicos ($\sim\SI{e11}{V/m}$), cada componente de la polarización puede desarrollarse en potencias de las del campo,
+\begin{equation}\label{eq:constitutiva-general}
+  P_i(\vr)=\sum_{j}\alpha_{ij}(\vr)\,E_j(\vr)+\sum_{j,k}\beta_{ijk}(\vr)\,E_j(\vr)E_k(\vr)+\cdots,
+  \qquad i,j,k\in\{x,y,z\},
+\end{equation}
+donde los coeficientes son propiedades del material en el punto $\vr$. Es una relación \emph{local}: la
+polarización en $\vr$ solo depende del campo en $\vr$.
+
+\begin{definicion}[Medio lineal, homogéneo e isótropo]\label{def:LHI}
+Un dieléctrico es
+\begin{enumerate}
+  \item \emph{lineal} si en \eqref{eq:constitutiva-general} basta el primer término; se escribe entonces
+        \begin{equation}\label{eq:chi-tensor}
+          P_i(\vr)=\eo\sum_j\chi_{ij}(\vr)\,E_j(\vr),
+        \end{equation}
+        y la matriz adimensional $(\chi_{ij})$ es el \emph{tensor de susceptibilidad eléctrica};
+  \item \emph{homogéneo} si $\chi_{ij}$ no depende de $\vr$: es una propiedad intrínseca del material, la misma en
+        todos sus puntos;
+  \item \emph{isótropo} si no tiene direcciones privilegiadas: $\chi_{ij}=\chi\,\delta_{ij}$, es decir,
+        $\chi_{xx}=\chi_{yy}=\chi_{zz}=\chi$ y $\chi_{ij}=0$ para $i\neq j$.
+\end{enumerate}
+En un medio \LHI{}, por tanto,
+\begin{equation}\label{eq:chi}
+  \boxed{\;\vP(\vr)=\eo\chi\,\vE(\vr)\;},
+\end{equation}
+con $\chi>0$ una constante, la \emph{susceptibilidad eléctrica} del material.
+\end{definicion}
+
+\begin{observacion}[Por qué $\chi>0$]\label{obs:chi-positiva}
+Los dos mecanismos de la \cref{sec:microscopico} producen dipolos en el sentido del campo: el desplazamiento de
+la nube electrónica y la orientación de los dipolos permanentes. Por eso $\vP$ tiene el sentido de $\vE$ y la
+susceptibilidad es positiva. En un cristal no cúbico la respuesta depende de la dirección y $(\chi_{ij})$ no es
+proporcional a la identidad, aunque sí simétrica y definida positiva~\cite{Landau}.
+\end{observacion}
+
+\subsection{Permitividad}\label{sec:permitividad}
+
+En un medio \LHI{} el desplazamiento es proporcional al campo:
+\[
+  \vD=\eo\vE+\vP=\eo\vE+\eo\chi\vE=\eo(1+\chi)\,\vE .
+\]
+
+\begin{definicion}[Permitividad]\label{def:permitividad}
+En un dieléctrico \LHI{} se definen la \emph{permitividad dieléctrica} $\varepsilon$ y la \emph{permitividad relativa}
+(o constante dieléctrica) $\er$,
+\begin{equation}\label{eq:epsilon}
+  \varepsilon\defeq\eo(1+\chi),\qquad \er\defeq\frac{\varepsilon}{\eo}=1+\chi ,
+\end{equation}
+de modo que
+\begin{equation}\label{eq:D-epsilon}
+  \boxed{\;\vD=\varepsilon\,\vE,\qquad \vP=(\varepsilon-\eo)\,\vE\; .}
+\end{equation}
+Como $\chi>0$, $\varepsilon>\eo$ y $\er>1$. Las unidades de $\varepsilon$ son las de $\eo$, $\si{F/m}$; $\er$ es adimensional
+(algunos textos la llaman $\kappa$ o $K$~\cite{Purcell}).
+\end{definicion}
+
+\begin{table}[t]
+\centering
+\caption{Permitividades relativas de algunos materiales a temperatura ambiente~\cite{Griffiths}.}
+\label{tab:permitividades}
+\begin{tabular}{@{}lc@{\qquad}lc@{}}
+\toprule
+Material & $\er$ & Material & $\er$\\
+\midrule
+Vacío & $1$ (exacto) & Diamante & $5{,}7$\\
+Aire (seco) & $1{,}00054$ & Sal común (NaCl) & $5{,}9$\\
+Benceno & $2{,}28$ & Silicio & $11{,}7$\\
+Metanol & $33{,}0$ & Agua (\SI{20}{\celsius}) & $80{,}1$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Consecuencias en un medio lineal}\label{sec:consecuencias}
+
+\begin{proposicion}[Carga ligada en un medio homogéneo]\label{prop:rhoP-rhof}
+En el interior de un dieléctrico \LHI{},
+\begin{equation}\label{eq:rhoP-rhof}
+  \rhoP=-\frac{\chi}{1+\chi}\,\rhof=-\Big(1-\frac{\eo}{\varepsilon}\Big)\rhof .
+\end{equation}
+En particular, si no hay carga libre en su volumen tampoco hay carga ligada de volumen: la carga de
+polarización se concentra en las superficies.
+\end{proposicion}
+
+\begin{proof}
+Por \eqref{eq:chi}, \eqref{eq:D-epsilon} y \eqref{eq:gauss-D}, con $\chi$ y $\varepsilon$ constantes,
+$\rhoP=-\divg\vP=-\eo\chi\,\divg\vE=-\dfrac{\eo\chi}{\varepsilon}\divg\vD=-\dfrac{\chi}{1+\chi}\,\rhof$.
+\end{proof}
+
+\begin{proposicion}[Un único medio que llena todo el espacio]\label{prop:un-medio}
+Si todo el espacio está ocupado por un único dieléctrico \LHI{} de permitividad $\varepsilon$, entonces
+\begin{equation}\label{eq:coulomb-epsilon}
+  \divg\vE=\frac{\rhof}{\varepsilon},\qquad \rot\vE=\vcero,\qquad
+  \vE(\vr)=\frac{1}{4\pi\varepsilon}\int\frac{\rhof(\vr\,')\,\uv R}{R^2}\,\dd V' :
+\end{equation}
+el campo es el del vacío con $\eo$ sustituida por $\varepsilon$, y por tanto $\er$ veces menor.
+\end{proposicion}
+
+\begin{proof}
+Con $\varepsilon$ constante, $\divg\vE=\divg\vD/\varepsilon=\rhof/\varepsilon$. El campo $\varepsilon\vE=\vD$ tiene divergencia $\rhof$ y rotacional
+nulo, igual que el campo de Coulomb de la carga libre en el vacío multiplicado por $\eo$; por el
+\cref{lem:helmholtz} ambos coinciden.
+\end{proof}
+
+\begin{trampa}[¡Solo si hay un único medio!]
+Las expresiones $\divg\vE=\rhof/\varepsilon$, $\oiint\vE\cdot\dS=\qfenc/\varepsilon$ y $\vE=\frac{1}{4\pi\varepsilon}\int\rhof\,\uv R/R^2\,\dd V'$ \emph{no son
+ciertas en general}. Si $\varepsilon$ varía de un punto a otro,
+\[
+  \rhof=\divg(\varepsilon\vE)=\varepsilon\,\divg\vE+\vE\cdot\grad\varepsilon ,
+\]
+y en una interfase, donde $\varepsilon$ cambia bruscamente, $\grad\varepsilon$ es singular: ese término extra es precisamente la
+carga de polarización acumulada en la frontera. Por eso en las fronteras se trabaja con $\vD$, cuyas
+condiciones de contorno no dependen del material (\cref{sec:frontera}).
+\end{trampa}
+
+Los dos ejemplos canónicos son una carga libre en un dieléctrico infinito, que reduce su campo en el factor
+$\er$ (\cref{prob:carga-en-dielectrico}), y el condensador plano relleno de dieléctrico, cuya capacidad
+aumenta en el mismo factor, $C=\er C_0$ (\cref{prob:condensador-dielectrico}). De ahí procede el método
+experimental clásico para medir $\er$: comparar la capacidad de un condensador lleno y vacío.

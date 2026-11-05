@@ -1,0 +1,64 @@
+% Figura: interpretación de las densidades de polarización. Cadena de dipolos,
+% polarización uniforme (solo carga superficial) y no uniforme (carga de volumen).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \foreach \i in {0,...,4} {
+    \pgfmathsetmacro{\x}{1.05*\i}
+    \draw[campoP, line width=0.9pt, -{Stealth[length=1.6mm]}] (\x,0) -- (\x+0.7,0);
+    \node[cneg] at (\x+0.02,-0.27) {$-$};
+    \node[cpos] at (\x+0.68,-0.27) {$+$};
+  }
+  \draw[gauss, rounded corners=3pt] (1.65,-0.48) rectangle (2.20,0.3);
+  \node[etiqt, anchor=north] at (1.93,-0.55) {neutro};
+  \node[etiq] at (5.75,-0.05) {$=$};
+  \draw[texto, line width=0.6pt] (6.4,0) -- (10.5,0);
+  \fill[carganeg] (6.4,0) circle (0.08); \fill[cargapos] (10.5,0) circle (0.08);
+  \node[etiq, anchor=north] at (6.4,-0.12) {$-q$};
+  \node[etiq, anchor=north] at (10.5,-0.12) {$+q$};
+\end{tikzpicture}
+\caption{Cadena de dipolos idénticos: el interior es localmente neutro y solo «sobran» las cargas de los extremos}
+\end{subfigure}\\[0.9em]
+\begin{subfigure}[b]{0.48\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (0,0) rectangle (3.4,2.0);
+  \draw[borde] (0,0) rectangle (3.4,2.0);
+  \foreach \i in {0,...,4} \foreach \j in {0,...,4}
+    \draw[campoP, line width=0.75pt, -{Stealth[length=1.5mm,width=1.2mm]}]
+      ({0.2+0.65*\i},{0.22+0.39*\j}) -- ({0.62+0.65*\i},{0.22+0.39*\j});
+  \foreach \j in {0,...,4} {
+    \node[cneg] at (-0.18,{0.22+0.39*\j}) {$-$};
+    \node[cpos] at (3.58,{0.22+0.39*\j}) {$+$};
+  }
+  \draw[cargapos, dashed, line width=0.7pt] (1.72,1.0) ellipse (0.35 and 0.8);
+  \draw[vecn] (0,1.0) -- (-0.75,1.0) node[above, etiq] {$\nn$};
+  \draw[vecn] (3.4,1.0) -- (4.15,1.0) node[above, etiq] {$\nn$};
+\end{tikzpicture}
+\caption{$\vP$ uniforme: $\rhoP=0$, $\sigmaP=\vP\cdot\nn$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[dielec] (0,0) rectangle (3.4,2.0);
+  \draw[borde] (0,0) rectangle (3.4,2.0);
+  \foreach \i/\L in {0/0.18,1/0.28,2/0.38,3/0.48,4/0.58} \foreach \j in {0,...,4}
+    \draw[campoP, line width=0.75pt, -{Stealth[length=1.5mm,width=1.2mm]}]
+      ({0.42+0.65*\i-\L/2},{0.22+0.39*\j}) -- ({0.42+0.65*\i+\L/2},{0.22+0.39*\j});
+  \foreach \j in {0,...,4} {
+    \node[cneg] at (-0.18,{0.22+0.39*\j}) {$-$};
+    \node[cpos] at (3.58,{0.22+0.39*\j}) {$+$};
+    \node[cpos] at (3.78,{0.22+0.39*\j}) {$+$};
+  }
+  \draw[cargapos, dashed, line width=0.7pt] (1.72,1.0) ellipse (0.35 and 0.8);
+  \draw[vecn] (0,1.0) -- (-0.75,1.0) node[above, etiq] {$\nn$};
+  \draw[vecn] (3.9,1.0) -- (4.55,1.0) node[above, etiq] {$\nn$};
+\end{tikzpicture}
+\caption{$\vP$ no uniforme: $\rhoP=-\divg\vP\neq0$}
+\end{subfigure}
+\caption{Origen de las cargas de polarización. (a) En una cadena de dipolos la carga positiva de cada
+uno compensa la negativa del siguiente. (b) Si $\vP$ es uniforme, un volumen interior cualquiera (trazos)
+contiene tantas cabezas como colas de dipolos y es neutro: la carga ligada aparece solo en la superficie.
+(c) Si $\vP$ crece hacia la derecha, en el mismo volumen entran más extremos negativos que positivos
+salen y queda una carga neta: es la densidad volúmica $\rhoP=-\divg\vP$.}
+\label{fig:cadena}
+\end{figure}

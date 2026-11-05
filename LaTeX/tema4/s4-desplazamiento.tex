@@ -1,0 +1,143 @@
+% =============================================================================
+\section{Ley de Gauss en dieléctricos: el vector desplazamiento}\label{sec:desplazamiento}
+% =============================================================================
+
+\subsection{Carga libre y carga ligada}\label{sec:gauss-D}
+
+En presencia de dieléctricos, el campo electrostático lo crean dos tipos de carga: la libre, que
+controlamos, y la ligada, que el material dispone por sí solo y que depende a su vez del campo. La ley de
+Gauss del vacío sigue siendo válida si se cuentan ambas,
+\begin{equation}\label{eq:gauss-total}
+  \divg\vE=\frac{\rhof+\rhoP}{\eo},\qquad
+  \oiint_S\vE\cdot\dS=\frac{\qfenc+\qPenc}{\eo},
+\end{equation}
+pero en la práctica no sirve de mucho: para usarla habría que conocer la carga de polarización, que es
+precisamente lo que no sabemos hasta haber resuelto el problema. Conviene disponer de una ley que solo
+involucre la carga libre.
+
+\begin{lema}[Carga ligada encerrada]\label{lem:qP-enc}
+Para cualquier superficie cerrada $S$, la carga de polarización que encierra es menos el flujo de $\vP$:
+\begin{equation}\label{eq:qP-enc}
+  \qPenc=-\oiint_S\vP\cdot\dS .
+\end{equation}
+\end{lema}
+
+\begin{proof}
+Sea $V_S$ la región encerrada por $S$ y $V$ la del dieléctrico. La carga ligada encerrada consta de la
+volúmica de $V\cap V_S$ y de la superficial de la parte de $\partial V$ contenida en $V_S$. La frontera de
+$V\cap V_S$ está formada por $\partial V\cap V_S$ y $S\cap V$; aplicando el teorema de la divergencia en esa región,
+\[
+  \int_{V\cap V_S}\rhoP\,\dd V=-\oiint_{\partial(V\cap V_S)}\vP\cdot\dS
+  =-\int_{\partial V\cap V_S}\sigmaP\,\dd S-\int_{S\cap V}\vP\cdot\dS .
+\]
+Pasando el primer término de la derecha al otro miembro se obtiene $\qPenc=-\int_{S\cap V}\vP\cdot\dS$, que es
+\eqref{eq:qP-enc} porque $\vP=\vcero$ fuera del dieléctrico.
+\end{proof}
+
+Llevando \eqref{eq:qP-enc}, o su forma local $\rhoP=-\divg\vP$, a \eqref{eq:gauss-total}, el flujo de $\vP$ pasa al
+primer miembro:
+\[
+  \divg\vE=\frac{\rhof-\divg\vP}{\eo}
+  \quad\Longrightarrow\quad
+  \divg\big(\eo\vE+\vP\big)=\rhof .
+\]
+Esto sugiere agrupar los dos campos en uno solo.
+
+\begin{definicion}[Vector desplazamiento eléctrico]\label{def:D}
+Se llama \emph{vector desplazamiento eléctrico} (o inducción eléctrica) al campo
+\begin{equation}\label{eq:D}
+  \boxed{\;\vD(\vr)\defeq\eo\vE(\vr)+\vP(\vr)\; .}
+\end{equation}
+Sus unidades son las de $\vP$, $\si{C/m^2}$. El nombre se debe a Maxwell, que lo interpretaba como un
+desplazamiento de las cargas del éter; hoy es simplemente una herramienta de cálculo.
+\end{definicion}
+
+\begin{teorema}[Ley de Gauss para $\vD$]\label{teo:gauss-D}
+El vector desplazamiento satisface, en forma diferencial e integral,
+\begin{equation}\label{eq:gauss-D}
+  \divg\vD=\rhof,\qquad
+  \oiint_S\vD\cdot\dS=\qfenc ,
+\end{equation}
+para cualquier superficie cerrada $S$: su flujo solo «ve» la carga libre.
+\end{teorema}
+
+\begin{proof}
+La forma diferencial se acaba de deducir. Para la integral, por \eqref{eq:gauss-total} y el \cref{lem:qP-enc},
+$\oiint_S\eo\vE\cdot\dS=\qfenc+\qPenc=\qfenc-\oiint_S\vP\cdot\dS$, que es \eqref{eq:gauss-D}. Ambas formas son equivalentes por el
+teorema de la divergencia.
+\end{proof}
+
+\begin{observacion}[Lo que el teorema no dice]\label{obs:D-no-determinado}
+La ley de Gauss para $\vD$ es tan útil como la del vacío \emph{cuando hay simetría suficiente}: plana, cilíndrica
+o esférica. En general, conocer la divergencia de un campo no basta para determinarlo; hace falta también su
+rotacional, y el de $\vD$ no es nulo (\cref{sec:rot-D}). En particular, que la carga libre encerrada sea nula
+\emph{no} implica que $\vD$ sea nulo.
+\end{observacion}
+
+\subsection{Electretes}\label{sec:electretes}
+
+\begin{definicion}[Electrete]\label{def:electrete}
+Un \emph{electrete} es un material con una polarización permanente, que no se debe a un campo aplicado y no
+desaparece al retirarlo. Los materiales ferroeléctricos son el ejemplo más importante; son el análogo eléctrico
+de los imanes permanentes (ferromagnéticos) del magnetismo.
+\end{definicion}
+
+En un electrete $\vP$ es un dato del problema, y basta el \cref{teo:densidades} para calcular su campo. Los
+problemas~\ref{prob:cilindro-polarizado}, \ref{prob:electrete-esferico}, \ref{prob:electrete-coaxial}
+y~\ref{prob:electrete-condensador} son de este tipo.
+
+\subsection{El rotacional de $\vD$}\label{sec:rot-D}
+
+El campo electrostático es conservativo, $\rot\vE=\vcero$. Tomando el rotacional de \eqref{eq:D},
+\begin{equation}\label{eq:rot-D}
+  \rot\vD=\rot\vP .
+\end{equation}
+El desplazamiento no es, en general, conservativo: su circulación no se anula allí donde la tiene $\vP$.
+Recordemos el teorema de Helmholtz~\cite{T0}.
+
+\begin{lema}[Teorema de Helmholtz]\label{lem:helmholtz}
+Un campo vectorial $\vF$ de clase $\mathcal C^1$ a trozos que tiende a cero en el infinito más deprisa que $1/r$
+queda determinado de forma única por su divergencia y su rotacional (entendidos en sentido distribucional,
+de modo que incluyen las discontinuidades de sus componentes normal y tangencial en las superficies).
+\end{lema}
+
+En una superficie en que $\vP$ salta de $\vP_1$ a $\vP_2$, la parte superficial del rotacional es
+$\nn\times(\vP_2-\vP_1)\,\delta_S$: es nula si y solo si se conserva la componente tangencial de $\vP$. Con esto
+podemos responder a la pregunta de la \cref{obs:D-no-determinado}.
+
+\begin{proposicion}[Cuándo se anula $\vD$]\label{prop:D-nulo}
+Si en todo el espacio no hay carga libre y la polarización es irrotacional, incluidas sus superficies de
+discontinuidad,
+\[
+  \rhof\equiv0,\qquad \rot\vP=\vcero\ \text{en cada medio},\qquad \nn\times(\vP_2-\vP_1)=\vcero\ \text{en cada interfase},
+\]
+entonces $\vD\equiv\vcero$ y, por tanto, $\vE=-\vP/\eo$. Recíprocamente, si $\vD\equiv\vcero$, no hay carga libre y $\vP$
+es irrotacional.
+\end{proposicion}
+
+\begin{proof}
+Por \eqref{eq:gauss-D} y \eqref{eq:rot-D}, $\vD$ tiene divergencia y rotacional nulos en todo el espacio, incluidos
+los términos superficiales. Si el dieléctrico es acotado, fuera de él $\vD=\eo\vE$ decae como el campo de una
+distribución neutra (\cref{prop:QP-nula}), al menos como $1/r^3$. Por el \cref{lem:helmholtz}, el único campo con
+estas propiedades es el nulo. El recíproco es inmediato: si $\vD=\vcero$, $\rhof=\divg\vD=0$ y $\rot\vP=\rot\vD=\vcero$.
+\end{proof}
+
+\begin{ejemplo}[Polarizaciones radiales]\label{ej:radial}
+Una polarización $\vP=f(r)\,\uv r$ (esférica) o $\vP=f(\rho)\,\uv\rho$ (cilíndrica) es irrotacional en el interior del
+material, y en sus superficies, que son esferas o cilindros coaxiales, $\vP$ es normal y $\nn\times\vP=\vcero$. Sin
+carga libre, $\vD=\vcero$ en todo el espacio y $\vE=-\vP/\eo$ dentro del material: así se resuelven los
+problemas~\ref{prob:electrete-esferico} y~\ref{prob:electrete-coaxial}.
+\end{ejemplo}
+
+\begin{ejemplo}[El cilindro uniformemente polarizado]\label{ej:stokes}
+En un cilindro con $\vP$ uniforme y axial, $\rot\vP=\vcero$ dentro, pero en la pared lateral $\vP$ es tangente y salta a
+cero. Un pequeño rectángulo que atraviese la pared (\cref{fig:p44}\,(a)) tiene circulación $\oint\vP\cdot\dl=P\,\Delta\ell\neq0$ y,
+por el teorema de Stokes, $\rot\vP\neq\vcero$ en la pared. Aunque no haya carga libre, $\vD\neq\vcero$
+(\cref{prob:cilindro-polarizado}): sus líneas se cierran como las del campo de un solenoide
+(\cref{fig:cilindro-lineas}).
+\end{ejemplo}
+
+\begin{trampa}[Trampa habitual]
+«Como no hay carga libre, $\vD=\vcero$» solo es cierto si además $\vP$ es irrotacional (\cref{prop:D-nulo}). En el
+cilindro, la esfera o el cubo uniformemente polarizados, $\vD\neq\vcero$ aunque $\rhof=0$.
+\end{trampa}

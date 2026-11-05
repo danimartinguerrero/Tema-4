@@ -1,0 +1,63 @@
+% =============================================================================
+\section{Introducción: del conductor al dieléctrico}\label{sec:introduccion}
+% =============================================================================
+
+En el tema anterior dimos el primer paso hacia la materia con el conductor perfecto, un cuerpo con una
+reserva ilimitada de cargas que se mueven sin oposición~\cite{T3}. En el otro extremo está el
+\emph{aislante perfecto}, o \emph{dieléctrico}: un material que no admite cargas libres. Sus cargas
+---núcleos y electrones--- están ligadas a los átomos o moléculas y no pueden abandonar su posición,
+aunque sí desplazarse ligeramente respecto de ella. Ambas idealizaciones funcionan muy bien en
+electrostática, y entre las dos cubren la mayor parte de los materiales de interés.
+
+La pregunta de este tema es qué hace un campo eléctrico con un dieléctrico. La respuesta es que lo
+\emph{polariza}: cada átomo o molécula se convierte en un pequeño dipolo, o alinea parcialmente el que
+ya tenía. Un dieléctrico polarizado será, a escala macroscópica, una distribución continua de dipolos,
+y para describirlo bastarán la teoría del dipolo y el desarrollo multipolar de los temas
+anteriores~\cite{T1,T2}. La novedad es que, como en el conductor, el campo y la polarización se
+determinan mutuamente: el campo polariza el medio, y los dipolos crean a su vez un campo que se suma al
+aplicado.
+
+Seguimos el orden de los apuntes manuscritos de la asignatura y nos apoyamos en los apuntes de teoría y
+en sus figuras~\cite{DFA-teoria,DFA-figuras}, que hemos recalculado y redibujado; para ampliar pueden
+consultarse los textos clásicos~\cite{Griffiths,Wangsness,Purcell,Feynman,Jackson}.
+
+\subsection{El dieléctrico ideal}\label{sec:dielectrico-ideal}
+
+\begin{definicion}[Dieléctrico]\label{def:dielectrico}
+Un \emph{dieléctrico} (o aislante perfecto) es un cuerpo material, que ocupa una región $V\subset\mathbb{R}^3$
+de frontera $S=\partial V$, tal que:
+\begin{enumerate}
+  \item no contiene cargas libres: todas sus cargas están ligadas a átomos o moléculas, alrededor de cuya
+        posición de equilibrio solo pueden desplazarse distancias del orden atómico o menores;
+  \item es globalmente neutro en ausencia de cargas externas depositadas en él.
+\end{enumerate}
+Llamaremos \emph{cargas libres} a todas las demás: las de los conductores, los iones o electrones que
+podamos depositar en el material, y en general cualquier carga cuyo movimiento no esté restringido a la
+escala atómica.
+\end{definicion}
+
+\begin{observacion}[Libre y ligada no es una distinción microscópica]\label{obs:libre-ligada}
+Un electrón es un electrón, y crea el mismo campo esté ligado o no. La distinción es de
+\emph{control}: la carga libre es la que fijamos nosotros (depositándola, conectando una batería), mientras
+que la ligada es la que el material reorganiza por sí solo en respuesta al campo. Esta asimetría es la que
+hará útil el vector desplazamiento de la \cref{sec:desplazamiento}.
+\end{observacion}
+
+\subsection{Notación y convenios}\label{sec:notacion}
+
+\begin{notacion}\label{not:tema4}
+Usamos la notación de los temas anteriores~\cite{T0,T1,T2,T3} y, además:
+\begin{itemize}
+  \item $\vr$ es el punto de campo y $\vr\,'$ el punto fuente; $\vR=\vr-\vr\,'$, $R=\abs{\vR}$ y
+        $\uv R=\vR/R$. El operador $\grad'$ actúa sobre las coordenadas primadas.
+  \item $\rhof$ y $\sigmaf$ son las densidades de carga libre, volúmica y superficial; $\rhoP$ y $\sigmaP$, las de
+        carga ligada o \emph{de polarización}. $\qfenc$ y $\qPenc$ son las cargas libre y ligada
+        encerradas por una superficie.
+  \item $\vp$ es el momento dipolar de un átomo o molécula; $\vP$, el vector polarización; $\vD$, el vector
+        desplazamiento; $\chi$, $\varepsilon$ y $\er$, la susceptibilidad, la permitividad y la permitividad relativa.
+  \item $\nn$ es la normal unitaria exterior al dieléctrico. En una superficie que separa dos medios, $\nn$ apunta
+        del medio~1 al medio~2, y los subíndices $n$ y $t$ indican las componentes normal y tangencial.
+  \item \LHI{} abrevia «lineal, homogéneo e isótropo». Mientras no se diga lo contrario,
+        $\phi(\infty)=0$ y $\eo\simeq\SI{8.854e-12}{F/m}$~\cite{CODATA}.
+\end{itemize}
+\end{notacion}

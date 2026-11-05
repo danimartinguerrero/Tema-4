@@ -1,0 +1,41 @@
+% Figura: problema 4.2. Esfera conductora cargada en un dieléctrico LHI infinito.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.42\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \fill[dielec] plot[smooth cycle, tension=0.8] coordinates
+     {(-2.3,0.2) (-1.6,1.6) (0.2,1.9) (1.9,1.5) (2.3,-0.1) (1.6,-1.6) (-0.3,-1.85) (-1.9,-1.3)};
+  \node[etiq] at (1.55,1.25) {$\varepsilon$};
+  \draw[gauss] (0,0) circle (1.25);
+  \node[etiq, text=acentoB] at (-50:1.55) {$S$};
+  \shade[ball color=conductorluz] (0,0) circle (0.55);
+  \draw[texto, line width=0.5pt] (0,0) circle (0.55);
+  \foreach \t in {0,40,...,320} \node[cneg, font=\tiny\bfseries] at (\t:0.7) {$-$};
+  \node[font=\small, text=black] at (0,0.05) {$Q$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.6mm]}] (0,0) -- (-140:0.55);
+  \draw[acentoB, line width=0.4pt, -{Stealth[length=1.6mm]}] (0,0) -- (115:1.25)
+    node[pos=0.72, left, etiq] {$r$};
+  \node[etiqt] at (-118:0.92) {$a$};
+\end{tikzpicture}
+\caption{Geometría}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.54\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=7.6cm, height=4.8cm, axis lines=left, xmin=0, xmax=4, ymin=0, ymax=1.1,
+  xlabel={$r/a$}, ylabel={unidades de $Q/4\pi a^{2}$}, xtick={0,1,2,3,4}, ytick={0,0.3333,1},
+  yticklabels={$0$,$\frac1{\er}$,$1$}, legend style={at={(0.98,0.98)}, anchor=north east}]
+  \addplot[curvaD, dashed, domain=1:4, samples=80] {1/x^2}; \addlegendentry{$D$ \;($=\eo E$ en vacío)}
+  \addplot[curvaE, domain=1:4, samples=80] {1/(3*x^2)}; \addlegendentry{$\eo E$ \;($\er=3$)}
+  \addplot[curvaP, domain=1:4, samples=80] {2/(3*x^2)}; \addlegendentry{$P$}
+  \fill[conductor, opacity=0.35] (axis cs:0,0) rectangle (axis cs:1,1.1);
+  \node[etiqt] at (axis cs:0.5,0.55) {metal};
+\end{axis}
+\end{tikzpicture}
+\caption{$D$, $\eo E$ y $P$ frente a $r$}
+\end{subfigure}
+\caption{\Cref{prob:carga-en-dielectrico}. (a) Conductor de radio $a$ y carga libre $Q$ sumergido en un dieléctrico
+\LHI{} de permitividad $\varepsilon$; la superficie gaussiana $S$ es una esfera concéntrica. Junto al metal aparece
+una carga ligada negativa que apantalla parcialmente a $Q$. (b) $D$ no depende del medio; el campo se
+reduce en el factor $\er$ y la diferencia, $D-\eo E=P$, es la polarización.}
+\label{fig:p42}
+\end{figure}

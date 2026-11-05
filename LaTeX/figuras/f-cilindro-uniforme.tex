@@ -1,0 +1,61 @@
+% Figura: cálculo directo de sigma_P en un cilindro uniformemente polarizado,
+% corte oblicuo (sigma_P = P cos theta) y polarización radial (rho_P < 0).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.46\textwidth}\centering
+\begin{tikzpicture}[scale=0.9]
+  % cilindro (vista lateral con perspectiva caballera)
+  \fill[dielec] (0,-0.6) -- (2.6,-0.6) arc (-90:90:0.24 and 0.6) -- (0,0.6) arc (90:270:0.24 and 0.6);
+  \draw[borde] (0,-0.6) -- (2.6,-0.6) (0,0.6) -- (2.6,0.6);
+  \draw[borde] (0,0) ellipse (0.24 and 0.6);
+  \fill[dielecB] (2.6,0) ellipse (0.24 and 0.6);
+  \draw[borde] (2.6,0) ellipse (0.24 and 0.6);
+  \node[etiq] at (2.6,0) {$A$};
+  \draw[vecP] (0.6,0) -- (1.9,0) node[above, midway, etiq] {$\vP$};
+  \draw[cota] (0,0.92) -- (2.6,0.92) node[midway, above, etiq] {$\ell$};
+  % equivalente
+  \node[etiq] at (3.45,0) {$\equiv$};
+  \draw[borde] (4.3,0) ellipse (0.24 and 0.6);
+  \draw[borde] (6.6,0) ellipse (0.24 and 0.6);
+  \draw[texto!70!fondo, line width=0.5pt] (4.3,0) -- (6.6,0);
+  \node[cneg, font=\small] at (4.3,0.85) {$-q$};
+  \node[cpos, font=\small] at (6.6,0.85) {$+q$};
+  \draw[cota] (4.3,-0.92) -- (6.6,-0.92) node[midway, below, etiq] {$\ell$};
+\end{tikzpicture}
+\caption{$p=q\ell=P\,A\ell\ \Rightarrow\ \sigmaP=q/A=P$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.27\textwidth}\centering
+\begin{tikzpicture}[scale=0.9]
+  \fill[dielec] (0,-0.6) -- (2.2,-0.6) -- (2.75,0.6) -- (0,0.6) arc (90:270:0.24 and 0.6);
+  \draw[borde] (0,-0.6) -- (2.2,-0.6) (0,0.6) -- (2.75,0.6);
+  \draw[borde] (0,0) ellipse (0.24 and 0.6);
+  \fill[dielecB] (2.475,0) ellipse [x radius=0.24, y radius=0.66, rotate=-24.6];
+  \draw[borde] (2.475,0) ellipse [x radius=0.24, y radius=0.66, rotate=-24.6];
+  \node[etiq] at (3.05,0.82) {$A'$};
+  \draw[vecP] (0.45,0) -- (1.65,0) node[above, midway, etiq] {$\vP$};
+  \draw[vecn] (2.475,0) -- ++(-24.6:1.05) node[right, etiq] {$\nn$};
+  \draw[texto!60!fondo, dashed, line width=0.35pt] (2.475,0) -- (3.75,0);
+  \draw[tenue, line width=0.4pt] (3.375,0) arc (0:-24.6:0.9);
+  \node[etiqt] at ($(2.475,0)+(-11:1.1)$) {$\theta$};
+\end{tikzpicture}
+\caption{$\sigmaP=\dfrac{q}{A'}=P\cos\theta$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.23\textwidth}\centering
+\begin{tikzpicture}[scale=0.9]
+  \fill[dielec] (0,0) circle (1.05);
+  \draw[equipot] (0,0) circle (1.05);
+  \foreach \t in {0,45,...,315} {
+    \draw[campoP, line width=0.8pt, -{Stealth[length=1.6mm]}] (\t:0.3) -- (\t:0.95);
+    \node[cpos] at (\t:1.28) {$+$};
+  }
+  \foreach \t in {22.5,112.5,202.5,292.5} \node[cneg, font=\small\bfseries] at (\t:0.15) {$-$};
+\end{tikzpicture}
+\caption{$\divg\vP>0$}
+\end{subfigure}
+\caption{(a) Un cilindro uniformemente polarizado equivale a dos discos con cargas $\mp q$: de
+$P=p/V=q\ell/(A\ell)$ se sigue $\sigmaP=P$. (b) Si la cara se corta oblicuamente, la misma carga se
+reparte sobre un área mayor $A'=A/\cos\theta$, y $\sigmaP=P\cos\theta=\vP\cdot\nn$. (c) Una polarización
+divergente arrastra carga positiva hacia la superficie y deja un defecto negativo en el interior:
+$\rhoP=-\divg\vP<0$ y $\sigmaP>0$, con carga ligada total nula.}
+\label{fig:cilindro-uniforme}
+\end{figure}

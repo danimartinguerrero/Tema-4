@@ -1,0 +1,274 @@
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.7. Electrete cilíndrico coaxial}\label{sec:p47}
+
+\begin{problema}[Electrete coaxial]\label{prob:electrete-coaxial}
+Sea un electrete limitado por dos superficies cilíndricas coaxiales infinitamente largas de radios $a$ y $b$ ($a<b$). El electrete está
+polarizado con un momento dipolar por unidad de volumen $\vP=\dfrac{kr}{2}\,\uv r$, siendo $k$ una constante, $r$ la distancia al eje de
+simetría ($a<r<b$) y $\uv r$ el vector unitario en la dirección radial. Calcula el campo electrostático $\vE$ en todo el espacio y el vector
+desplazamiento $\vD$ en el material.
+\end{problema}
+
+\begin{resolucion}
+\idea Mismo esquema que el \cref{prob:electrete-esferico}, con simetría cilíndrica (método M2). Ahora la polarización no es solenoidal y sí hay
+carga ligada de volumen. No hay carga libre y $\vP$ es irrotacional (no varía en la dirección perpendicular a $\uv r$), luego el problema es
+trivial: $\vD=\vcero$ para todo $\vr$.
+
+\paso{Paso 1: campo} $\vE=-\vP/\eo$ en el material y nulo fuera:
+\begin{equation}\label{eq:p47}
+  \recuadro{\vE=\vcero\ (r<a),\qquad \vE=-\frac{kr}{2\eo}\,\uv r\ \ (a<r<b),\qquad \vE=\vcero\ (r>b);\qquad \vD=\vcero .}
+\end{equation}
+\paso{Paso 2: cargas ligadas} En coordenadas cilíndricas, $\rhoP=-\dfrac1r\dfrac{\partial}{\partial r}\Big(r\,\dfrac{kr}{2}\Big)=-k$. En las superficies, con la
+normal exterior al electrete,
+\[
+  \sigmaP(a)=\vP\cdot(-\uv r)=-\frac{ka}{2}\quad(\text{apunta hacia el eje}),\qquad \sigmaP(b)=\vP\cdot\uv r=\frac{kb}{2}.
+\]
+\paso{Paso 3: comprobación con Gauss para $\vE$} Para un cilindro gaussiano de radio $a<r<b$ y longitud $\ell$,
+\[
+  \qPenc=-\frac{ka}{2}\,2\pi a\ell-k\,\pi(r^2-a^2)\,\ell=-k\pi r^2\ell
+  \quad\Longrightarrow\quad
+  E\,2\pi r\ell=-\frac{k\pi r^2\ell}{\eo},\quad \vE=-\frac{kr}{2\eo}\,\uv r .
+\]
+Para $r>b$, $\qPenc=-k\pi a^2\ell+kb\,\pi b\ell-k\pi(b^2-a^2)\ell=0$: la carga de polarización neta es siempre cero.
+\end{resolucion}
+
+\begin{observacion}[Diferencia de potencial]\label{obs:p47}
+Aunque fuera del electrete no haya campo, entre sus caras sí hay diferencia de potencial:
+$\phi(a)-\phi(b)=\int_a^bE_r\,\dd r=-\dfrac{k}{4\eo}(b^2-a^2)$. La superficie interior está a menor potencial, en acuerdo con la carga ligada
+negativa que la recubre (\cref{fig:p47}).
+\end{observacion}
+
+\input{figuras/f-p47}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.8. Condensador esférico con dos dieléctricos}\label{sec:p48}
+
+\begin{problema}[Dos dieléctricos hemisféricos]\label{prob:dos-hemisferios}
+Sean dos esferas conductoras concéntricas de radios $a$ y $b$ separadas por dos dieléctricos de permitividades $\varepsilon_1$ y $\varepsilon_2$ cuya superficie
+de contacto es un plano ecuatorial (\cref{fig:p48}). Se le proporciona una carga $Q$ a la esfera interior y se conecta la esfera exterior a potencial
+nulo. Demuestra que la expresión para el potencial es la misma en las dos zonas del recinto entre las dos esferas. Calcula dicha solución y la
+capacidad del sistema. ¿Cómo se distribuye la carga $Q$ en la esfera interior?
+\end{problema}
+
+\begin{resolucion}
+\idea Probamos un potencial que solo dependa de $r$ en ambas zonas y comprobamos que satisface todas las condiciones; por unicidad, es la
+solución. Después, Gauss para $\vD$ (métodos M3 y M4).
+
+\paso{Paso 1: el mismo potencial en ambas zonas} Busquemos $\phi=\phi(r)$ en $a<r<b$. Entonces $\vE=E(r)\,\uv r$ es radial y, por tanto, \emph{tangente} al
+plano ecuatorial que separa los medios. Las condiciones de frontera en ese plano son:
+\begin{itemize}
+  \item componente tangencial de $\vE$ continua: $E_1(r)=E_2(r)\equiv E(r)$ en cada punto del plano, es decir, la misma función en ambos medios;
+  \item componente normal de $\vD$ continua: $\vD_i=\varepsilon_iE\,\uv r$ no tiene componente normal al plano, y $0=0$ se cumple trivialmente.
+\end{itemize}
+Además, en cada medio $\phi$ debe ser armónico, y las soluciones radiales de $\lap\phi=0$ son $\phi=A/r+B$; las dos esferas son equipotenciales y
+$\phi(b)=0$. Una única función $\phi(r)=A/r+B$ satisface todo: por el teorema de unicidad~\cite{T3}, la expresión del potencial es la misma en las
+dos zonas.
+
+\paso{Paso 2: $\vD$ y $\vE$ por Gauss} Con una esfera de radio $a<r<b$, la mitad en cada medio,
+\[
+  \oiint\vD\cdot\dS=\varepsilon_1E\,2\pi r^2+\varepsilon_2E\,2\pi r^2=Q
+  \quad\Longrightarrow\quad
+  \vE=\frac{Q}{2\pi(\varepsilon_1+\varepsilon_2)\,r^2}\,\uv r .
+\]
+\paso{Paso 3: potencial y capacidad} Con $\phi(b)=0$,
+\[
+  \recuadro{\phi(r)=-\int_b^r E\,\dd r'=\frac{Q}{2\pi(\varepsilon_1+\varepsilon_2)}\Big(\frac1r-\frac1b\Big),\qquad
+  C=\frac{Q}{\phi(a)}=2\pi(\varepsilon_1+\varepsilon_2)\,\frac{ab}{b-a}.}
+\]
+\paso{Paso 4: reparto de la carga} En la superficie del conductor interior, $\sigmaf=D_n=\varepsilon_iE(a)$ en cada hemisferio:
+\[
+  \recuadro{\sigma_1=\frac{\varepsilon_1\,Q}{2\pi a^2(\varepsilon_1+\varepsilon_2)},\qquad \sigma_2=\frac{\varepsilon_2\,Q}{2\pi a^2(\varepsilon_1+\varepsilon_2)} .}
+\]
+Comprobación: $2\pi a^2(\sigma_1+\sigma_2)=Q$.
+\end{resolucion}
+
+\begin{observacion}[Dos condensadores en paralelo y la carga total]\label{obs:p48}
+La capacidad es la suma $C=C_1+C_2$, con $C_i=2\pi\varepsilon_i\,ab/(b-a)$ la de medio condensador esférico lleno del dieléctrico $i$: los dos hemisferios
+están al mismo potencial y se reparten la carga, como dos condensadores en paralelo. La carga libre se concentra en el hemisferio de mayor
+permitividad, pero la carga ligada adyacente, $\sigma_{\mathrm{P},i}=-(\varepsilon_i-\eo)E(a)$, compensa justo esa diferencia: la carga total,
+$\sigma_i+\sigma_{\mathrm{P},i}=\eo E(a)=Q\eo/[2\pi a^2(\varepsilon_1+\varepsilon_2)]$, es uniforme. Por eso el campo es radial y con simetría esférica, aunque el sistema no la tenga
+(\cref{fig:p48}\,(b)). El problema se resolvió en los seminarios con exactamente estos pasos.
+\end{observacion}
+
+\input{figuras/f-p48}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.9. Electrete en un condensador cortocircuitado}\label{sec:p49}
+
+\begin{problema}[Electrete entre armaduras unidas]\label{prob:electrete-condensador}
+Una plancha de electrete con polarización $\vP$ uniforme se coloca entre las armaduras de un condensador plano como se muestra en la
+\cref{fig:p49}. Calcula los campos dentro y fuera del electrete cuando las armaduras del condensador se unen mediante un cable conductor.
+Desprecia el efecto de bordes.
+\end{problema}
+
+\begin{resolucion}
+\idea La polarización es uniforme e independiente de cualquier campo. El electrete tiene cargas ligadas $\pm P$ en sus caras, que inducen
+carga en las armaduras; al estar unidas por el cable, sus potenciales son iguales. Sea $a$ el espesor del electrete y $b$ el del hueco de aire, y
+$\uv z$ el sentido de $\vP$, normal a las placas (método M5).
+
+\paso{Paso 1: $\vD$ es el mismo en ambas capas} Por la simetría plana, los campos son normales a las placas y solo dependen de $z$. En cada capa
+no hay carga libre y $\dd D/\dd z=0$; en la interfase tampoco, y $D_n$ es continua. Luego $\vD=D\,\uv z$ con $D$ constante en todo el hueco.
+
+\paso{Paso 2: los campos en función de $D$}
+\[
+  \eo\vEext=\vD\quad(\text{aire}),\qquad \eo\vEint=\vD-\vP\quad(\text{electrete}).
+\]
+\paso{Paso 3: la condición del cable} Las armaduras están al mismo potencial:
+\[
+  \phi_{\text{sup}}-\phi_{\text{inf}}=-\int_0^{a+b}E_z\,\dd z=-\big(\Eint\,a+\Eext\,b\big)=0 ,
+\]
+y sustituyendo los campos del paso~2,
+\[
+  (D-P)\,a+D\,b=0\quad\Longrightarrow\quad D=\frac{a}{a+b}\,P .
+\]
+\paso{Paso 4: resultado}
+\begin{equation}\label{eq:p49}
+  \recuadro{\vEint=-\frac{b}{\eo(a+b)}\,\vP,\qquad \vEext=\frac{a}{\eo(a+b)}\,\vP,\qquad \vD=\frac{a}{a+b}\,\vP .}
+\end{equation}
+Las cargas inducidas en las armaduras son $\sigma_{\text{inf}}=+D=\frac{a}{a+b}P$ en la inferior (junto a la cara negativa del electrete) y
+$\sigma_{\text{sup}}=-D$ en la superior.
+\end{resolucion}
+
+\begin{observacion}[Comprobación por superposición de planos]\label{obs:p49}
+Hay cuatro planos cargados: $+s$ (armadura inferior), $-P$ y $+P$ (caras del electrete) y $-s$ (armadura superior), con $s=\frac{a}{a+b}P$. Cada uno crea
+$\sigma/2\eo$ a cada lado, alejándose si es positivo. En el aire, los tres planos inferiores suman $s/2\eo$ hacia arriba y la armadura superior, que
+atrae, otros $s/2\eo$: $\Eext=s/\eo=aP/\eo(a+b)$. En el electrete, $\frac{s-P}{2\eo}-\frac{P}{2\eo}+\frac{s}{2\eo}=\frac{s-P}{\eo}=-\frac{bP}{\eo(a+b)}$. Coincide con \eqref{eq:p49}, como en
+la resolución de los seminarios. Sin el cable ($s=0$) se recupera la lámina polarizada aislada, $\Eext=0$ y $\Eint=-P/\eo$; con el hueco cerrado ($b\to0$),
+$\Eint\to0$: el electrete queda cortocircuitado por las placas.
+\end{observacion}
+
+\input{figuras/f-p49}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.10. Dieléctricos en paralelo}\label{sec:p410}
+
+\begin{problema}[Dos dieléctricos en paralelo]\label{prob:paralelo}
+Entre las placas paralelas de un condensador plano al que aplicamos una diferencia de potencial $V_0$ se introducen dos dieléctricos de
+permitividades relativas $\varepsilon_{r1}$ y $\varepsilon_{r2}$ como se indica en la \cref{fig:p410-412}\,(a). Calcula la carga en cada placa y la capacidad del
+sistema. Desprecia el efecto de bordes.
+\end{problema}
+
+\begin{resolucion}
+\idea La interfase entre los dieléctricos es perpendicular a las placas, de modo que los campos son tangentes a ella (método M4, paralelo).
+
+\paso{Paso 1: el campo es común} La componente tangencial de $\vE$ es continua, $E_1=E_2\equiv E$. Como las placas son equipotenciales y separadas $d$,
+\[
+  E_1=E_2=E=\frac{V_0}{d}.
+\]
+\paso{Paso 2: carga en cada zona} En la superficie de la placa, $\sigmaf=D_n$: $\sigma_i=D_i=\varepsilon_{ri}\eo E=\varepsilon_{ri}\eo V_0/d$, y con las áreas $A_1$ y $A_2$,
+\[
+  \recuadro{Q_1=V_0\,\frac{A_1\varepsilon_{r1}\eo}{d},\qquad Q_2=V_0\,\frac{A_2\varepsilon_{r2}\eo}{d},}
+\]
+y la capacidad es la suma de las de ambos tramos,
+\[
+  \recuadro{C=\frac{Q_1+Q_2}{V_0}=\frac{A_1\varepsilon_{r1}\eo}{d}+\frac{A_2\varepsilon_{r2}\eo}{d}=C_1+C_2 .}
+\]
+\end{resolucion}
+
+\begin{observacion}[Paralelo]\label{obs:p410}
+Los dos tramos comparten la diferencia de potencial y se reparten la carga: son dos condensadores en paralelo. La solución de campo
+uniforme cumple todas las condiciones (placas equipotenciales, $\vE_t$ continuo y $D_n$ continua, trivialmente, en la interfase), y es única. El
+mismo argumento resolvió el \cref{prob:dos-hemisferios}.
+\end{observacion}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.11. Dieléctrico en serie con aire}\label{sec:p411}
+
+\begin{problema}[Condensador parcialmente lleno]\label{prob:serie}
+Considera un condensador de placas paralelas de área $A$ y separación $d$. Entre sus placas se aplica una diferencia de potencial $V_0$ y se
+introduce un dieléctrico de permitividad $\varepsilon$ que llena parcialmente el espacio entre placas, como se indica en la \cref{fig:p410-412}\,(b).
+Calcula los campos dentro y fuera del dieléctrico y la capacidad del sistema. Desprecia el efecto de bordes.
+\end{problema}
+
+\begin{resolucion}
+\idea Ahora la interfase es paralela a las placas y los campos son normales a ella (método M4, serie). Sean $a$ el espesor del dieléctrico y $b=d-a$ el
+del aire.
+
+\paso{Paso 1: $\vD$ es común} Sin carga libre en la interfase, $D_n$ es continua: $\eo\Eext=\varepsilon\Eint\equiv D$.
+
+\paso{Paso 2: la batería} $V_0=\Eint\,a+\Eext\,b=\Eint\Big(a+\dfrac{\varepsilon}{\eo}\,b\Big)=\dfrac{\Eint}{\eo}\big(\eo a+\varepsilon b\big)$, de donde
+\[
+  \recuadro{\Eint=V_0\,\frac{\eo}{a\eo+b\varepsilon},\qquad \Eext=V_0\,\frac{\varepsilon}{a\eo+b\varepsilon},\qquad
+  C=\frac{DA}{V_0}=A\,\frac{\varepsilon\eo}{a\eo+b\varepsilon} .}
+\]
+\paso{Paso 3: comprobación como serie} Con $C_1=\eo A/b$ (aire) y $C_2=\varepsilon A/a$ (dieléctrico),
+\[
+  \frac{C_1C_2}{C_1+C_2}=\frac{A^2\eo\varepsilon/(ab)}{A(\eo a+\varepsilon b)/(ab)}=A\,\frac{\varepsilon\eo}{a\eo+b\varepsilon}. \qedhere
+\]
+\end{resolucion}
+
+\begin{observacion}[Límites]\label{obs:p411}
+Si $\varepsilon\to\eo$, $C\to\eo A/(a+b)=\eo A/d$. Si $\varepsilon\to\infty$, $\Eint\to0$ y $C\to\eo A/b$: el dieléctrico se comporta como un conductor y la separación efectiva se
+reduce al hueco de aire, que es el \cref{prob:lamina}. Casi toda la caída de potencial se produce en el aire, donde el campo es $\er$ veces mayor
+(\cref{fig:p411-perfil}\,(a)): por eso una capa de aire en serie con un aislante es el punto débil frente a la ruptura dieléctrica.
+\end{observacion}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 4.12. Lámina conductora intercalada}\label{sec:p412}
+
+\begin{problema}[Lámina conductora]\label{prob:lamina}
+Entre las placas de un condensador plano-paralelo de área $A$ y separación $d$ se introduce una lámina conductora de grosor $e$ como se indica en la
+\cref{fig:p410-412}\,(c). ¿Cómo varía la capacidad del sistema?
+\end{problema}
+
+\begin{resolucion}
+\idea Dentro del conductor $\vE=\vcero$; en sus caras se inducen cargas $\mp Q$ que dejan inalterado el campo de los huecos (método M4, serie).
+
+\paso{Paso 1: campos} Con cargas $\pm Q$ en las placas, la lámina adquiere $-Q$ en la cara frente a la placa positiva y $+Q$ en la otra (regla de las caras del
+Tema~3~\cite{T3}). En cada hueco, $D=\sigma=Q/A$ y $E=\sigma/\eo$; en el metal, $E=0$.
+
+\paso{Paso 2: diferencia de potencial} Con $a$ y $b$ los espesores de los huecos, $a+b=d-e$:
+\[
+  \Delta\phi=\frac{\sigma}{\eo}\,a+0\cdot e+\frac{\sigma}{\eo}\,b=\frac{\sigma}{\eo}(d-e)
+  \quad\Longrightarrow\quad
+  \recuadro{C'=\frac{Q}{\Delta\phi}=\frac{\eo A}{d-e}>\frac{\eo A}{d}=C .}
+\]
+\end{resolucion}
+
+\begin{observacion}[Independencia de la posición]\label{obs:p412}
+La capacidad aumenta y no depende de dónde se coloque la lámina, solo de su espesor: equivale a dos condensadores en serie, $\eo A/a$ y $\eo A/b$, cuya
+serie solo depende de $a+b$. Es el límite $\varepsilon\to\infty$ del \cref{prob:serie} (\cref{fig:p411-perfil}\,(b)).
+\end{observacion}
+
+\input{figuras/f-p410-412}
+\input{figuras/f-p411-perfil}
+
+% -----------------------------------------------------------------------------
+\subsection{Resumen de resultados y lista de control}\label{sec:resumen-seminarios}
+
+\begin{table}[H]
+\centering
+\caption{Resultados de los seminarios del Tema 4.}\label{tab:resultados}
+\small
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}Xc@{}}
+\toprule
+Problema & Resultado & Método\\
+\midrule
+4.1 & $\phi=\dfrac{Pa^3}{3\eo}\dfrac{z}{\abs z^3}$, $E_z=\dfrac{2Pa^3}{3\eo\abs z^3}$ ($\abs z>a$);\quad $\phi=\dfrac{Pz}{3\eo}$, $E_z=-\dfrac{P}{3\eo}$ ($\abs z<a$) & M1\\
+4.2 & $\vD=\dfrac{Q}{4\pi r^2}\uv r$,\quad $\vE=\dfrac{Q}{4\pi\varepsilon r^2}\uv r$,\quad $\vP=(\varepsilon-\eo)\dfrac{Q}{4\pi\varepsilon r^2}\uv r$ & M3\\
+4.3 & $\vD=\sigma\uv z$,\quad $\vE=\dfrac{\sigma}{\varepsilon}\uv z$,\quad $C=\dfrac{\varepsilon A}{d}=\er C_0$ & M3\\
+4.4 & $\vE=\dfrac{\vP}{2\eo}(\cos\theta_2-\cos\theta_1)$ fuera, $-\dfrac{\vP}{2\eo}(2+\cos\theta_1-\cos\theta_2)$ dentro;\quad $\vD=\dfrac{\vP}{2}(\cos\theta_2-\cos\theta_1)$ & M1\\
+4.5 & $\rhoP=-3A$,\quad $\sigmaP=A\ell/2$,\quad $\QP=0$ & M1\\
+4.6 & $\vD=\vcero$;\quad $\vE=-\dfrac{k}{\eo r^2}\uv r$ en $a<r<2a$, nulo fuera & M2\\
+4.7 & $\vD=\vcero$;\quad $\vE=-\dfrac{kr}{2\eo}\uv r$ en $a<r<b$, nulo fuera;\quad $\rhoP=-k$ & M2\\
+4.8 & $\phi=\dfrac{Q}{2\pi(\varepsilon_1+\varepsilon_2)}\Big(\dfrac1r-\dfrac1b\Big)$,\quad $C=2\pi(\varepsilon_1+\varepsilon_2)\dfrac{ab}{b-a}$,\quad $\sigma_i=\dfrac{\varepsilon_iQ}{2\pi a^2(\varepsilon_1+\varepsilon_2)}$ & M3, M4\\
+4.9 & $\vEint=-\dfrac{b\,\vP}{\eo(a+b)}$,\quad $\vEext=\dfrac{a\,\vP}{\eo(a+b)}$,\quad $\vD=\dfrac{a\,\vP}{a+b}$ & M5\\
+4.10 & $Q_i=V_0\dfrac{A_i\varepsilon_{ri}\eo}{d}$,\quad $C=\dfrac{A_1\varepsilon_{r1}\eo}{d}+\dfrac{A_2\varepsilon_{r2}\eo}{d}$ & M4\\
+4.11 & $\Eint=\dfrac{V_0\eo}{a\eo+b\varepsilon}$,\quad $\Eext=\dfrac{V_0\varepsilon}{a\eo+b\varepsilon}$,\quad $C=\dfrac{A\varepsilon\eo}{a\eo+b\varepsilon}$ & M4\\
+4.12 & $C'=\dfrac{\eo A}{d-e}$ (independiente de la posición) & M4\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{metodo}{Lista de control}
+\begin{itemize}
+  \item ¿He distinguido carga libre (la que controlo) de carga ligada (la que dispone el material)? ¿Uso Gauss para $\vD$ solo con la libre?
+  \item Antes de afirmar $\vD=\vcero$, ¿he comprobado que no hay carga libre \emph{y} que $\vP$ es irrotacional, también en las superficies?
+  \item ¿He tomado en cada superficie la normal \emph{exterior al dieléctrico} al calcular $\sigmaP=\vP\cdot\nn$?
+  \item ¿Se anula la carga ligada total? ¿Coincide el campo con el que da Gauss para $\vE$ con todas las cargas?
+  \item ¿Uso $\oiint\vE\cdot\dS=\qfenc/\varepsilon$ solo si un único medio \LHI{} llena todo el espacio relevante?
+  \item En las interfases sin carga libre, ¿he impuesto $D_n$ continua y $\vE_t$ continuo (y no al revés)?
+  \item Condensadores: interfase paralela a las placas, $\vD$ común y serie; perpendicular, $\vE$ común y paralelo.
+  \item ¿Recupera el resultado los límites conocidos: $\varepsilon\to\eo$ (vacío), $\varepsilon\to\infty$ (conductor), $b\to0$, $a\gg\ell$, $a\ll\ell$?
+\end{itemize}
+\end{metodo}

@@ -1,0 +1,76 @@
+% Figura: cavidades en un dieléctrico. Principio de superposición, cavidad
+% acicular y cavidad lenticular, con los perfiles axiales que las justifican.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{\textwidth}\centering
+\begin{tikzpicture}[scale=0.92]
+  \tikzset{bloque/.style={fill=dielec, draw=texto!45!fondo, line width=0.4pt, rounded corners=2pt}}
+  \tikzset{aguja/.style={fill=fondo, draw=texto, line width=0.5pt, rounded corners=1.4pt}}
+  % dieléctrico con cavidad
+  \draw[bloque] (0,0) rectangle (3.0,1.9);
+  \draw[aguja] (0.95,0.7) rectangle (2.05,0.86);
+  \draw[vecP] (1.05,1.38) -- (1.95,1.38) node[above, midway, etiq] {$\vP_d$};
+  \node[etiq] at (3.55,0.95) {$=$};
+  % dieléctrico macizo
+  \draw[bloque] (4.1,0) rectangle (7.1,1.9);
+  \draw[vecP] (5.15,1.38) -- (6.05,1.38) node[above, midway, etiq] {$\vP_d$};
+  \node[etiq] at (7.65,0.95) {$+$};
+  % «anticavidad»: cilindro con -P_d
+  \draw[aguja, fill=dielecB] (8.25,0.7) rectangle (9.75,0.86);
+  \draw[vecP] (9.55,0.78) -- (8.45,0.78);
+  \node[etiq, anchor=north] at (9.0,0.6) {$-\vP_d$};
+\end{tikzpicture}
+\caption{Superposición: dieléctrico con cavidad $=$ dieléctrico macizo $+$ cuerpo con la forma de la cavidad y polarización $-\vP_d$}
+\end{subfigure}\\[1.0em]
+\begin{subfigure}[b]{0.235\textwidth}\centering
+\begin{tikzpicture}[scale=0.86]
+  \fill[dielec, rounded corners=2pt] (0,0) rectangle (3.0,2.4);
+  \draw[vecE] (0.25,2.0) -- (1.15,2.0) node[above, midway, etiq] {$\vE_d$};
+  \draw[vecP] (1.8,2.0) -- (2.7,2.0) node[above, midway, etiq] {$\vP_d$};
+  \draw[fill=fondo, draw=texto, line width=0.5pt, rounded corners=1.4pt] (0.55,0.62) rectangle (2.45,0.8);
+  \draw[vecn] (1.5,0.8) -- (1.5,1.42) node[right, etiq] {$\nn$};
+  \draw[vecn] (1.5,0.8) -- (2.1,0.8);
+  \node[etiq, anchor=south] at (2.05,0.8) {$\tu$};
+  \node[etiq, anchor=north] at (1.5,0.55) {$\vEcav=\vE_d$};
+\end{tikzpicture}
+\caption{Acicular}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.24\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[perfil, width=4.25cm, height=3.6cm, ymin=-0.75, ymax=1.15, ytick={-0.5,0.5,1}]
+  \curvaPeje \curvaEeje{0.1}
+  \node[etiqf, font=\tiny, anchor=north west] at (rel axis cs:0.02,0.98) {$a/\ell=0{,}1$};
+\end{axis}
+\end{tikzpicture}
+\caption{Cilindro largo}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.235\textwidth}\centering
+\begin{tikzpicture}[scale=0.86]
+  \fill[dielec, rounded corners=2pt] (0,0) rectangle (3.0,2.4);
+  \draw[vecE] (0.25,2.0) -- (1.15,2.0) node[above, midway, etiq] {$\vE_d$};
+  \draw[vecP] (1.8,2.0) -- (2.7,2.0) node[above, midway, etiq] {$\vP_d$};
+  \draw[fill=fondo, draw=texto, line width=0.5pt] (1.1,0.95) ellipse (0.09 and 0.75);
+  \draw[vecn] (1.19,0.95) -- (1.8,0.95) node[above, etiq] {$\nn$};
+  \draw[vecn] (1.19,0.95) -- (1.19,1.5) node[right, etiq] {$\tu$};
+  \node[etiq, anchor=west] at (1.3,0.42) {$\vDcav=\vD_d$};
+\end{tikzpicture}
+\caption{Lenticular}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.24\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[perfil, width=4.25cm, height=3.6cm, ymin=-1.15, ymax=1.15, ytick={-1,1}]
+  \curvaPeje \curvaEeje{50}
+  \node[etiqf, font=\tiny, anchor=north west] at (rel axis cs:0.02,0.98) {$a/\ell=50$};
+\end{axis}
+\end{tikzpicture}
+\caption{Disco delgado}
+\end{subfigure}
+\caption{Cavidades en un dieléctrico polarizado ($\vE_d$, $\vP_d$, $\vD_d$ son los campos del medio lejos de la
+cavidad). (a) Por superposición, basta sumar al campo del medio el de un cuerpo con la forma de la
+cavidad y polarización $-\vP_d$. (b) En una cavidad acicular paralela al campo domina la superficie
+lateral y se conserva la componente tangencial: $\vEcav=\vE_d$. (c) Perfil axial de $E$ (línea continua,
+unidades $P/\eo$) y de $P$ (trazos) de un cilindro polarizado largo: dentro, lejos de los extremos, $E\simeq0$.
+(d) En una cavidad lenticular perpendicular al campo dominan las caras y se conserva la componente
+normal de $\vD$: $\vDcav=\vD_d$. (e) En un disco delgado, $E\simeq-P/\eo$ dentro; con $-\vP_d$ esto aporta $+\vP_d/\eo$.}
+\label{fig:cavidades}
+\end{figure}

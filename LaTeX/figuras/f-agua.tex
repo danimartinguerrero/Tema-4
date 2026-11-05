@@ -1,0 +1,56 @@
+% Figura: la molécula de agua como dipolo permanente.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.44\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  % geometría: ángulo H-O-H de 104,5 grados, dipolo según el bisector (eje +x)
+  \coordinate (O) at (0,0);
+  \coordinate (H1) at (52.25:1.25);
+  \coordinate (H2) at (-52.25:1.25);
+  \shade[ball color=carganeg!85!fondo] (H1) circle (0.52);
+  \shade[ball color=carganeg!85!fondo] (H2) circle (0.52);
+  \shade[ball color=cargapos!85!fondo] (O) circle (0.95);
+  \node[font=\bfseries, text=white] at (-0.15,0) {$-2\delta$};
+  \node[font=\bfseries, text=white] at ($(H1)+(0.12,0.08)$) {$+\delta$};
+  \node[font=\bfseries, text=white] at ($(H2)+(0.12,-0.08)$) {$+\delta$};
+  \draw[vecP, line width=1.3pt] (0.35,0) -- (2.15,0) node[right, etiq] {$\vp$};
+  \node[etiqt] at ($(H1)+(0.95,0.25)$) {H};
+  \node[etiqt] at ($(H2)+(0.95,-0.25)$) {H};
+  \node[etiqt] at (-1.25,0.0) {O};
+  \draw[tenue, line width=0.4pt] (52.25:0.55) arc (52.25:-52.25:0.55);
+\end{tikzpicture}
+\caption{Distribución de carga y dipolo}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.52\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \tikzset{electron/.style={circle, fill=acentoC, draw=fondo, line width=0.3pt, inner sep=1.5pt}}
+  % oxígeno: núcleo y dos capas
+  \draw[tenue, line width=0.5pt] (0,0) circle (0.62);
+  \draw[tenue, line width=0.5pt] (0,0) circle (1.1);
+  \shade[ball color=cargapos!85!fondo] (0,0) circle (0.36);
+  \node[font=\tiny, text=white, align=center] at (0,0) {$8p$\\[-3pt]$8n$};
+  \foreach \t in {90,270} \node[electron] at (\t:0.62) {};
+  \foreach \t in {30,90,150,210,-30,-90} \node[electron] at (\t:1.1) {};
+  % hidrógenos (enlaces covalentes: capas solapadas)
+  \foreach \h/\ang in {A/-35,B/-145} {
+    \coordinate (\h) at (\ang:1.82);
+    \draw[tenue, line width=0.5pt] (\h) circle (0.62);
+    \shade[ball color=carganeg!85!fondo] (\h) circle (0.2);
+    \node[font=\tiny, text=white] at (\h) {$+$};
+  }
+  \node[electron] at ($(A)+(150:0.62)$) {};
+  \node[electron] at ($(B)+(30:0.62)$) {};
+  \node[etiqt] at (0,1.42) {oxígeno};
+  \node[etiqt] at ($(A)+(0.1,-0.86)$) {H};
+  \node[etiqt] at ($(B)+(-0.1,-0.86)$) {H};
+\end{tikzpicture}
+\caption{Estructura electrónica (esquema)}
+\end{subfigure}
+\caption{La molécula de agua, ejemplo de sustancia polar. (a) El oxígeno atrae con más fuerza los
+electrones de los enlaces: queda una carga parcial $-2\delta$ en el oxígeno y $+\delta$ en cada hidrógeno.
+Como la molécula no es lineal (ángulo de $104{,}5^\circ$), los centros de carga positiva y negativa no
+coinciden y existe un momento dipolar permanente $p_{\mathrm{H_2O}}\simeq\SI{6.1e-30}{C\,m}$, dirigido
+del oxígeno hacia los hidrógenos. (b) Esquema de capas: cada hidrógeno comparte su electrón con la
+capa externa del oxígeno.}
+\label{fig:agua}
+\end{figure}

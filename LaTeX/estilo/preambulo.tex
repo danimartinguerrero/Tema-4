@@ -1,0 +1,397 @@
+% =============================================================================
+%  preambulo.tex — Estilo común de los apuntes formalizados de Electromagnetismo I
+%  Versión «luminosa» (\oscurofalse) y «oscura» (\oscurotrue) desde el mismo código.
+%  Compilar con LuaLaTeX.  Antes de \input{estilo/preambulo} debe declararse
+%      \newif\ifoscuro  \oscurotrue   (o \oscurofalse)
+% =============================================================================
+\documentclass[11pt,a4paper,twoside]{article}
+
+% ---------------------------------------------------------------- Idioma y fuentes
+\usepackage[spanish,es-noshorthands,es-tabla,es-nodecimaldot]{babel}
+\usepackage{fontspec}            % Latin Modern (como en los apuntes de EDO)
+\setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\usepackage{microtype}
+\linespread{1.04}
+
+% ---------------------------------------------------------------- Matemáticas
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{esint}               % \oiint, \oint
+\usepackage{bm}
+\usepackage[output-decimal-marker={,},exponent-product=\cdot,
+            per-mode=symbol,inter-unit-product=\,]{siunitx}
+
+% ---------------------------------------------------------------- Página
+\usepackage[a4paper,inner=2.75cm,outer=2.75cm,top=3.0cm,bottom=2.9cm,
+            headsep=0.9cm,footskip=1.1cm]{geometry}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.15em plus 0.1em}
+\frenchspacing
+
+% ---------------------------------------------------------------- Color y tema
+\usepackage[table]{xcolor}
+\ifoscuro
+  \definecolor{fondo}{HTML}{000000}
+  \definecolor{texto}{HTML}{EBEBEB}
+  \definecolor{tenue}{HTML}{9CA2AC}
+  \definecolor{gris}{HTML}{2E3036}
+  \definecolor{grismedio}{HTML}{5A606A}
+  \definecolor{caja}{HTML}{0E1014}
+  \definecolor{acentoA}{HTML}{20B4CE}   % cian: definiciones, enlaces, campo E
+  \definecolor{acentoB}{HTML}{A48BFA}   % violeta: teoremas, campo D
+  \definecolor{acentoC}{HTML}{F0B429}   % ámbar: problemas, polarización P
+  \definecolor{textopestana}{HTML}{000000}
+  \definecolor{cargapos}{HTML}{FF6B6B}
+  \definecolor{carganeg}{HTML}{5B8CFF}
+  \definecolor{dielec}{HTML}{1C2433}
+  \definecolor{dielecB}{HTML}{2C3549}
+  \definecolor{conductor}{HTML}{5C6370}
+  \definecolor{conductorluz}{HTML}{A9B0BC}
+  \definecolor{equipot}{HTML}{4E545E}
+  \definecolor{verde}{HTML}{4ADE80}
+\else
+  \definecolor{fondo}{HTML}{FFFFFF}
+  \definecolor{texto}{HTML}{161616}
+  \definecolor{tenue}{HTML}{5B6068}
+  \definecolor{gris}{HTML}{CDD1D7}
+  \definecolor{grismedio}{HTML}{9AA0A8}
+  \definecolor{caja}{HTML}{F5F7FA}
+  \definecolor{acentoA}{HTML}{0B7F95}
+  \definecolor{acentoB}{HTML}{6447C9}
+  \definecolor{acentoC}{HTML}{B7791F}
+  \definecolor{textopestana}{HTML}{FFFFFF}
+  \definecolor{cargapos}{HTML}{D23B3B}
+  \definecolor{carganeg}{HTML}{2C4FC7}
+  \definecolor{dielec}{HTML}{E6EBF2}
+  \definecolor{dielecB}{HTML}{CBD3E0}
+  \definecolor{conductor}{HTML}{8E96A3}
+  \definecolor{conductorluz}{HTML}{E4E7EC}
+  \definecolor{equipot}{HTML}{B4B9C1}
+  \definecolor{verde}{HTML}{15803D}
+\fi
+\colorlet{campoE}{acentoA}
+\colorlet{campoD}{acentoB}
+\colorlet{campoP}{acentoC}
+\pagecolor{fondo}
+\makeatletter
+\AtBeginDocument{\color{texto}\let\default@color\current@color}
+\makeatother
+
+% ---------------------------------------------------------------- Gráficos
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathreplacing,
+                patterns,positioning,shapes.geometric,shadings,fadings,
+                intersections,backgrounds,3d,perspective}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween,groupplots}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{needspace}
+\graphicspath{{img/}}
+
+% ---------------------------------------------------------------- Tablas
+\usepackage{booktabs,array,tabularx,multirow}
+\arrayrulecolor{grismedio}
+\renewcommand{\arraystretch}{1.25}
+
+% ---------------------------------------------------------------- Listas
+\usepackage{enumitem}
+\setlist{itemsep=0.15em,topsep=0.35em}
+\setlist[enumerate,1]{label=\textup{(\roman*)},leftmargin=2.2em}
+\newlist{pasos}{enumerate}{1}
+\setlist[pasos]{label=\textcolor{acentoA}{\sffamily\bfseries\arabic*.},leftmargin=1.9em,itemsep=0.25em}
+\setlist[itemize,1]{label=\textcolor{acentoA}{\scriptsize$\blacktriangleright$},leftmargin=1.6em}
+
+% ---------------------------------------------------------------- Títulos
+\usepackage{titlesec}
+\titleformat{\section}[block]
+  {\normalfont\Large\bfseries}{\textcolor{acentoA}{\thesection}}{0.8em}{}
+  [{\vspace{0.35ex}\color{gris}\titlerule[0.5pt]}]
+\titlespacing*{\section}{0pt}{3.0ex plus 1ex minus .3ex}{1.8ex plus .3ex}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\textcolor{acentoA}{\thesubsection}}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{2.6ex plus .8ex minus .3ex}{1.1ex plus .2ex}
+\titleformat{\subsubsection}[runin]
+  {\normalfont\normalsize\bfseries}{}{0pt}{}[.]
+\titlespacing*{\subsubsection}{0pt}{1.6ex plus .5ex}{0.6em}
+
+% ---------------------------------------------------------------- Índice
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\par\vspace{-0.6ex}{\color{gris}\rule{\textwidth}{0.5pt}}}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0.8em}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries\color{acentoA}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecfont}{\normalfont\small}
+\renewcommand{\cftsubsecpagefont}{\small\color{acentoA}}
+\renewcommand{\cftdotsep}{3.5}
+\setlength{\cftbeforesecskip}{0.22em}
+\setlength{\cftbeforesubsecskip}{0.02em}
+\renewcommand{\cftsecnumwidth}{1.8em}
+\renewcommand{\cftsubsecnumwidth}{2.4em}
+\renewcommand{\cftsubsecindent}{1.8em}
+
+% ---------------------------------------------------------------- Pies de figura
+\usepackage[font=small,labelfont={sc,color=acentoA},labelsep=period,
+            justification=justified,singlelinecheck=true,skip=6pt]{caption}
+\captionsetup[sub]{font=small,labelfont={rm,color=texto},labelformat=parens,skip=3pt}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+
+% ---------------------------------------------------------------- Cajas y entornos
+\usepackage[most]{tcolorbox}
+\usepackage{aliascnt}
+\usepackage{xparse}
+
+\newcounter{teo}[section]
+\renewcommand{\theteo}{\thesection.\arabic{teo}}
+
+\tcbset{
+  caja/.style={enhanced, breakable, colback=caja, colframe=#1, boxrule=0.5pt,
+    arc=2pt, outer arc=2pt, left=9pt, right=9pt, top=9pt, bottom=7pt,
+    before skip=1.3em plus 2pt, after skip=1.1em plus 2pt,
+    attach boxed title to top left={xshift=7pt,yshift*=-\tcboxedtitleheight/2},
+    boxed title style={colback=#1, colframe=#1, boxrule=0pt, arc=1.5pt,
+      left=4pt, right=4pt, top=1.5pt, bottom=1.5pt},
+    coltitle=textopestana, fonttitle=\sffamily\small,
+    coltext=texto, colupper=texto},
+}
+
+% Entornos en caja: definición (cian), resultados (violeta), problema (ámbar)
+\NewDocumentCommand{\nuevacaja}{m m m m}{% #1 entorno, #2 nombre, #3 color, #4 fuente cuerpo
+  \newaliascnt{#1}{teo}%
+  \NewDocumentEnvironment{#1}{o}{%
+    \refstepcounter{#1}%
+    \begin{tcolorbox}[caja=#3, fontupper=#4,
+      title={\textbf{#2~\csname the#1\endcsname}\IfValueT{##1}{~(##1)}}]}%
+    {\end{tcolorbox}}%
+}
+\nuevacaja{definicion}{Definición}{acentoA}{\normalfont}
+\nuevacaja{teorema}{Teorema}{acentoB}{\itshape}
+\nuevacaja{proposicion}{Proposición}{acentoB}{\itshape}
+\nuevacaja{lema}{Lema}{acentoB}{\itshape}
+\nuevacaja{corolario}{Corolario}{acentoB}{\itshape}
+\nuevacaja{ley}{Ley}{acentoB}{\itshape}
+
+\newcounter{problema}
+\renewcommand{\theproblema}{4.\arabic{problema}}
+\NewDocumentEnvironment{problema}{o}{%
+  \refstepcounter{problema}%
+  \begin{tcolorbox}[caja=acentoC, fontupper=\normalfont,
+    title={\textbf{Problema~\theproblema}\IfValueT{#1}{~(#1)}}]}%
+  {\end{tcolorbox}}
+
+% Entornos sin caja: observación, ejemplo, notación, nota
+\NewDocumentCommand{\nuevonota}{m m m m}{% #1 entorno, #2 nombre, #3 color, #4 estilo
+  \newaliascnt{#1}{teo}%
+  \NewDocumentEnvironment{#1}{o}{%
+    \par\addvspace{0.8em}\refstepcounter{#1}\noindent
+    {\color{#3}#4#2~\csname the#1\endcsname}%
+    \IfValueT{##1}{~{\color{#3}\itshape(##1)}}.\enspace\ignorespaces}%
+    {\par\addvspace{0.8em}}%
+}
+\nuevonota{observacion}{Observación}{acentoB}{\bfseries\itshape}
+\nuevonota{ejemplo}{Ejemplo}{acentoA}{\bfseries}
+\nuevonota{notacion}{Notación}{acentoA}{\bfseries}
+
+% Demostración y resolución
+\renewcommand{\qedsymbol}{\textcolor{tenue}{\rule{0.62em}{0.62em}}}
+\renewenvironment{proof}[1][\proofname]{%
+  \par\addvspace{0.6em}\pushQED{\qed}\noindent
+  {\color{acentoB}\bfseries\itshape #1.}\enspace\ignorespaces}%
+  {\popQED\par\addvspace{0.8em}}
+\renewcommand{\proofname}{Demostración}
+\newenvironment{resolucion}{\begin{proof}[Resolución]}{\end{proof}}
+\NewDocumentCommand{\paso}{m}{\par\smallskip\noindent{\color{acentoA}\bfseries #1.}\enspace\ignorespaces}
+\NewDocumentCommand{\idea}{}{\paso{Idea}}
+
+% Recuadros de método (guía) y de aviso
+\newtcolorbox{metodo}[1]{enhanced, breakable, colback=caja, colframe=acentoA,
+  boxrule=0pt, leftrule=2.2pt, arc=0pt, outer arc=0pt, left=9pt, right=8pt,
+  top=6pt, bottom=6pt, before skip=1em, after skip=1em, colupper=texto,
+  title={#1}, fonttitle=\sffamily\small\bfseries, coltitle=acentoA,
+  colbacktitle=caja, toptitle=2pt, bottomtitle=0pt, titlerule=0pt}
+\newtcolorbox{trampa}[1][Trampas habituales]{enhanced, breakable, colback=caja,
+  colframe=cargapos, boxrule=0pt, leftrule=2.2pt, arc=0pt, outer arc=0pt,
+  left=9pt, right=8pt, top=6pt, bottom=6pt, before skip=1em, after skip=1em,
+  colupper=texto, title={#1}, fonttitle=\sffamily\small\bfseries,
+  coltitle=cargapos, colbacktitle=caja, toptitle=2pt, bottomtitle=0pt, titlerule=0pt}
+\newtcolorbox{consejo}[1][Consejo]{enhanced, breakable, colback=caja,
+  colframe=acentoC, boxrule=0pt, leftrule=2.2pt, arc=0pt, outer arc=0pt,
+  left=9pt, right=8pt, top=6pt, bottom=6pt, before skip=1em, after skip=1em,
+  colupper=texto, title={#1}, fonttitle=\sffamily\small\bfseries,
+  coltitle=acentoC, colbacktitle=caja, toptitle=2pt, bottomtitle=0pt, titlerule=0pt}
+\newtcolorbox{resultado}{enhanced, colback=caja, colframe=acentoA, boxrule=0.5pt,
+  arc=2pt, left=6pt, right=6pt, top=2pt, bottom=2pt, hbox, nobeforeafter,
+  colupper=texto, on line}
+\newcommand{\recuadro}[1]{\tcbox[enhanced, colback=caja, colframe=acentoA,
+  boxrule=0.5pt, arc=2pt, left=5pt, right=5pt, top=1pt, bottom=1pt,
+  nobeforeafter, tcbox raise base, colupper=texto]{$\displaystyle #1$}}
+
+% ---------------------------------------------------------------- Cabeceras
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\cabizq}{}
+\newcommand{\cabder}{}
+\fancyhead[LO]{\small\textcolor{tenue}{\textsc{\cabizq}}}
+\fancyhead[RO]{\small\textcolor{tenue}{\thepage}}
+\fancyhead[LE]{\small\textcolor{tenue}{\thepage}}
+\fancyhead[RE]{\small\textcolor{tenue}{\textsc{\cabder}}}
+\renewcommand{\headrule}{\ifdim\headrulewidth>0pt\vspace{3pt}{\color{gris}\hrule height \headrulewidth}\fi}
+\renewcommand{\headrulewidth}{0.5pt}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[C]{\small\textcolor{tenue}{\thepage}}}
+
+% ---------------------------------------------------------------- Hipervínculos
+\usepackage[hidelinks=false,colorlinks=true,linkcolor=acentoA,citecolor=acentoA,
+            urlcolor=acentoA,bookmarksnumbered=true,pdfborder={0 0 0}]{hyperref}
+\usepackage[spanish,noabbrev]{cleveref}
+\crefname{definicion}{definición}{definiciones}
+\crefname{teorema}{teorema}{teoremas}
+\crefname{proposicion}{proposición}{proposiciones}
+\crefname{lema}{lema}{lemas}
+\crefname{corolario}{corolario}{corolarios}
+\crefname{ley}{ley}{leyes}
+\crefname{observacion}{observación}{observaciones}
+\crefname{ejemplo}{ejemplo}{ejemplos}
+\crefname{notacion}{notación}{notaciones}
+\crefname{problema}{problema}{problemas}
+\crefname{equation}{ecuación}{ecuaciones}
+\creflabelformat{equation}{#2(#1)#3}
+\crefname{figure}{figura}{figuras}
+\crefname{table}{tabla}{tablas}
+\crefname{section}{sección}{secciones}
+\crefname{subsection}{sección}{secciones}
+\crefname{appendix}{apéndice}{apéndices}
+
+% =============================================================================
+%  Notación del curso (coherente con los Temas 0–3)
+% =============================================================================
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\vE}{\vec E}
+\newcommand{\vD}{\vec D}
+\newcommand{\vP}{\vec P}
+\newcommand{\vp}{\vec p}
+\newcommand{\vF}{\vec F}
+\newcommand{\vA}{\vec A}
+\newcommand{\vr}{\vec r}
+\newcommand{\vR}{\vec R}
+\newcommand{\vS}{\vec S}
+\newcommand{\vl}{\vec\ell}
+\newcommand{\vtau}{\vec\tau}
+\newcommand{\vcero}{\vec 0}
+\newcommand{\dS}{\dd\vec S}
+\newcommand{\dl}{\dd\vec\ell}
+\newcommand{\nn}{\hat n}
+\newcommand{\tu}{\hat t}
+\newcommand{\uv}[1]{\hat u_{#1}}
+\newcommand{\grad}{\vec\nabla}
+\newcommand{\divg}{\vec\nabla\!\cdot}
+\newcommand{\rot}{\vec\nabla\!\times}
+\newcommand{\lap}{\nabla^2}
+\newcommand{\eo}{\varepsilon_0}
+\newcommand{\er}{\varepsilon_{\mathrm r}}
+\newcommand{\rhoP}{\rho_{\mathrm P}}
+\newcommand{\sigmaP}{\sigma_{\mathrm P}}
+\newcommand{\rhof}{\rho_{\mathrm f}}
+\newcommand{\sigmaf}{\sigma_{\mathrm f}}
+\newcommand{\QP}{Q_{\mathrm P}}
+\newcommand{\qfenc}{q_{\mathrm{f,enc}}}
+\newcommand{\qPenc}{q_{\mathrm{P,enc}}}
+\newcommand{\qenc}{q_{\mathrm{enc}}}
+\newcommand{\Eint}{E_{\mathrm{int}}}
+\newcommand{\Eext}{E_{\mathrm{ext}}}
+\newcommand{\vEint}{\vE_{\mathrm{int}}}
+\newcommand{\vEext}{\vE_{\mathrm{ext}}}
+\newcommand{\vEcav}{\vE_{\mathrm{cav}}}
+\newcommand{\vDcav}{\vD_{\mathrm{cav}}}
+\newcommand{\cte}{\mathrm{cte}}
+\newcommand{\defeq}{\mathrel{\overset{\mathrm{def}}{=}}}
+\newcommand{\LHI}{\textup{\textsc{lhi}}}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\eval}[2]{\left.#1\right|_{#2}}
+
+% =============================================================================
+%  Estilos TikZ / pgfplots ligados a la paleta
+% =============================================================================
+\tikzset{
+  >={Stealth[length=2.2mm,width=1.6mm]},
+  flecha/.style={-{Stealth[length=2.2mm,width=1.6mm]}},
+  cota/.style={{Stealth[length=1.6mm,width=1.2mm]}-{Stealth[length=1.6mm,width=1.2mm]},
+               draw=tenue, line width=0.45pt},
+  etiq/.style={font=\small, text=texto},
+  etiqt/.style={font=\footnotesize, text=tenue},
+  etiqf/.style={font=\small, text=texto, fill=fondo, inner sep=1.2pt, rounded corners=1pt},
+  etiqm/.style={font=\small, text=texto, fill=dielec, inner sep=1.2pt, rounded corners=1pt},
+  borde/.style={draw=texto, line width=0.6pt},
+  medio/.style={fill=dielec, draw=texto!70!fondo, line width=0.5pt},
+  medioB/.style={fill=dielecB, draw=texto!70!fondo, line width=0.5pt},
+  metal/.style={fill=conductor, draw=texto, line width=0.6pt},
+  placa/.style={draw=texto, line width=1.4pt},
+  gauss/.style={draw=acentoB, dashed, line width=0.6pt, dash pattern=on 3pt off 2pt},
+  vecE/.style={draw=campoE, line width=1.0pt, -{Stealth[length=2.4mm,width=1.8mm]}},
+  vecD/.style={draw=campoD, line width=1.0pt, -{Stealth[length=2.4mm,width=1.8mm]}},
+  vecP/.style={draw=campoP, line width=1.0pt, -{Stealth[length=2.4mm,width=1.8mm]}},
+  vecn/.style={draw=texto, line width=0.6pt, -{Stealth[length=2mm,width=1.5mm]}},
+  cpos/.style={text=cargapos, font=\footnotesize\bfseries},
+  cneg/.style={text=carganeg, font=\footnotesize\bfseries},
+  tierra/.pic={\draw[texto, line width=0.6pt] (0,0) -- (0,-0.25)
+                (-0.25,-0.25) -- (0.25,-0.25) (-0.16,-0.33) -- (0.16,-0.33)
+                (-0.07,-0.41) -- (0.07,-0.41);},
+  flechamedio/.style={postaction={decorate}, decoration={markings,
+     mark=at position #1 with {\arrow{Stealth[length=1.9mm,width=1.5mm]}}}},
+  flechamedio/.default=0.5,
+}
+\pgfplotsset{
+  every axis/.append style={
+    axis line style={draw=texto!80!fondo, line width=0.5pt},
+    every tick/.style={draw=texto!80!fondo, line width=0.4pt},
+    tick label style={font=\scriptsize, text=texto},
+    label style={font=\small, text=texto},
+    title style={font=\small, text=texto},
+    legend style={font=\scriptsize, draw=gris, fill=fondo, text=texto,
+                  rounded corners=1pt, inner xsep=3pt, inner ysep=2pt},
+    legend cell align=left,
+    major grid style={draw=gris, line width=0.3pt},
+    /pgf/number format/use comma, /pgf/number format/1000 sep={},
+  },
+  lineaE/.style={draw=campoE, line width=0.55pt, mark=none, line join=round},
+  lineaD/.style={draw=campoD, line width=0.55pt, mark=none, line join=round},
+  flechaen/.style={postaction={decorate, decoration={markings,
+       mark=at position #1 with {\arrow{Stealth[length=1.7mm,width=1.35mm]}}}}},
+  equipot/.style={draw=equipot, line width=0.35pt, dash pattern=on 2pt off 1.6pt, mark=none},
+  marco/.style={axis equal image, hide axis, clip=true},
+  curvaE/.style={draw=campoE, line width=1.0pt, mark=none},
+  curvaD/.style={draw=campoD, line width=1.0pt, mark=none},
+  curvaP/.style={draw=campoP, line width=0.9pt, mark=none, dash pattern=on 3pt off 1.5pt},
+  curvaV/.style={draw=verde, line width=1.0pt, mark=none},
+}
+
+% -----------------------------------------------------------------------------
+%  Perfiles axiales del cilindro uniformemente polarizado (radio a, longitud 2l),
+%  en unidades z/l, E/(P/eps0), D/P.  #1 = a/l.  (Problema 4.4 y cavidades.)
+% -----------------------------------------------------------------------------
+\newcommand{\fDax}[1]{0.5*((x+1)/sqrt(#1*#1+(x+1)^2)-(x-1)/sqrt(#1*#1+(x-1)^2))}
+\newcommand{\curvaEeje}[1]{%
+  \addplot[curvaE, domain=-3:-1, samples=181] {\fDax{#1}};
+  \addplot[curvaE, domain=-1:1, samples=201] {\fDax{#1}-1};
+  \addplot[curvaE, domain=1:3, samples=181] {\fDax{#1}};}
+\newcommand{\curvaDeje}[1]{%
+  \addplot[curvaD, domain=-3:3, samples=301] {\fDax{#1}};}
+\newcommand{\curvaPeje}{%
+  \addplot[curvaP] coordinates {(-3,0) (-1,0) (-1,1) (1,1) (1,0) (3,0)};}
+\pgfplotsset{perfil/.style={width=5.3cm, height=3.9cm, xmin=-3, xmax=3,
+   xtick={-3,-2,-1,0,1,2,3}, xlabel={$z/\ell$}, xlabel style={yshift=4pt},
+   tick label style={font=\tiny}, label style={font=\footnotesize}, grid=major,
+   extra y ticks={0}, extra y tick style={grid style={draw=tenue, line width=0.4pt}},
+   every axis plot/.append style={line join=round}}}

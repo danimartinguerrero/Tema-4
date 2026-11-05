@@ -1,0 +1,55 @@
+% =============================================================================
+%  portada.tex — Portada a sangre al estilo de la serie (EDO, Temas 4–5)
+%  Requiere definidos: \PortadaAsignatura, \PortadaTema, \PortadaTitulo,
+%  \PortadaSubtitulo, \PortadaImagen, \PortadaFormulas, \PortadaAutor,
+%  \PortadaProfesor, \PortadaTipo, \PortadaCurso
+% =============================================================================
+\newfontfamily\fuentetitulo{lmroman12-bold.otf}[WordSpace=0.62]
+\newfontfamily\fuenteversalitas{lmromancaps10-regular.otf}[LetterSpace=14]
+\newcommand{\espaciado}[1]{{\fuenteversalitas #1}}
+\newcommand{\hacerportada}{%
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[fondo] (current page.south west) rectangle (current page.north east);
+  % --- logotipo
+  \node[anchor=north] at ($(current page.north)+(0,-1.9cm)$)
+    {\ifoscuro\includegraphics[width=5.0cm]{usal-blanco}\else
+               \includegraphics[width=6.6cm]{usal-color}\fi};
+  % --- filete superior
+  \draw[gris, line width=0.5pt] ($(current page.north west)+(2.75cm,-4.05cm)$)
+                             -- ($(current page.north east)+(-2.75cm,-4.05cm)$);
+  \node[anchor=north, text=tenue, font=\small] at ($(current page.north)+(0,-4.55cm)$)
+    {\espaciado{Facultad de Ciencias}\quad$\cdot$\quad\espaciado{Grado en Física}};
+  % --- asignatura y tema
+  \node[anchor=north, text=acentoA] at ($(current page.north)+(0,-6.35cm)$)
+    {\espaciado{\PortadaAsignatura}};
+  \node[anchor=north, text=tenue, font=\small] at ($(current page.north)+(0,-7.1cm)$)
+    {\espaciado{\PortadaTema}};
+  % --- título
+  \node[anchor=north, text=texto, align=center,
+        font=\fuentetitulo\fontsize{31}{33}\selectfont] at ($(current page.north)+(0,-8.25cm)$)
+    {\PortadaTitulo};
+  \draw[acentoA, line width=0.6pt] ($(current page.north)+(-1.6cm,-11.05cm)$)
+                                -- ($(current page.north)+(1.6cm,-11.05cm)$);
+  \node[anchor=north, text=texto!85!fondo, align=center, text width=13.2cm,
+        font=\itshape] at ($(current page.north)+(0,-11.6cm)$)
+        {\hyphenpenalty=10000\exhyphenpenalty=10000\PortadaSubtitulo};
+  % --- gráfica
+  \node[anchor=center] at ($(current page.center)+(0,-2.85cm)$)
+    {\includegraphics[width=17.2cm]{\PortadaImagen}};
+  % --- fórmulas
+  \node[anchor=center, text=texto] at ($(current page.south)+(0,6.05cm)$)
+    {$\displaystyle \PortadaFormulas$};
+  % --- pie: autor, profesor, tipo
+  \draw[gris, line width=0.5pt] ($(current page.south west)+(2.75cm,4.75cm)$)
+                             -- ($(current page.south east)+(-2.75cm,4.75cm)$);
+  \node[anchor=north west, align=left] at ($(current page.south west)+(2.75cm,4.35cm)$)
+    {{\color{acentoA}\footnotesize\espaciado{Autor}}\\[2pt]\PortadaAutor};
+  \node[anchor=north, align=center] at ($(current page.south)+(0.35cm,4.35cm)$)
+    {{\color{acentoA}\footnotesize\espaciado{Profesor}}\\[2pt]\PortadaProfesor};
+  \node[anchor=north east, align=right] at ($(current page.south east)+(-2.75cm,4.35cm)$)
+    {{\color{acentoA}\footnotesize\espaciado{\PortadaTipo}}\\[2pt]{\color{texto!80!fondo}\PortadaCurso}};
+\end{tikzpicture}
+\end{titlepage}
+}

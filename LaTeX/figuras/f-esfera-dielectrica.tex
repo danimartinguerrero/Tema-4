@@ -1,0 +1,37 @@
+% Figura (simulación): esfera dieléctrica eps_r = 4 en un campo uniforme.
+% Datos: scripts/lineas_campo.py -> datos/esfera-dielectrica-{E,D}.tex
+\begin{figure}[t]
+\centering
+\pgfplotsset{esfera/.style={marco, width=7.6cm, xmin=-3, xmax=3, ymin=-2.2, ymax=2.2}}
+\begin{subfigure}[b]{0.49\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[esfera]
+  \fill[dielec] (axis cs:0,0) circle[radius=1];
+  \input{datos/esfera-dielectrica-E.tex}
+  \draw[texto, line width=0.6pt] (axis cs:0,0) circle[radius=1];
+  \pgfplotsinvokeforeach{-60,-30,0,30,60}{
+    \node[cpos, font=\scriptsize\bfseries, fill=fondo, circle, inner sep=0.2pt] at (axis cs:{1.16*cos(#1)},{1.16*sin(#1)}) {$+$};
+    \node[cneg, font=\scriptsize\bfseries, fill=fondo, circle, inner sep=0.2pt] at (axis cs:{-1.16*cos(#1)},{1.16*sin(#1)}) {$-$};
+  }
+\end{axis}
+\end{tikzpicture}
+\caption{Líneas de $\vE$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.49\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[esfera]
+  \fill[dielec] (axis cs:0,0) circle[radius=1];
+  \input{datos/esfera-dielectrica-D.tex}
+  \draw[texto, line width=0.6pt] (axis cs:0,0) circle[radius=1];
+\end{axis}
+\end{tikzpicture}
+\caption{Líneas de $\vD$}
+\end{subfigure}
+\caption{Esfera dieléctrica ($\er=4$, sombreada) en un campo uniforme $\vE_0$ dirigido de izquierda a
+derecha; trazos: equipotenciales. Solución exacta de la \cref{ej:esfera-dielectrica}. (a) El campo
+interior es uniforme y más débil, $\vE_{\mathrm{int}}=3\vE_0/(\er+2)$: parte de las líneas de $\vE$ termina en la carga
+ligada negativa del hemisferio izquierdo y renace en la positiva del derecho. (b) Las líneas de $\vD$, en
+cambio, son continuas (no hay carga libre) y se concentran dentro de la esfera, donde
+$D_{\mathrm{int}}=3\er\eo E_0/(\er+2)>\eo E_0$. Ambas familias se refractan en la superficie según la \cref{fig:refraccion}.}
+\label{fig:esfera-dielectrica}
+\end{figure}
