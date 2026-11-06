@@ -9,4 +9,5 @@
 # Los PDF compilados se copian a la raíz del repositorio
 Tema4-*.pdf
 Guia-T4-*.pdf
+Repaso-T4-*.pdf
 __pycache__/

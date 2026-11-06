@@ -1,0 +1,315 @@
+% =============================================================================
+%  Repaso conceptual del Tema 4. Materiales dieléctricos
+%  Objetivo: preguntas teóricas de razonamiento (estilo de las cuestiones
+%  teóricas de las pruebas de evaluación continua).
+% =============================================================================
+\thispagestyle{plain}
+
+% Pregunta tipo cuestionario: enunciado destacado y respuesta razonada
+\newcounter{preg}
+\newenvironment{pregunta}[1]{%
+  \refstepcounter{preg}\par\addvspace{0.9em}\noindent
+  \begin{minipage}[t]{\textwidth}
+  {\color{acentoC}\sffamily\bfseries P\thepreg.}\enspace{\bfseries #1}\par\nopagebreak\smallskip
+  \leftskip=1.6em\noindent{\color{acentoA}\sffamily\small Respuesta.}\enspace\ignorespaces}%
+  {\par\end{minipage}\par\addvspace{0.4em}}
+\newcommand{\Ver}{\textcolor{verde}{\textbf{Verdadero}}}
+\newcommand{\Fal}{\textcolor{cargapos}{\textbf{Falso}}}
+
+\begin{center}
+  {\small\color{tenue}\espaciado{Electromagnetismo I}\quad$\cdot$\quad\espaciado{Tema 4}}\\[1.0em]
+  {\fuentetitulo\fontsize{22}{26}\selectfont Materiales dieléctricos}\\[0.5em]
+  {\large Repaso conceptual para el cuestionario}\\[0.8em]
+  {\color{acentoA}\rule{2.6cm}{0.6pt}}
+\end{center}
+
+\begin{consejo}[Cómo usar este repaso]
+Las preguntas teóricas de las pruebas no piden cálculos largos, sino \emph{razonar}: «¿es verdadero o falso?
+Justifica», «¿puede existir…?», «¿es posible que…?». Casi todas se responden con una de las seis ideas de la
+\cref{rsec:ideas} y una frase que cite la ecuación que lo garantiza. La \cref{rsec:conceptos} da esas
+ecuaciones con lo mínimo para entenderlas; la \cref{rsec:errores} recoge las afirmaciones trampa más típicas, y la
+\cref{rsec:preguntas}, una batería de preguntas resueltas al estilo del parcial.
+\end{consejo}
+
+% =============================================================================
+\section{El tema en seis ideas}\label{rsec:ideas}
+% =============================================================================
+
+\begin{enumerate}[label=\textcolor{acentoA}{\sffamily\bfseries\arabic*.}, leftmargin=1.8em, itemsep=0.45em]
+  \item \textbf{Un dieléctrico se polariza, no conduce.} Sus cargas están ligadas: un campo solo las desplaza a escala
+        atómica (sustancias no polares, $\vp=\alpha\vE$) o alinea dipolos que ya existían (polares). Resultado: un medio lleno
+        de dipolos, descrito por $\vP=\dd\vp/\dd V$.
+  \item \textbf{Los dipolos equivalen a cargas ligadas.} $\rhoP=-\divg\vP$ en el volumen y $\sigmaP=\vP\cdot\nn$ en la superficie, con
+        carga total nula. Son cargas «de verdad»: crean campo como cualquier otra.
+  \item \textbf{$\vD$ solo ve la carga libre}, pero no lo determina ella sola: $\divg\vD=\rhof$ y, a la vez, $\rot\vD=\rot\vP$.
+  \item \textbf{En medios \LHI{}, todo es proporcional:} $\vP=\eo\chi\vE$, $\vD=\varepsilon\vE$, con $\varepsilon>\eo$. El dieléctrico
+        \emph{debilita} el campo de las cargas libres porque la carga ligada las apantalla parcialmente.
+  \item \textbf{En una interfase sin carga libre se conservan $D_n$ y $\vE_t$.} Lo demás salta, y las líneas se refractan.
+  \item \textbf{El campo en una cavidad depende de su forma:} aguja $\Rightarrow\vE$; lenteja $\Rightarrow\vD/\eo$. Así se «miden» $\vE$
+        y $\vD$ dentro de la materia.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[
+   nodo/.style={draw=acentoA, fill=caja, rounded corners=2pt, line width=0.5pt, font=\small,
+                text=texto, inner sep=4pt, minimum height=0.75cm, align=center},
+   fl/.style={draw=tenue, line width=0.5pt, -{Stealth[length=1.8mm]}},
+   et/.style={font=\scriptsize, text=tenue, fill=fondo, inner sep=1pt}]
+  \node[nodo] (rf) at (0,0) {$\rhof$, $\sigmaf$\\[-1pt]{\scriptsize carga libre}};
+  \node[nodo] (D) at (3.3,0) {$\vD$};
+  \node[nodo] (E) at (6.0,0) {$\vE$};
+  \node[nodo] (P) at (8.7,0) {$\vP$};
+  \node[nodo] (rp) at (11.9,0) {$\rhoP$, $\sigmaP$\\[-1pt]{\scriptsize carga ligada}};
+  \draw[fl] (rf) -- node[et, above=2pt] {Gauss} node[et, below=2pt] {si hay simetría} (D);
+  \draw[fl] (D) -- node[et, above=2pt] {$\div\varepsilon$} (E);
+  \draw[fl] (E) -- node[et, above=2pt] {$\times(\varepsilon-\eo)$} (P);
+  \draw[fl] (P) -- node[et, above=2pt] {$-\divg$, $\cdot\,\nn$} (rp);
+  \draw[fl, rounded corners=6pt] (rp.south) -- ++(0,-0.75) -| node[et, pos=0.25, below=1pt]
+     {comprobación: Gauss para $\vE$ con \emph{toda} la carga, $\eo\oiint\vE\cdot\dS=\qfenc+\qPenc$} (E.south);
+\end{tikzpicture}
+\end{center}
+\noindent{\small\color{tenue}Cadena de cálculo en un medio \LHI{} con carga libre conocida. En un electrete se recorre al
+revés: $\vP$ es el dato, de ella salen las cargas ligadas y de estas el campo.}
+
+% =============================================================================
+\section{Conceptos clave, sin rodeos}\label{rsec:conceptos}
+% =============================================================================
+
+\subsection{Origen microscópico}
+
+\begin{itemize}
+  \item \textbf{No polares.} El campo separa el núcleo del centro de la nube; la fuerza de la nube es recuperadora y lineal
+        («muelle»), y $\vp=\alpha\vE$ con $\alpha=4\pi\eo a^3$ (nube uniforme de radio $a$). $[\alpha]=\si{F\,m^2}$. El desplazamiento es
+        diminuto ($d\sim\SI{e-16}{m}$ para $E\sim\SI{5e5}{V/m}$), por eso la respuesta es lineal.
+  \item \textbf{Polares} (p.\,ej., agua). Dipolo permanente; en campo uniforme, fuerza neta nula pero par $\vtau=\vp\times\vE$ que lo
+        alinea. La agitación térmica se opone: la alineación es parcial y \emph{disminuye al subir $T$} ($\langle p\rangle\propto p^2E/k_BT$).
+  \item En ambos casos el momento medio va \emph{en el sentido de $\vE$}: por eso $\chi>0$ y $\varepsilon>\eo$.
+\end{itemize}
+
+\subsection{Polarización y cargas ligadas}
+
+\[
+  \vP=\frac{\dd\vp}{\dd V}\ \ [\si{C/m^2}],\qquad
+  \recuadro{\rhoP=-\divg\vP,\qquad \sigmaP=\vP\cdot\nn},\qquad
+  \QP=\int_V\rhoP\,\dd V+\oiint_S\sigmaP\,\dd S=0 .
+\]
+\begin{itemize}
+  \item \textbf{Imagen física:} en una cadena de dipolos, cada cabeza compensa la cola siguiente; solo «sobran» las de los
+        extremos. Si $\vP$ es uniforme, el interior es neutro ($\rhoP=0$) y la carga aparece en las caras por donde $\vP$
+        \emph{sale} ($+$) o \emph{entra} ($-$). Si $\vP$ varía, queda carga neta en el volumen.
+  \item $\sigmaP=P\cos\theta$: puede tener \emph{distinto signo en distintos puntos} de la misma superficie (esfera polarizada) y es nula
+        donde $\vP$ es tangente.
+  \item $\nn$ es siempre la normal \emph{exterior al dieléctrico} (junto a un conductor interior, apunta hacia él).
+\end{itemize}
+
+\subsection{El vector desplazamiento}
+
+\[
+  \vD=\eo\vE+\vP,\qquad \recuadro{\divg\vD=\rhof,\quad \oiint_S\vD\cdot\dS=\qfenc},\qquad \rot\vD=\rot\vP .
+\]
+\begin{itemize}
+  \item Las líneas de $\vE$ nacen y mueren en \emph{cualquier} carga; las de $\vD$, solo en carga \emph{libre} (o se cierran sobre sí mismas).
+  \item \textbf{¿Cuándo $\vD=\vcero$?} Si y solo si no hay carga libre \emph{y} $\vP$ es irrotacional, también en las superficies (allí basta
+        que $\vP$ sea normal). Polarizaciones radiales en esferas o cilindros coaxiales: sí; cuerpos uniformemente polarizados
+        (esfera, cilindro, cubo): no, porque $\vP$ es tangente en parte de su superficie.
+  \item Gauss para $\vD$ solo es \emph{útil} con simetría (plana, cilíndrica, esférica), igual que en el vacío.
+\end{itemize}
+
+\subsection{Medios lineales, homogéneos e isótropos}
+
+\[
+  \vP=\eo\chi\vE,\qquad \vD=\varepsilon\vE,\qquad \varepsilon=\eo(1+\chi)=\er\eo,\qquad \rhoP=-\Big(1-\frac{\eo}{\varepsilon}\Big)\rhof .
+\]
+\begin{itemize}
+  \item \emph{Lineal}: $\vP$ proporcional a $\vE$. \emph{Homogéneo}: $\chi$ igual en todos los puntos. \emph{Isótropo}: sin direcciones
+        privilegiadas ($\vP\parallel\vE$). Un cristal anisótropo da $\vP\not\parallel\vE$.
+  \item Sin carga libre en su volumen, un medio \LHI{} \emph{no tiene carga ligada de volumen}: toda está en las superficies.
+  \item \textbf{Solo si un único medio llena todo el espacio} vale «vacío con $\eo\to\varepsilon$»: $\vE=\vE_0/\er$, $\divg\vE=\rhof/\varepsilon$. Con
+        varios medios no: $\rhof=\varepsilon\,\divg\vE+\vE\cdot\grad\varepsilon$, y el segundo término es la carga ligada de las interfases.
+  \item Límite $\varepsilon\to\infty$: el dieléctrico se comporta como un \emph{conductor} ($\vE\to\vcero$ dentro, apantallamiento total).
+\end{itemize}
+
+\subsection{Condiciones de frontera}
+
+Con $\nn$ del medio 1 al 2:
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Magnitud & Condición & Origen\\
+\midrule
+$D_n$ & salta $\sigmaf$: \ $D_{2n}-D_{1n}=\sigmaf$ & Gauss para $\vD$ (cilindro plano)\\
+$\vE_t$ & \textbf{continua} & $\oint\vE\cdot\dl=0$ (rectángulo)\\
+$\phi$ & \textbf{continuo} & $\vE$ acotado\\
+$E_n$ & salta toda la carga: \ $\eo(E_{2n}-E_{1n})=\sigmaf+\sigmaP$ & de $\vD=\eo\vE+\vP$\\
+$\vD_t$ & salta como $\vP_t$: \ $\vD_{2t}-\vD_{1t}=\vP_{2t}-\vP_{1t}$ & de $\rot\vD=\rot\vP$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Refracción} (\LHI{}, $\sigmaf=0$): $\dfrac{\tan\theta_2}{\varepsilon_2}=\dfrac{\tan\theta_1}{\varepsilon_1}$, con $\theta$ medido desde la normal. Al entrar
+en el medio de \emph{mayor} $\varepsilon$, la línea se \emph{aleja} de la normal. Junto a un conductor: $\vE=\vD=\vcero$ dentro y $D_n=\sigmaf$ fuera.
+
+\subsection{Cavidades}
+
+Por superposición, $\vEcav=\vE_d+$ (campo de un cuerpo con la forma de la cavidad y polarización $-\vP_d$).
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Cavidad & Domina & Se conserva & Campo dentro\\
+\midrule
+Aguja $\parallel\vE_d$ & la pared lateral & $\vE_t$ & $\vEcav=\vE_d$\\
+Lenteja $\perp\vE_d$ & las caras & $D_n$ & $\vDcav=\vD_d$, \ $\vEcav=\vE_d+\vP_d/\eo$\\
+Esfera & --- & --- & $\vEcav=\vE_d+\vP_d/3\eo$ \ (Lorentz)\\
+\bottomrule
+\end{tabular}
+\end{center}
+La diferencia entre lenteja y aguja, $\vP_d/\eo$, es el campo de las cargas ligadas de las caras del disco.
+
+\subsection{Cuatro resultados que conviene saber de memoria}
+
+\begin{itemize}
+  \item \textbf{Esfera uniformemente polarizada:} fuera, dipolo $\vp=\tfrac43\pi a^3\vP$; dentro, $\vE=-\vP/3\eo$ (uniforme, \emph{opuesto} a $\vP$:
+        campo despolarizante) y $\vD=\tfrac23\vP$.
+  \item \textbf{Carga $Q$ en un dieléctrico infinito:} $\vD=\dfrac{Q}{4\pi r^2}\uv r$, $\vE=\dfrac{Q}{4\pi\varepsilon r^2}\uv r$; junto a la carga, carga ligada de signo
+        opuesto que la apantalla.
+  \item \textbf{Condensador relleno:} $C=\er C_0$. Aislado ($Q$ fija): $V$ y $E$ bajan en $\er$. Con batería ($V$ fija): $Q$ sube en $\er$, $E$ no cambia.
+  \item \textbf{Esfera dieléctrica en $\vE_0$:} $\vEint=\dfrac{3}{\er+2}\vE_0$, uniforme y menor que $\vE_0$; las líneas de $\vD$ se concentran en ella.
+\end{itemize}
+
+% =============================================================================
+\needspace{18\baselineskip}
+\section{Afirmaciones trampa}\label{rsec:errores}
+% =============================================================================
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{5.6cm}c>{\raggedright\arraybackslash}X@{}}
+\toprule
+Afirmación & & Por qué\\
+\midrule
+Si no hay carga libre, $\vD=\vcero$. & \Fal & $\rot\vD=\rot\vP$; en un cilindro uniformemente polarizado $\vD\neq\vcero$.\\
+Donde $\vD=\vcero$ también $\vE=\vcero$. & \Fal & $\vE=-\vP/\eo$; en un electrete radial hay campo con $\vD=\vcero$.\\
+$\oiint\vE\cdot\dS=\qfenc/\varepsilon$ siempre que haya un dieléctrico. & \Fal & Solo si un único medio \LHI{} llena el espacio relevante.\\
+La carga ligada total de un dieléctrico puede ser no nula. & \Fal & $\QP=0$ por el teorema de la divergencia.\\
+Un dieléctrico uniformemente polarizado tiene $\rhoP=0$. & \Ver & $\rhoP=-\divg\vP=0$ si $\vP$ es constante.\\
+En una interfase sin carga libre, $\vE$ es continuo. & \Fal & Solo $\vE_t$; $E_n$ salta $\sigmaP/\eo$.\\
+En una interfase sin carga libre, $\vD$ es continuo. & \Fal & Solo $D_n$; $\vD_t$ salta como $\vP_t$.\\
+Dentro de un dieléctrico, $\vE$ y $\vP$ siempre son paralelos. & \Fal & Solo en medios isótropos; en un electrete pueden ser opuestos.\\
+Un dieléctrico siempre reduce el campo en el factor $\er$. & \Fal & Esfera en $\vE_0$: factor $3/(\er+2)$; depende de la geometría.\\
+La polarización de orientación aumenta con la temperatura. & \Fal & La agitación térmica desordena los dipolos: $\propto1/T$.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =============================================================================
+\section{Preguntas tipo cuestionario}\label{rsec:preguntas}
+% =============================================================================
+
+\begin{pregunta}{¿Verdadero o falso? Si en una región del espacio no hay carga libre, el vector desplazamiento es nulo en ella.}
+\Fal. La ley de Gauss solo fija la divergencia, $\divg\vD=\rhof=0$; pero $\rot\vD=\rot\vP$, que no tiene por qué anularse. En un cilindro
+uniformemente polarizado no hay carga libre y, sin embargo, $\vD\neq\vcero$: en la pared lateral $\vP$ es tangente y salta a cero, de modo
+que la circulación de $\vP$ en un rectángulo que la atraviesa es $P\,\Delta\ell\neq0$. Las líneas de $\vD$ se cierran como las de un imán.
+\end{pregunta}
+
+\begin{pregunta}{¿Puede existir campo eléctrico en un punto en el que $\vD=\vcero$? ¿Y $\vD\neq\vcero$ donde $\vE=\vcero$?}
+Sí a ambas. De $\vD=\eo\vE+\vP$: si $\vD=\vcero$, $\vE=-\vP/\eo$, no nulo donde haya polarización (capa de electrete con $\vP=k\uv r/r^2$). Y si
+$\vE=\vcero$, $\vD=\vP$: es lo que ocurre, aproximadamente, en el centro de un electrete cilíndrico muy largo. Solo en el vacío ($\vP=\vcero$)
+van necesariamente juntos.
+\end{pregunta}
+
+\begin{pregunta}{Un dieléctrico neutro está uniformemente polarizado. ¿Puede tener carga de polarización en su interior? ¿Y carga ligada total no nula?}
+No en ambos casos. Con $\vP$ uniforme, $\rhoP=-\divg\vP=0$: cada volumen interior contiene tantas cabezas como colas de dipolos. Toda la
+carga ligada está en la superficie, $\sigmaP=\vP\cdot\nn$, positiva donde $\vP$ sale y negativa donde entra, y su total es nulo: los dipolos solo
+redistribuyen la carga de un material neutro.
+\end{pregunta}
+
+\begin{pregunta}{¿Puede ser $\rhoP\neq0$ en el interior de un dieléctrico lineal en el que no hay carga libre?}
+Si es homogéneo, no: $\rhoP=-(1-\eo/\varepsilon)\rhof=0$. Si no es homogéneo, sí: $\rhoP=-\divg(\eo\chi\vE)=-\eo\chi\,\divg\vE-\eo\vE\cdot\grad\chi$, y el
+segundo término no se anula donde $\chi$ varía. Es lo mismo que ocurre, de forma concentrada, en la interfase entre dos medios distintos.
+\end{pregunta}
+
+\begin{pregunta}{¿Verdadero o falso? Una carga puntual $q$ en un dieléctrico \LHI{} crea siempre el campo $q/(4\pi\varepsilon r^2)$.}
+\Fal\ en general. Es cierto si el dieléctrico llena todo el espacio (o al menos con simetría esférica alrededor de la carga): entonces
+Gauss para $\vD$ da $D=q/4\pi r^2$ y $E=D/\varepsilon$. Si hay otras superficies, en ellas aparece carga ligada que modifica el campo; por ejemplo,
+con un semiespacio de dieléctrico y otro de vacío el campo no es radial. La regla «$\eo\to\varepsilon$» solo vale con un único medio.
+\end{pregunta}
+
+\begin{pregunta}{Al pasar una línea de campo del aire a un vidrio, sin carga libre en la superficie, ¿se acerca o se aleja de la normal? ¿Qué componentes se conservan?}
+Se \emph{aleja}. Se conservan $\vE_t$ (el campo es conservativo) y $D_n$ (no hay carga libre); como $\varepsilon_{\text{vidrio}}>\eo$,
+$E_n$ disminuye en el factor $\eo/\varepsilon$ mientras $E_t$ no cambia: $\tan\theta=E_t/E_n$ crece, $\tan\theta_2/\varepsilon_2=\tan\theta_1/\varepsilon_1$. En el límite
+$\varepsilon\to\infty$, las líneas del aire llegarían perpendiculares, como a un conductor.
+\end{pregunta}
+
+\begin{pregunta}{¿Pueden las líneas de $\vD$ empezar o terminar en la superficie de un dieléctrico sin carga libre? ¿Y las de $\vE$?}
+Las de $\vD$, no: $\divg\vD=\rhof$, así que solo nacen o mueren en carga libre (y $D_n$ es continua, por lo que atraviesan la superficie). Las de $\vE$,
+sí: $\eo\,\divg\vE=\rhof+\rhoP$ y $E_n$ salta $\sigmaP/\eo$, de modo que algunas terminan en la carga ligada negativa y otras nacen en la positiva.
+Por eso, en una esfera dieléctrica en un campo uniforme, hay menos líneas de $\vE$ dentro que fuera, pero más de $\vD$.
+\end{pregunta}
+
+\begin{pregunta}{Se introduce un dieléctrico de permitividad $\varepsilon$ en un condensador plano cargado y aislado. ¿Qué ocurre con la carga, el campo, la diferencia de potencial y la capacidad? ¿Y si el condensador sigue conectado a la batería?}
+Aislado: la carga libre se conserva, $D=\sigma$ no cambia, $E=\sigma/\varepsilon$ se divide por $\er$, y con él $V=Ed$; $C=Q/V$ se multiplica por $\er$.
+Con batería: $V$ fija y, por tanto, $E=V/d$ fijo; la batería aporta carga hasta que $\sigma=\varepsilon E$, es decir, $Q\to\er Q$, y de nuevo $C=\er C_0$.
+La capacidad solo depende de la geometría y del material; lo que cambia según el caso es qué se conserva.
+\end{pregunta}
+
+\begin{pregunta}{En una esfera uniformemente polarizada, ¿por qué el campo interior apunta en sentido contrario a $\vP$? ¿Es nulo $\vD$ dentro?}
+Porque lo crean las cargas ligadas superficiales, $\sigmaP=P\cos\theta$: positivas en el hemisferio hacia el que apunta $\vP$ y negativas en el
+otro. Dentro, el campo va de las positivas a las negativas: $\vE=-\vP/3\eo$, uniforme (campo despolarizante). $\vD=\eo\vE+\vP=\tfrac23\vP\neq\vcero$,
+aunque no haya carga libre, porque $\vP$ tiene componente tangencial en la superficie.
+\end{pregunta}
+
+\begin{pregunta}{¿Es el campo eléctrico en una pequeña cavidad practicada en un dieléctrico igual al campo del dieléctrico?}
+Depende de la forma. En una aguja paralela al campo domina la pared lateral, donde se conserva $\vE_t$: $\vEcav=\vE_d$. En una lenteja
+perpendicular dominan las caras, donde se conserva $D_n$: $\vDcav=\vD_d$, es decir, $\vEcav=\vE_d+\vP_d/\eo$, mayor, porque las cargas ligadas de
+las caras actúan como un condensador plano. En una esfera, $\vEcav=\vE_d+\vP_d/3\eo$. Así se dan definiciones operacionales de $\vE$ y $\vD$.
+\end{pregunta}
+
+\begin{pregunta}{Una esfera conductora con carga $Q$ está rodeada por dos dieléctricos distintos que ocupan cada uno un hemisferio. ¿Es radial el campo? ¿Es uniforme la carga del conductor?}
+El campo sí es radial: un potencial $\phi(r)$ es tangente a la interfase plana, con lo que $\vE_t$ es igual a ambos lados y $D_n=0$ se cumple
+trivialmente; por unicidad, es la solución. La carga libre del conductor, en cambio, no es uniforme: $\sigmaf=D_n=\varepsilon_iE$ es mayor en el
+hemisferio de mayor permitividad. Lo que sí es uniforme es la carga total, libre más ligada, $\eo E(a)$, y por eso el campo tiene simetría esférica.
+\end{pregunta}
+
+\begin{pregunta}{¿Por qué la susceptibilidad de un dieléctrico ordinario es positiva? ¿Puede un medio tener $\vP$ no paralelo a $\vE$?}
+Porque los dos mecanismos microscópicos, la deformación de la nube y la orientación de dipolos permanentes, producen momentos dipolares en el
+sentido del campo aplicado. $\vP\not\parallel\vE$ es posible en medios anisótropos (la susceptibilidad es un tensor) y en electretes, cuya
+polarización permanente es independiente del campo y puede incluso oponerse a él, como en la esfera polarizada.
+\end{pregunta}
+
+\begin{pregunta}{¿Qué diferencia hay entre una sustancia polar y una no polar? ¿Cómo influye la temperatura en cada una?}
+En la no polar el dipolo es inducido ($\vp=\alpha\vE$, con $\alpha$ fijado por la estructura atómica): prácticamente no depende de $T$. En la polar las
+moléculas tienen dipolo permanente y el campo solo las orienta, contra la agitación térmica: la polarización de orientación decrece al aumentar
+$T$ (como $1/T$) y suele ser mucho mayor; de ahí $\er\simeq80$ para el agua.
+\end{pregunta}
+
+\begin{pregunta}{¿Es concebible un dieléctrico que apantalle por completo el campo de una carga, como un conductor?}
+Solo en el límite $\varepsilon\to\infty$: la carga ligada junto a la carga libre $Q$ vale $-Q(\varepsilon-\eo)/\varepsilon$, que tiende a $-Q$, y $E=Q/4\pi\varepsilon r^2\to0$.
+Para $\varepsilon$ finita el apantallamiento es parcial, porque la carga ligada está limitada por lo que pueden desplazarse las cargas de cada molécula;
+en un conductor, en cambio, la reserva de carga libre es ilimitada.
+\end{pregunta}
+
+% =============================================================================
+\needspace{16\baselineskip}
+\section{Chuleta de una mirada}\label{rsec:chuleta}
+% =============================================================================
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Polarizabilidad & $\vp=\alpha\vE$,\quad $\alpha=4\pi\eo a^3$ (nube uniforme),\quad $[\alpha]=\si{F\,m^2}$\\
+Polarización y cargas ligadas & $\vP=\dd\vp/\dd V$;\quad $\rhoP=-\divg\vP$,\quad $\sigmaP=\vP\cdot\nn$,\quad $\QP=0$\\
+Desplazamiento & $\vD=\eo\vE+\vP$;\quad $\divg\vD=\rhof$;\quad $\rot\vD=\rot\vP$\\
+$\vD=\vcero$ & $\Leftrightarrow$ $\rhof=0$ y $\vP$ irrotacional (incluidas superficies)\\
+Medio \LHI{} & $\vP=\eo\chi\vE$,\quad $\vD=\varepsilon\vE$,\quad $\varepsilon=\er\eo>\eo$,\quad $\rhoP=-(1-\eo/\varepsilon)\rhof$\\
+Frontera & $D_{2n}-D_{1n}=\sigmaf$,\quad $\vE_{2t}=\vE_{1t}$,\quad $\eo(E_{2n}-E_{1n})=\sigmaf+\sigmaP$\\
+Refracción & $\tan\theta_2/\varepsilon_2=\tan\theta_1/\varepsilon_1$ (mayor $\varepsilon$ $\Rightarrow$ más lejos de la normal)\\
+Cavidades & aguja: $\vE_d$;\quad lenteja: $\vD_d/\eo$;\quad esfera: $\vE_d+\vP_d/3\eo$\\
+Esfera polarizada & dentro $\vE=-\vP/3\eo$, $\vD=\tfrac23\vP$; fuera, dipolo $\tfrac43\pi a^3\vP$\\
+Condensador relleno & $C=\er C_0$\\
+\bottomrule
+\end{tabularx}
+\end{center}

@@ -6,6 +6,7 @@ desde el mismo código. Compilar con **LuaLaTeX** (dos pasadas):
 ```
 lualatex Tema4-claro.tex      lualatex Tema4-oscuro.tex
 lualatex Guia-T4-claro.tex    lualatex Guia-T4-oscuro.tex
+lualatex Repaso-T4-claro.tex  lualatex Repaso-T4-oscuro.tex
 ```
 
 | Carpeta | Contenido |
@@ -13,6 +14,7 @@ lualatex Guia-T4-claro.tex    lualatex Guia-T4-oscuro.tex
 | `estilo/` | Preámbulo común (fuentes Latin Modern, paleta por tema, entornos, notación) y portada |
 | `tema4/` | Cuerpo del tema: secciones 1–8 (teoría, cavidades, seminarios) y apéndice |
 | `guia/` | Guía de métodos y fichas de los doce problemas |
+| `repaso/` | Repaso conceptual breve para cuestionarios teóricos (ideas clave, trampas, preguntas razonadas) |
 | `figuras/` | Todas las figuras en TikZ/pgfplots (usan la paleta del tema activo) |
 | `datos/` | Líneas de campo y equipotenciales calculadas (generadas, no editar) |
 | `scripts/` | `lineas_campo.py` (funciones de corriente de Stokes exactas) y `portada.py` |
