@@ -1,0 +1,54 @@
+% Figura: acelerómetro capacitivo (condensador diferencial). Masa sísmica móvil
+% entre dos placas fijas; capacidades C1 = eps0 S/(d - x), C2 = eps0 S/(d + x).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.5\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \tikzset{muelle/.style={decorate, decoration={coil, aspect=0.45, segment length=2.4mm, amplitude=1.6mm},
+                          draw=texto!80!fondo, line width=0.55pt}}
+  % bastidor
+  \fill[conductor!55!fondo] (-2.9,-1.35) rectangle (-2.7,1.35);
+  \fill[conductor!55!fondo] (2.7,-1.35) rectangle (2.9,1.35);
+  \draw[texto, line width=0.5pt] (-2.9,-1.35) rectangle (-2.7,1.35) (2.7,-1.35) rectangle (2.9,1.35);
+  % masa sísmica (placa central móvil) y muelles
+  \fill[conductor] (-0.45,-0.55) rectangle (0.45,0.55);
+  \draw[texto, line width=0.6pt] (-0.45,-0.55) rectangle (0.45,0.55);
+  \node[font=\small, text=black] at (0,0) {$m$};
+  \draw[muelle] (-2.7,0) -- (-0.45,0);
+  \draw[muelle] (0.45,0) -- (2.7,0);
+  % placas fijas del condensador diferencial (debajo)
+  \draw[placa] (-1.0,-1.25) -- (-1.0,-2.25);
+  \draw[placa] (1.0,-1.25) -- (1.0,-2.25);
+  \draw[placa, draw=acentoC] (0,-0.55) -- (0,-2.25);
+  \node[etiqt, anchor=north] at (-1.0,-2.3) {fija};
+  \node[etiqt, anchor=north] at (1.0,-2.3) {fija};
+  \node[etiq, text=acentoC, anchor=north] at (0,-2.3) {móvil};
+  \node[etiq] at (-0.5,-1.5) {$C_1$};
+  \node[etiq] at (0.5,-1.5) {$C_2$};
+  \draw[cota] (-1.0,-1.95) -- (0,-1.95) node[midway, below, etiq, font=\footnotesize] {$d$};
+  \draw[cota] (0,-1.95) -- (1.0,-1.95) node[midway, below, etiq, font=\footnotesize] {$d$};
+  % aceleración
+  \draw[vecE] (-0.6,1.0) -- (0.6,1.0);
+  \node[etiq, text=campoE, anchor=south] at (0,1.05) {$\vec a$};
+\end{tikzpicture}
+\caption{Esquema}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.4cm, height=5.0cm, xmin=-0.6, xmax=0.6, ymin=-2.0, ymax=2.6, grid=major,
+   xlabel={$x/d$}, ylabel={$C\,d/(\eo S)$}, xtick={-0.5,0,0.5}, ytick={-2,-1,0,1,2},
+   legend style={at={(0.5,1.03)}, anchor=south, legend columns=3, font=\scriptsize}]
+  \addplot[curvaE, domain=-0.6:0.6, samples=80] {1/(1-x)}; \addlegendentry{$C_1$}
+  \addplot[curvaD, domain=-0.6:0.6, samples=80] {1/(1+x)}; \addlegendentry{$C_2$}
+  \addplot[curvaP, domain=-0.6:0.6, samples=80] {1/(1-x)-1/(1+x)}; \addlegendentry{$C_1-C_2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Capacidades frente al desplazamiento}
+\end{subfigure}
+\caption{Acelerómetro capacitivo (sistema MEMS). Una masa sísmica sujeta por muelles lleva una placa que se
+mueve entre dos placas fijas; en reposo, a distancia $d$ de ambas. Una aceleración la desplaza $x$ y desequilibra el
+condensador diferencial: $C_1-C_2=\frac{\eo S}{d-x}-\frac{\eo S}{d+x}\simeq\frac{2\eo S}{d^2}\,x$ para $x\ll d$. Las fuerzas electrostáticas
+entre las placas, que se calculan como en el \cref{prob:tres-placas}, deben ser pequeñas frente a las de los muelles,
+porque el equilibrio electrostático puro es inestable (\cref{teo:earnshaw}).}
+\label{fig:acelerometro}
+\end{figure}

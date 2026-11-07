@@ -1,0 +1,52 @@
+% =============================================================================
+\section{Distribuciones continuas de carga}\label{sec:continuas}
+% =============================================================================
+
+Para una distribución continua, cada elemento de carga $\dd q=\rho\,\dd V$ desempeña el papel de una carga puntual, y la suma de
+\eqref{eq:puntuales} se convierte en una integral.
+
+\begin{proposicion}[Energía de una distribución continua]\label{prop:continua}
+La energía electrostática de una distribución de carga de densidad volúmica $\rho$ en una región $V$, o superficial $\sigma$ sobre una
+superficie $S$, es
+\begin{equation}\label{eq:continua}
+  \boxed{\;U_e=\frac12\int_V\rho(\vr)\,\phi(\vr)\,\dd V\;},\qquad U_e=\frac12\int_S\sigma(\vr)\,\phi(\vr)\,\dd S ,
+\end{equation}
+donde $\phi$ es el potencial creado por \emph{toda} la distribución. Si coexisten carga volúmica y superficial, se suman ambas
+integrales, con el potencial de ambas.
+\end{proposicion}
+
+\begin{proof}[Justificación]
+Construyamos la distribución por etapas, multiplicando todas las densidades por un parámetro $\lambda$ que crece de $0$ a $1$. En
+una etapa intermedia la densidad es $\lambda\rho$ y, por linealidad, el potencial es $\lambda\phi$. Añadir la carga $\dd\lambda\,\rho\,\dd V$ en cada
+punto, trayéndola desde el infinito, cuesta por el \cref{lem:trabajo}
+\[
+  \dd\Wext=\int_V(\dd\lambda\,\rho)\,(\lambda\phi)\,\dd V=\lambda\,\dd\lambda\int_V\rho\,\phi\,\dd V ,
+\]
+y el trabajo total es $\int_0^1\lambda\,\dd\lambda\int_V\rho\phi\,\dd V=\frac12\int_V\rho\phi\,\dd V$. El factor $\frac12$ refleja, otra vez, que cada elemento de carga
+se trae contra un potencial que, en promedio a lo largo del proceso, vale la mitad del final. El caso superficial es idéntico con
+$\rho\,\dd V\to\sigma\,\dd S$.
+\end{proof}
+
+\begin{observacion}[Energía total, no solo de interacción]\label{obs:total}
+\begin{enumerate}
+  \item Ahora se parte de una nube de carga infinitamente diluida ($\rho=0$) y se \emph{forma} la distribución. El potencial $\phi$ de
+        \eqref{eq:continua} es el de todos los elementos, incluido el propio, y el resultado incluye la energía de formación: es la
+        energía \emph{total}. Para una distribución continua, la contribución de cada elemento a su propio potencial es despreciable
+        (un elemento $\dd V$ de tamaño $\delta$ crea en sí mismo un potencial $\sim\rho\delta^2$, que se anula con $\delta$), y por eso no hace falta
+        excluir nada.
+  \item Veremos en la \cref{sec:campo} que esta energía es siempre positiva o nula, a diferencia de la de interacción.
+  \item La integral puede extenderse a todo el espacio, pues fuera de la distribución $\rho=0$ y no contribuye.
+  \item Para una carga puntual o una distribución lineal, la energía de formación diverge: concentrar una carga finita en un punto, o
+        con densidad finita en una línea, exige un trabajo infinito. Por eso, para cargas puntuales, se trabaja solo con la energía de
+        interacción \eqref{eq:puntuales}.
+\end{enumerate}
+\end{observacion}
+
+\begin{ejemplo}[Corteza esférica conductora]\label{ej:corteza}
+Sea una corteza esférica de radio $a$ con carga $Q$ uniformemente repartida (por ejemplo, una esfera conductora). Su superficie es
+equipotencial, con $\phi=Q/(4\pi\eo a)$, de modo que
+\[
+  U_e=\frac12\oiint_S\sigma\,\phi\,\dd S=\frac12\,\phi\oiint_S\sigma\,\dd S=\frac12\,\frac{Q}{4\pi\eo a}\,Q=\boxed{\;\frac{Q^2}{8\pi\eo a}\;}.
+\]
+Lo comprobaremos con el campo en el \cref{ej:corteza-campo}.
+\end{ejemplo}

@@ -1,0 +1,100 @@
+% =============================================================================
+\section{Energía de un sistema de cargas puntuales}\label{sec:puntuales}
+% =============================================================================
+
+\subsection{Trabajo para trasladar una carga}
+
+Recordemos la interpretación del potencial del Tema~1~\cite{T1}. Para trasladar una carga $q$ en un campo
+electrostático sin acelerarla, un agente externo debe aplicarle en cada instante una fuerza igual y opuesta a la del
+campo, $\vF_{\mathrm{ext}}=-q\vE$; decimos que el proceso es \emph{reversible} o cuasiestático, porque la carga pasa por una
+sucesión de estados de equilibrio y su energía cinética es en todo momento despreciable.
+
+\begin{lema}[Trabajo reversible y potencial]\label{lem:trabajo}
+El trabajo reversible que un agente externo realiza para llevar una carga $q$ desde $A$ hasta $B$ en un campo
+electrostático es
+\begin{equation}\label{eq:trabajo}
+  \Wext(A\to B)=q\big[\phi(B)-\phi(A)\big] ,
+\end{equation}
+independiente del camino. En particular, traerla desde el infinito cuesta $q\,\phi(B)$.
+\end{lema}
+
+\begin{proof}
+Con $\vF_{\mathrm{ext}}=-q\vE$ y $\vE=-\grad\phi$, a lo largo de cualquier curva $\Gamma$ de $A$ a $B$,
+\[
+  \Wext=\int_\Gamma\vF_{\mathrm{ext}}\cdot\dl=q\int_\Gamma\grad\phi\cdot\dl=q\big[\phi(B)-\phi(A)\big],
+\]
+por el teorema fundamental del cálculo para integrales de línea. La segunda afirmación se sigue de $\phi(\infty)=0$.
+\end{proof}
+
+\begin{definicion}[Energía electrostática]\label{def:energia}
+Se llama \emph{energía electrostática} $U_e$ de un sistema de cargas al trabajo reversible que debe realizar un agente
+externo para formarlo, trayendo sus cargas desde una situación inicial en la que están en reposo, en el infinito e
+infinitamente alejadas entre sí. Ese trabajo queda almacenado en el sistema como energía potencial.
+\end{definicion}
+
+\subsection{La energía de interacción}
+
+Formemos el sistema trayendo las cargas una a una (\cref{fig:cargas}\,(a)).
+\begin{itemize}
+  \item Traer $q_1$ no cuesta nada: aún no hay ningún campo que vencer, $W_1=0$.
+  \item Traer $q_2$ hasta $\vr_2$ exige vencer el campo de $q_1$: $W_2=q_2\,\phi_1(\vr_2)=\dfrac{q_2q_1}{4\pi\eo r_{21}}$, donde $\phi_1$ es el
+        potencial creado por $q_1$.
+  \item Traer $q_3$ exige vencer los campos de $q_1$ y $q_2$: $W_3=q_3\big[\phi_1(\vr_3)+\phi_2(\vr_3)\big]$.
+  \item En general, la carga $j$-ésima debe vencer el campo de las $j-1$ ya colocadas:
+        \[
+          W_j=q_j\sum_{i=1}^{j-1}\phi_i(\vr_j)=\sum_{i=1}^{j-1}\frac{q_jq_i}{4\pi\eo r_{ji}} .
+        \]
+\end{itemize}
+
+\input{figuras5/f-cargas}
+
+\begin{proposicion}[Energía de un sistema de cargas puntuales]\label{prop:puntuales}
+La energía electrostática de un sistema de $N$ cargas puntuales $q_i$ situadas en $\vr_i$ es
+\begin{equation}\label{eq:puntuales}
+  U_e=\sum_{j=2}^{N}\sum_{i=1}^{j-1}\frac{q_iq_j}{4\pi\eo r_{ij}}
+     =\frac12\sum_{i=1}^{N}\sum_{\substack{j=1\\ j\neq i}}^{N}\frac{q_iq_j}{4\pi\eo r_{ij}}
+     =\boxed{\;\frac12\sum_{i=1}^{N}q_i\,\phi_i\;},
+\end{equation}
+donde $\phi_i=\sum_{j\neq i}\dfrac{q_j}{4\pi\eo r_{ij}}$ es el potencial en $\vr_i$ creado por todas las cargas salvo la propia. El resultado
+no depende del orden en que se traigan las cargas.
+\end{proposicion}
+
+\begin{proof}
+La primera igualdad es la suma $U_e=\sum_jW_j$ de los trabajos anteriores. Su sumando es simétrico en $i$ y $j$, de modo que
+la suma sobre los pares con $i<j$ es la mitad de la suma sobre todos los pares ordenados con $i\neq j$, que cuenta cada par dos
+veces; esto da la segunda igualdad, en la que ya no aparece ningún orden. Finalmente, agrupando los términos con el mismo $i$,
+\[
+  U_e=\frac12\sum_{i=1}^Nq_i\sum_{j\neq i}\frac{q_j}{4\pi\eo r_{ij}}=\frac12\sum_{i=1}^Nq_i\,\phi_i . \qedhere
+\]
+\end{proof}
+
+\begin{observacion}[Una energía de interacción]\label{obs:interaccion}
+\begin{enumerate}
+  \item El factor $\frac12$ no es un descuido: en $\sum_iq_i\phi_i$ cada pareja aparece dos veces, una como $q_i\phi_j(\vr_i)$ y otra como
+        $q_j\phi_i(\vr_j)$. Con él, $\phi_i$ incluye el potencial de \emph{todas} las demás cargas, no solo el de las que ya estaban
+        presentes al traer la $i$-ésima.
+  \item Se excluyen los términos $i=j$: una carga no ejerce fuerza sobre sí misma. La expresión \eqref{eq:puntuales} no incluye,
+        por tanto, la energía necesaria para formar cada carga puntual; las cargas «ya existían» en el infinito. Por eso se llama
+        \emph{energía de interacción}.
+  \item Puede ser positiva o negativa. Para dos cargas, $U_e=q_1q_2/(4\pi\eo r_{12})$ es positiva si se repelen (hubo que empujarlas
+        para acercarlas) y negativa si se atraen (el campo hizo el trabajo y el sistema cedió energía).
+\end{enumerate}
+\end{observacion}
+
+\begin{ejemplo}[Cuatro cargas en un cuadrado]\label{ej:cuadrado}
+Sean cuatro cargas $q$ en los vértices de un cuadrado de lado $a$ (\cref{fig:cargas}\,(b)).
+
+\emph{Primer método: trayéndolas por orden.} La primera no cuesta nada; la segunda, colocada a distancia $a$ de la primera,
+$q\cdot kq/a$; la tercera, en el vértice opuesto a la primera, está a distancia $a$ de la segunda y $\sqrt2\,a$ de la primera; la
+cuarta está a distancia $a$ de dos de ellas y $\sqrt2\,a$ de la otra:
+\[
+  U_e=0+\frac{kq^2}{a}+kq^2\Big(\frac1a+\frac{1}{\sqrt2\,a}\Big)+kq^2\Big(\frac2a+\frac{1}{\sqrt2\,a}\Big)
+     =\frac{q^2}{4\pi\eo a}\Big(4+\frac{2}{\sqrt2}\Big)=\frac{q^2}{4\pi\eo a}\big(4+\sqrt2\big).
+\]
+\emph{Segundo método: con la fórmula simétrica.} Por simetría, las cuatro cargas ven el mismo potencial, creado por dos vecinas a
+distancia $a$ y una a distancia $\sqrt2\,a$, de modo que
+\[
+  U_e=\frac12\cdot4\,q\,\phi_1=2q\Big(\frac{2kq}{a}+\frac{kq}{\sqrt2\,a}\Big)=\frac{q^2}{4\pi\eo a}\big(4+\sqrt2\big).
+\]
+El segundo método es mucho más rápido cuando hay simetría: basta un solo potencial.
+\end{ejemplo}

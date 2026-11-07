@@ -1,0 +1,34 @@
+% Figura: paso de la energía en función de las cargas a la energía en función del
+% campo. Volumen V con la carga, esfera S_R de radio R -> infinito y órdenes de magnitud.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  % esfera grande S_R
+  \draw[gauss] (0,0) circle (2.35);
+  \node[etiq, text=acentoB] at (52:2.62) {$S_R$};
+  \draw[texto!60!fondo, line width=0.4pt, -{Stealth[length=1.5mm]}] (0,0) -- (-35:2.35)
+     node[pos=0.64, sloped, above, etiq, font=\footnotesize] {$R\to\infty$};
+  % distribución de carga
+  \fill[dielec] plot[smooth cycle, tension=0.85] coordinates
+     {(-1.05,0.25) (-0.55,0.95) (0.35,0.85) (1.0,0.35) (0.85,-0.45) (0.05,-0.75) (-0.8,-0.5)};
+  \draw[texto!70!fondo, line width=0.5pt] plot[smooth cycle, tension=0.85] coordinates
+     {(-1.05,0.25) (-0.55,0.95) (0.35,0.85) (1.0,0.35) (0.85,-0.45) (0.05,-0.75) (-0.8,-0.5)};
+  \node[etiq] at (-0.35,0.15) {$\rho(\vr)$};
+  \node[etiq] at (0.55,-0.25) {$V$};
+  \fill[cargapos] (0.05,0.5) circle (0.04);
+  \node[etiqt, anchor=west] at (0.1,0.5) {$\dd V$};
+  % elemento de superficie y campo lejano
+  \coordinate (Q) at (125:2.35);
+  \draw[vecn] (Q) -- ($(Q)+(125:0.75)$) node[anchor=south east, etiq] {$\dS$};
+  \draw[vecE] (Q) -- ($(Q)+(95:0.65)$) node[anchor=south, etiq, text=campoE] {$\vE$};
+  % tabla de escalas
+  \node[anchor=west, align=left, font=\small, text=texto] at (3.05,0.35)
+    {$\phi\sim\dfrac{1}{R}$,\qquad $E\sim\dfrac{1}{R^{2}}$,\qquad $\dd S\sim R^{2}$\\[3mm]
+     $\displaystyle\Big|\oiint_{S_R}\phi\,\vE\cdot\dS\Big|\sim\frac1R\cdot\frac{1}{R^2}\cdot R^2=\frac1R\ \xrightarrow{R\to\infty}\ 0$};
+\end{tikzpicture}
+\caption{De las cargas a los campos. La energía $\frac12\int_V\rho\phi\,\dd V$ puede extenderse a cualquier volumen que contenga
+a $V$, pues fuera de él $\rho=0$. Tomando una esfera $S_R$ de radio $R\to\infty$, el término de superficie que aparece al aplicar el
+teorema de la divergencia decae como $1/R$ (para una distribución con carga neta; aún más deprisa si es neutra) y solo
+sobrevive la integral de $E^2$ a todo el espacio (\cref{teo:energia-campo}).}
+\label{fig:volumen}
+\end{figure}

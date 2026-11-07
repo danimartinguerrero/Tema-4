@@ -1,0 +1,52 @@
+% Figura: método de los trabajos virtuales. Desplazamiento infinitesimal de un
+% conductor (a) aislado (cargas constantes) y (b) conectado a baterías (potenciales constantes).
+\begin{figure}[t]
+\centering
+\tikzset{
+  cond/.style={fill=conductor, draw=texto, line width=0.6pt},
+  condv/.style={draw=texto, dashed, line width=0.5pt, dash pattern=on 2.5pt off 1.8pt},
+  bateria/.pic={
+    \draw[texto, line width=0.6pt] (-0.35,0) -- (-0.08,0) (0.08,0) -- (0.35,0);
+    \draw[texto, line width=1.1pt] (-0.08,-0.22) -- (-0.08,0.22);
+    \draw[texto, line width=0.6pt] (0.08,-0.13) -- (0.08,0.13);}
+}
+\begin{subfigure}[b]{0.47\textwidth}\centering
+\begin{tikzpicture}[scale=0.88]
+  \draw[cond] plot[smooth cycle, tension=0.9] coordinates {(-2.3,0.1) (-1.9,0.75) (-1.2,0.6) (-1.0,-0.1) (-1.6,-0.6) (-2.2,-0.45)};
+  \node[font=\small, text=black] at (-1.65,0.05) {$Q_1$};
+  \draw[cond] plot[smooth cycle, tension=0.9] coordinates {(0.6,0.25) (1.0,0.85) (1.6,0.7) (1.75,0.0) (1.3,-0.55) (0.75,-0.4)};
+  \node[etiq, anchor=south] at (1.2,0.9) {$Q_2$};
+  \draw[condv] plot[smooth cycle, tension=0.9] coordinates {(1.05,0.25) (1.45,0.85) (2.05,0.7) (2.2,0.0) (1.75,-0.55) (1.2,-0.4)};
+  \draw[vecP] (1.75,0.0) -- (2.2,0.0);
+  \node[etiq, text=campoP, anchor=west] at (2.25,0.0) {$\dl$};
+  \node[etiqt, anchor=north] at (-0.3,-1.0) {cargas aisladas: $\dd Q_i=0$};
+  \node[etiq, anchor=north] at (-0.3,-1.45) {$\dd W_{\mathrm{mec}}+\dd U_e=0$};
+\end{tikzpicture}
+\caption{Sistema aislado}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.47\textwidth}\centering
+\begin{tikzpicture}[scale=0.88]
+  \draw[cond] plot[smooth cycle, tension=0.9] coordinates {(-2.3,0.1) (-1.9,0.75) (-1.2,0.6) (-1.0,-0.1) (-1.6,-0.6) (-2.2,-0.45)};
+  \node[font=\small, text=black] at (-1.65,0.05) {$\phi_1$};
+  \draw[cond] plot[smooth cycle, tension=0.9] coordinates {(0.6,0.25) (1.0,0.85) (1.6,0.7) (1.75,0.0) (1.3,-0.55) (0.75,-0.4)};
+  \node[etiq, anchor=south] at (1.2,0.9) {$\phi_2$};
+  \draw[condv] plot[smooth cycle, tension=0.9] coordinates {(1.05,0.25) (1.45,0.85) (2.05,0.7) (2.2,0.0) (1.75,-0.55) (1.2,-0.4)};
+  \draw[vecP] (1.75,0.0) -- (2.2,0.0);
+  % cables y baterías
+  \draw[texto, line width=0.55pt] (-1.65,-0.55) -- (-1.65,-1.0) -- (-0.75,-1.0);
+  \pic at (-0.4,-1.0) {bateria};
+  \draw[texto, line width=0.55pt] (-0.05,-1.0) -- (0.25,-1.0);
+  \draw[texto, line width=0.55pt] (1.15,-0.5) -- (1.15,-1.0) -- (0.55,-1.0);
+  \pic at (0.4,-1.0) {bateria};
+  \node[etiq, text=campoP, anchor=west] at (2.25,0.0) {$\dl$};
+  \node[etiqt, anchor=north] at (-0.1,-1.35) {potenciales fijos: $\dd\phi_i=0$};
+  \node[etiq, anchor=north] at (-0.1,-1.8) {$\dd W_{\mathrm{mec}}+\dd U_e=\dd W_{\mathrm{bat}}$};
+\end{tikzpicture}
+\caption{Sistema a potencial constante}
+\end{subfigure}
+\caption{Método de los trabajos virtuales. Se imagina un desplazamiento infinitesimal $\dl$ de uno de los conductores
+(trazos) y se hace el balance de energía. (a) Si el sistema está aislado, las cargas no cambian y el trabajo mecánico
+$\dd W_{\mathrm{mec}}=\vF_e\cdot\dl$ sale de la energía electrostática. (b) Si los conductores están unidos a baterías, sus potenciales
+no cambian, pero las baterías deben suministrar las cargas $\dd Q_i$, con un trabajo $\dd W_{\mathrm{bat}}=\sum_i\phi_i\,\dd Q_i$.}
+\label{fig:desplazamiento}
+\end{figure}

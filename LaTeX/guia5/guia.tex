@@ -1,0 +1,327 @@
+% =============================================================================
+%  Guía de métodos del Tema 5. Energía y fuerzas (primera parte)
+% =============================================================================
+\thispagestyle{plain}
+\newcommand{\ficha}[3]{\par\addvspace{1.1em}\needspace{5\baselineskip}\noindent{\color{acentoA}\bfseries Problema #1.\ #2}\hfill
+  {\small\sffamily\color{acentoC}#3}\par\nopagebreak\smallskip}
+
+\begin{center}
+  {\small\color{tenue}\espaciado{Electromagnetismo I}\quad$\cdot$\quad\espaciado{Tema 5}}\\[1.0em]
+  {\fuentetitulo\fontsize{22}{26}\selectfont Energía y fuerzas}\\[0.3em]
+  {\itshape Primera parte}\\[0.5em]
+  {\large Repaso teórico, métodos de resolución y fichas de problemas}\\[0.8em]
+  {\color{acentoA}\rule{2.6cm}{0.6pt}}\\[0.8em]
+  \begin{minipage}{0.86\textwidth}\centering\small\itshape
+  Energía de cargas, de distribuciones y del campo, energía de conductores y condensadores, teorema de
+  Earnshaw y fuerzas por trabajos virtuales, aplicados a los problemas de esta parte de la relación
+  \end{minipage}
+\end{center}
+
+\begin{consejo}[Cómo usar esta guía]
+La \cref{gsec:teoria} resume la teoría en lo que hace falta para resolver problemas. La \cref{gsec:mapa} decide el método y las
+secciones~\ref{gsec:m1}--\ref{gsec:m5} lo desarrollan paso a paso, con consejos y trampas. La \cref{gsec:fichas} resuelve en formato
+ficha los problemas 5.1(a), 5.2--5.5 y 5.7--5.9; los problemas 5.1(b), 5.6 y 5.10, con dieléctricos, corresponden a la segunda parte. Se toma
+siempre $\phi(\infty)=0$ y $k=1/4\pi\eo$.
+\end{consejo}
+
+{\small\tableofcontents}
+\newpage
+
+% =============================================================================
+\section{Lo esencial de la teoría}\label{gsec:teoria}
+% =============================================================================
+
+\subsection{Energía = trabajo para formar el sistema}
+
+$U_e$ es el trabajo reversible que hay que hacer para traer las cargas desde el infinito, en reposo y dispersas. Llevar $q$ de $A$ a $B$
+cuesta $q[\phi(B)-\phi(A)]$.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.75}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Sistema & Energía & Qué incluye\\
+\midrule
+Cargas puntuales & $\dfrac12\displaystyle\sum_iq_i\phi_i=\frac12\sum_{i\neq j}\frac{kq_iq_j}{r_{ij}}$ & solo interacción; $\phi_i$ sin la propia carga; signo $\pm$\\
+Distribución continua & $\dfrac12\displaystyle\int\rho\,\phi\,\dd V$,\ \ $\dfrac12\displaystyle\int\sigma\,\phi\,\dd S$ & total (formación incluida); $\geq0$\\
+Campo & $\dfrac{\eo}{2}\displaystyle\int_{\mathbb R^3}E^2\,\dd V$,\ \ $u_e=\dfrac{\eo}{2}E^2$ & total; integrar donde hay \emph{campo}\\
+Conductores & $\dfrac12\displaystyle\sum_iQ_i\phi_i=\frac12\sum_{ij}p_{ij}Q_iQ_j$ & total; $\phi_i$ incluye la propia carga\\
+Condensador & $\dfrac12QV=\dfrac12CV^2=\dfrac{Q^2}{2C}$ & total\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{itemize}
+  \item \textbf{De las cargas al campo:} $\rho=\eo\divg\vE$, identidad $\phi\,\divg\vE=\divg(\phi\vE)+E^2$ y teorema de la divergencia; el término de superficie
+        cae como $1/R$ y desaparece.
+  \item \textbf{No aditiva:} $U_e=U_1+U_2+\eo\int\vE_1\cdot\vE_2\,\dd V$; el término cruzado es la energía de interacción. Doblar la carga cuadruplica la energía.
+  \item \textbf{Localización:} con $u_e$, la energía está en el campo, también donde no hay carga (la mitad de la energía de una esfera cargada está más allá de $2a$).
+\end{itemize}
+
+\subsection{Fuerzas}
+
+\begin{itemize}
+  \item \textbf{Earnshaw:} donde no hay carga, $\lap\phi=0$ impide mínimos del potencial; no hay equilibrio estable solo con fuerzas electrostáticas (solo puntos de silla).
+  \item \textbf{Trabajos virtuales:} desplazamiento infinitesimal $\dd\xi$ de un cuerpo, $\dd\Wmec=F_\xi\,\dd\xi$.
+\end{itemize}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{@{}lll@{}}
+\toprule
+& Aislado ($Q$ constante) & Con baterías ($\phi$ constante)\\
+\midrule
+Balance & $\dd\Wmec+\dd U_e=0$ & $\dd\Wmec+\dd U_e=\dd\Wbat$, \ $\dd\Wbat=2\,\dd U_e$\\
+Fuerza & $F_\xi=-\dfrac{\partial U_e}{\partial\xi}\Big|_Q$ & $F_\xi=+\dfrac{\partial U_e}{\partial\xi}\Big|_\phi$\\
+Par & $\tau=-\dfrac{\partial U_e}{\partial\theta}\Big|_Q$ & $\tau=+\dfrac{\partial U_e}{\partial\theta}\Big|_\phi$\\
+Tendencia & mínimo de $U_e$ & máximo de $U_e$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Ambas dan \textbf{la misma fuerza} en una configuración dada. Para un condensador: $F_\xi=\dfrac12V^2\dfrac{\dd C}{\dd\xi}=\dfrac{Q^2}{2C^2}\dfrac{\dd C}{\dd\xi}$; el sistema tiende a
+aumentar $C$.
+
+\begin{trampa}
+\begin{itemize}
+  \item Olvidar el factor $\frac12$, o incluir la propia carga en $\phi_i$ con cargas puntuales.
+  \item Integrar $\frac{\eo}{2}E^2$ solo donde hay carga: hay que integrar en todo el espacio donde hay campo.
+  \item Usar $-\partial U_e$ con baterías: a potencial constante el signo es $+$.
+  \item Derivar $U_e=\frac12CV^2$ con $V$ como si fuera constante en un sistema aislado (ahí lo constante es $Q$; usa $Q^2/2C$).
+\end{itemize}
+\end{trampa}
+
+% =============================================================================
+\needspace{14\baselineskip}
+\section{Mapa de decisión}\label{gsec:mapa}
+% =============================================================================
+
+\begin{center}
+\begin{tikzpicture}[
+   caja/.style={draw=acentoA, fill=caja, rounded corners=2pt, line width=0.5pt, align=center,
+                font=\small, text=texto, inner sep=4pt, minimum height=0.8cm},
+   preg/.style={draw=acentoB, fill=caja, rounded corners=6pt, line width=0.5pt, align=center,
+                font=\small, text=texto, inner sep=4pt},
+   meto/.style={draw=acentoC, fill=caja, rounded corners=2pt, line width=0.6pt, align=center,
+                font=\small\bfseries, text=acentoC, inner sep=4pt, minimum width=1.2cm},
+   lin/.style={draw=tenue, line width=0.5pt, -{Stealth[length=1.8mm]}},
+   si/.style={font=\scriptsize, text=tenue, fill=fondo, inner sep=1pt}]
+  \node[preg] (q) at (0,0) {¿Qué se pide?};
+  \node[caja] (U) at (-3.6,-1.5) {una energía};
+  \node[caja] (F) at (3.6,-1.5) {una fuerza o un par};
+  \draw[lin] (q) -- (U); \draw[lin] (q) -- (F);
+  \node[preg] (cond) at (-3.6,-3.1) {¿conductores?};
+  \draw[lin] (U) -- (cond);
+  \node[meto] (M3) at (-5.3,-4.7) {M3};
+  \node[preg] (reg) at (-2.1,-4.7) {¿una región\\o hay simetría?};
+  \draw[lin] (cond) -- node[si, left] {sí} (M3);
+  \draw[lin] (cond) -- node[si, right] {no} (reg);
+  \node[meto] (M2) at (-3.0,-6.3) {M2};
+  \node[meto] (M1) at (-1.2,-6.3) {M1};
+  \draw[lin] (reg) -- node[si, left] {sí} (M2);
+  \draw[lin] (reg) -- node[si, right] {no} (M1);
+  \node[preg] (sob) at (3.6,-3.1) {¿sobre un conductor\\(cargas libres de moverse)?};
+  \draw[lin] (F) -- (sob);
+  \node[meto] (M4) at (2.2,-4.7) {M4};
+  \node[meto] (M5) at (5.0,-4.7) {M5};
+  \draw[lin] (sob) -- node[si, left] {sí} (M4);
+  \draw[lin] (sob) -- node[si, right] {no} (M5);
+  \node[font=\scriptsize, text=tenue, align=center, text width=13cm] at (0,-7.15)
+    {M1: $\frac12\sum q_i\phi_i$, $\frac12\int\rho\phi$\enspace$\cdot$\enspace M2: $\frac{\eo}{2}\int E^2$\enspace$\cdot$\enspace M3: $\frac12\sum Q_i\phi_i$\enspace$\cdot$\enspace
+     M4: trabajos virtuales\enspace$\cdot$\enspace M5: distribución dada en un campo externo};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{5.0cm}l@{}}
+\toprule
+Lo que pide el enunciado & Método & Problemas\\
+\midrule
+Energía de cargas puntuales o con $\phi$ sencillo & M1. $\frac12\sum q_i\phi_i$,\ \ $\frac12\int\rho\phi\,\dd V$ & 5.1\\
+Energía con simetría, o en una región & M2. $\frac{\eo}{2}\int E^2\dd V$ & 5.1, 5.2\\
+Energía de conductores & M3. $\frac12\sum Q_i\phi_i$, $p_{ij}$ & 5.3\\
+Fuerza o par sobre un conductor & M4. $\mp\partial_\xi U_e$ & 5.4, 5.5, 5.9\\
+Fuerza sobre una distribución fija & M5. $\int\vE_{\mathrm{ext}}\dd q$ o $-\grad\Uint$ & 5.7, 5.8\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =============================================================================
+\section{M1: cargas y potenciales}\label{gsec:m1}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Cargas puntuales: calcular en cada carga el potencial $\phi_i$ de \emph{las demás}. Distribución: el potencial total $\phi(\vr)$ en los puntos con carga.
+  \item Si hay simetría, todas las cargas ven el mismo potencial: $U_e=\frac12N\,q\,\phi_1$.
+  \item Sumar o integrar: $\frac12\sum_iq_i\phi_i$, $\frac12\int\rho\phi\,\dd V$; basta integrar donde $\rho\neq0$.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Para calcular $\phi$ dentro de una distribución esférica, integra el campo desde el infinito \emph{por tramos}: primero el campo exterior
+hasta la superficie, luego el interior. Comprueba que $\phi$ es continuo en la superficie.
+\end{consejo}
+
+% =============================================================================
+\needspace{10\baselineskip}
+\section{M2: energía del campo}\label{gsec:m2}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Calcular $\vE$ en \emph{todo} el espacio (con Gauss si hay simetría).
+  \item Escribir $E^2$; si el campo tiene varias componentes, $E^2=E_r^2+E_\theta^2+\cdots$.
+  \item Elegir el elemento de volumen: $4\pi r^2\dd r$ (simetría esférica), $2\pi\rho\ell\,\dd\rho$ (cilíndrica), $S\,\dd z$ (plana) o
+        $r^2\sen\theta\,\dd r\,\dd\theta\,\dd\varphi$ si depende del ángulo.
+  \item Integrar $\frac{\eo}{2}E^2$ en la región pedida, por tramos si el campo cambia de forma.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Con dependencia angular, el cambio $u=\cos\theta$, $\dd u=-\sen\theta\,\dd\theta$, convierte $\int_0^\pi f(\cos\theta)\sen\theta\,\dd\theta$ en $\int_{-1}^1f(u)\,\dd u$.
+Es el único método posible si se pide la energía de una \emph{región}.
+\end{consejo}
+
+% =============================================================================
+\needspace{10\baselineskip}
+\section{M3: sistemas de conductores}\label{gsec:m3}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Escribir el potencial \emph{total} de cada conductor: el de su propia carga más el de los demás.
+  \item Esferas lejanas ($d\gg R$): $\phi_i\simeq kQ_i/R_i+\sum_{j\neq i}kQ_j/d_{ij}$, es decir, $p_{ii}\simeq k/R_i$, $p_{ij}\simeq k/d_{ij}$.
+  \item $U_e=\frac12\sum_iQ_i\phi_i$; con dos conductores de cargas $\pm Q$, $U_e=\frac12Q(\phi_1-\phi_2)$.
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Separa el resultado: los términos $kQ_i^2/2R_i$ son energías de formación de cada conductor (positivas) y los cruzados $kQ_iQ_j/d_{ij}$, energías de
+interacción (con signo). La energía total debe ser positiva.
+\end{consejo}
+
+% =============================================================================
+\needspace{10\baselineskip}
+\section{M4: fuerzas por trabajos virtuales}\label{gsec:m4}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Elegir la coordenada $\xi$ del movimiento posible (separación, longitud introducida, ángulo).
+  \item ¿Aislado o con baterías? Eso decide la variable que se mantiene fija y el signo.
+  \item Escribir $U_e(\xi)$: para un condensador, $C(\xi)$ basta; con varias regiones, sumar $\frac{\eo}{2}E_i^2\,V_i$ de cada una.
+  \item Derivar: $F_\xi=-\partial_\xi U_e|_Q$ o $+\partial_\xi U_e|_\phi$. Para un condensador, directamente $F_\xi=\frac12V^2\,\dd C/\dd\xi$.
+  \item Equilibrio: $F_\xi=0$. Estabilidad: signo de $\partial F_\xi/\partial\xi$ (estable si es negativo).
+\end{pasos}
+\end{metodo}
+
+\begin{consejo}
+Si te dan $V$, usa $\frac12CV^2$ con signo $+$; si te dan $Q$, usa $Q^2/2C$ con signo $-$. Salen igual, pero así no te equivocas de variable fija. Comprueba el signo:
+la fuerza siempre tiende a \emph{aumentar} la capacidad.
+\end{consejo}
+
+% =============================================================================
+\needspace{10\baselineskip}
+\section{M5: distribución dada en un campo externo}\label{gsec:m5}
+% =============================================================================
+
+\begin{metodo}{Receta}
+\begin{pasos}
+  \item Comprobar que la distribución no se redistribuye (aislante, carga fija) y que el campo externo es conocido.
+  \item Fuerza directa: $\vF=\int\vE_{\mathrm{ext}}\,\dd q$, con $\dd q=\lambda\,\dd\ell$, $\sigma\,\dd S$ o $\rho\,\dd V$.
+  \item O bien energía de interacción $\Uint(\xi)=\int\phi_{\mathrm{ext}}\,\dd q$ y $F_\xi=-\partial_\xi\Uint$.
+  \item Dipolo: $\Uint=-\vp\cdot\vE$, $\vF=(\vp\cdot\grad)\vE$, $\vtau=\vp\times\vE$.
+\end{pasos}
+\end{metodo}
+
+% =============================================================================
+\needspace{12\baselineskip}
+\section{Fichas de los problemas}\label{gsec:fichas}
+% =============================================================================
+
+\ficha{5.1(a)}{Esfera uniformemente cargada en el vacío}{M1, M2}
+\begin{itemize}
+  \item Gauss: $E=\dfrac{Qr}{4\pi\eo a^3}$ ($r<a$), $\dfrac{Q}{4\pi\eo r^2}$ ($r>a$). Potencial interior: $\phi=\dfrac{Q}{8\pi\eo a^3}(3a^2-r^2)$.
+  \item M1: $\frac12\int_0^a\rho\phi\,4\pi r^2\dd r$ con $\rho=3Q/4\pi a^3$. M2: $\frac{\eo}{2}\int E^2\dd V$ dentro y fuera.
+\end{itemize}
+\[
+  \recuadro{U_e=\frac{3Q^2}{20\pi\eo a}}\qquad(\tfrac16\text{ dentro},\ \tfrac56\text{ fuera})
+\]
+\emph{Trampa:} con M2, integrar también fuera ($r>a$), que aporta la mayor parte.
+
+\ficha{5.2}{Energía del campo de un dipolo fuera de una esfera}{M2}
+\begin{itemize}
+  \item $E^2=\Big(\dfrac{p}{4\pi\eo r^3}\Big)^2(3\cos^2\theta+1)$; $\displaystyle\int_{-1}^1(3u^2+1)\,\dd u=4$; $\displaystyle\int_a^\infty r^{-4}\dd r=\frac{1}{3a^3}$.
+\end{itemize}
+\[
+  \recuadro{U_e(r>a)=\frac{p^2}{12\pi\eo a^3}}
+\]
+\emph{Detalle:} diverge si $a\to0$ (energía propia del dipolo puntual).
+
+\ficha{5.3}{Dos esferas conductoras lejanas con cargas $\pm Q$}{M3}
+\begin{itemize}
+  \item $\phi_1=k\big(\frac Qa-\frac Qd\big)$, $\phi_2=k\big(-\frac Qb+\frac Qd\big)$; $U_e=\frac12Q(\phi_1-\phi_2)$.
+\end{itemize}
+\[
+  \recuadro{U_e=\frac{Q^2}{8\pi\eo}\Big(\frac{a+b}{ab}-\frac2d\Big)}
+\]
+\emph{Lectura:} formación de cada esfera $+$ interacción ($-kQ^2/d$); total positiva.
+
+\ficha{5.4}{Fuerza entre las placas de un condensador plano}{M4}
+\begin{itemize}
+  \item $Q$ cte: $U_e=\frac{Q^2x}{2\eo S}$, $F=-\frac{Q^2}{2\eo S}$. \quad $V$ cte: $U_e=\frac{\eo SV^2}{2x}$, $F=-\frac{\eo SV^2}{2x^2}$.
+\end{itemize}
+\[
+  \recuadro{F=-\frac{Q^2}{2\eo S}=-\frac{CV^2}{2d}}
+\]
+\emph{Comprobación:} presión $\sigma^2/2\eo$ por el área; o $Q$ en el campo de la otra placa, $\sigma/2\eo$.
+
+\ficha{5.5}{Equilibrio de la placa central (potenciales fijos)}{M4}
+\begin{itemize}
+  \item $U_e=\frac{\eo S}{2}\Big[\frac{(\phi_2-\phi_1)^2}{x}+\frac{(\phi_2-\phi_3)^2}{d-x}\Big]$, $F=+\partial_xU_e$; $F=0\Leftrightarrow\frac{\phi_2-\phi_1}{x}=\frac{\phi_2-\phi_3}{d-x}$ (campos iguales).
+\end{itemize}
+\[
+  \recuadro{x_{\mathrm{eq}}=\frac{d(\phi_2-\phi_1)}{2\phi_2-\phi_1-\phi_3}}\qquad\text{(inestable: } \partial_xF>0\text{)}
+\]
+
+\ficha{5.7}{Barra cargada en el eje de un anillo}{M5}
+\begin{itemize}
+  \item $E_{\mathrm{anillo}}(z)=\dfrac{Q'z}{4\pi\eo(a^2+z^2)^{3/2}}$; $\vF=\int_{z_0-\ell}^{z_0+\ell}\lambda E\,\dd z\,\uv z$ con $\lambda=Q/2\ell$.
+\end{itemize}
+\[
+  \recuadro{\vF=\frac{QQ'}{8\pi\eo\ell}\left[\frac{1}{\sqrt{a^2+(z_0-\ell)^2}}-\frac{1}{\sqrt{a^2+(z_0+\ell)^2}}\right]\uv z}
+\]
+\emph{Límites:} $F=0$ si $z_0=0$; $F\to QQ'/4\pi\eo z_0^2$ si $z_0\gg\ell,a$.
+
+\ficha{5.8}{Fuerza sobre un dipolo rígido}{M5}
+\begin{itemize}
+  \item $\vF=q[\vE(\vr+\vec d)-\vE(\vr)]\simeq q(\vec d\cdot\grad)\vE$; o $\vF=-\grad(-\vp\cdot\vE)=(\vp\cdot\grad)\vE+\vp\times(\rot\vE)$ con $\rot\vE=\vcero$.
+\end{itemize}
+\[
+  \recuadro{\vF=(\vp\cdot\grad)\vE}
+\]
+
+\ficha{5.9}{Condensador cilíndrico con el cilindro interior móvil}{M4}
+\begin{itemize}
+  \item $C(x)=\dfrac{2\pi\eo x}{\ln(R_1/R_2)}+C_0$; $F=\frac12V_0^2\,\dd C/\dd x$.
+\end{itemize}
+\[
+  \recuadro{F=\frac{\pi\eo V_0^2}{\ln(R_1/R_2)}}\qquad\text{(hacia dentro, independiente de } x\text{)}
+\]
+
+% =============================================================================
+\section{Lista de control}\label{gsec:control}
+% =============================================================================
+
+\begin{metodo}{Antes de entregar}
+\begin{itemize}
+  \item ¿Energía de interacción (cargas puntuales) o total (distribuciones, campo, conductores)? ¿Tiene el signo esperado?
+  \item ¿He puesto el factor $\frac12$? ¿Es $\phi_i$ el potencial correcto (sin la propia carga para puntuales; total para conductores)?
+  \item Con $\frac{\eo}{2}\int E^2$: ¿integro en todo el espacio con campo, por tramos?
+  \item Fuerzas: ¿aislado ($-$, $Q$ fija) o con baterías ($+$, $\phi$ fijo)? ¿La fuerza tiende a aumentar $C$?
+  \item ¿Equilibrio estable o inestable? (Earnshaw: sin ligaduras mecánicas, siempre inestable.)
+  \item ¿Unidades? ($[U_e]=\si{J}$, $[u_e]=\si{J/m^3}$, $[F]=\si{N}$, $[\tau]=\si{N\,m}$.) ¿Límites (cargas lejanas, simetría)?
+\end{itemize}
+\end{metodo}

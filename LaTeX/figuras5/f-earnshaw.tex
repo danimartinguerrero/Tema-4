@@ -1,0 +1,41 @@
+% Figura: teorema de Earnshaw. Potencial de cuatro cargas positivas iguales en los
+% vértices de un cuadrado (z = 0, vértices (+-1, +-1)), en el plano y = 0 cerca del centro:
+% mínimo a lo largo de x, máximo a lo largo de z  ->  punto de silla.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.56\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=7.6cm, height=6.0cm, view={-32}{24}, xmin=-0.8, xmax=0.8, ymin=-0.8, ymax=0.8,
+   xlabel={$x/a$}, ylabel={$z/a$}, zlabel={$\phi/\phi_0$}, xtick={-0.5,0,0.5}, ytick={-0.5,0,0.5},
+   ztick={2.6,2.8,3.0}, colormap={tema}{color=(acentoB) color=(acentoA) color=(acentoC)},
+   z buffer=sort, clip=false, label style={font=\footnotesize},
+   x label style={sloped}, y label style={sloped}]
+  \addplot3[surf, shader=faceted interp, faceted color=fondo!70!texto, line width=0.1pt,
+     samples=29, domain=-0.8:0.8, y domain=-0.8:0.8, opacity=0.95]
+     {1/sqrt((x-1)^2+1+y^2)+1/sqrt((x+1)^2+1+y^2)+1/sqrt((x-1)^2+1+y^2)+1/sqrt((x+1)^2+1+y^2)};
+  \addplot3[only marks, mark=*, mark size=1.6pt, color=texto] coordinates {(0,0,2.8284)};
+\end{axis}
+\end{tikzpicture}
+\caption{$\phi$ en el plano $y=0$ cerca del centro}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.42\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.0cm, height=5.0cm, xmin=-0.8, xmax=0.8, ymin=2.45, ymax=3.15,
+   xlabel={desplazamiento$/a$}, ylabel={$\phi/\phi_0$}, grid=major, ytick={2.5,2.75,3.0}]
+  \addplot[curvaE, domain=-0.8:0.8, samples=101]
+     {2/sqrt((x-1)^2+1)+2/sqrt((x+1)^2+1)};
+  \addplot[curvaD, domain=-0.8:0.8, samples=101] {4/sqrt(2+x^2)};
+  \node[etiqf, font=\scriptsize, text=campoE] at (axis cs:0,3.02) {según $x$: mínimo};
+  \node[etiqf, font=\scriptsize, text=campoD] at (axis cs:0,2.6) {según $z$: máximo};
+  \addplot[only marks, mark=*, mark size=1.5pt, color=texto] coordinates {(0,2.8284)};
+\end{axis}
+\end{tikzpicture}
+\caption{Cortes por el centro}
+\end{subfigure}
+\caption{Teorema de Earnshaw. Cuatro cargas positivas iguales en los vértices de un cuadrado de lado $2a$ en el
+plano $z=0$, con $\phi_0=q/(4\pi\eo a)$. En el centro del cuadrado el campo es nulo, pero el potencial no tiene allí un mínimo:
+crece al desplazarse según $x$ (hacia dos de las cargas) y decrece según $z$ (al alejarse del plano). Es un punto de
+silla, como exige $\lap\phi=0$: una carga positiva colocada en el centro está en equilibrio, pero inestable frente a
+desplazamientos perpendiculares al plano.}
+\label{fig:earnshaw}
+\end{figure}

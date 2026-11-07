@@ -1,0 +1,128 @@
+% =============================================================================
+\section{Energía en función del campo}\label{sec:campo}
+% =============================================================================
+
+Las expresiones anteriores asocian la energía a las cargas y la localizan donde están ellas. Igual que en el Tema~1 pasamos de la ley
+de Coulomb, que habla de cargas, a la ley de Gauss, que habla de campos, vamos a expresar la energía solo en función del campo.
+
+\subsection{El teorema de la energía del campo}
+
+\begin{lema}[Dos herramientas]\label{lem:herramientas}
+Para un campo escalar $\phi$ y un campo vectorial $\vA$ de clase $\mathcal C^1$:
+\begin{enumerate}
+  \item identidad del producto: $\divg(\phi\vA)=\grad\phi\cdot\vA+\phi\,\divg\vA$;
+  \item teorema de la divergencia de Gauss: para una región acotada $V$ de frontera $S=\partial V$ con normal exterior,
+        $\displaystyle\int_V\divg\vA\,\dd V=\oiint_S\vA\cdot\dS$.
+\end{enumerate}
+\end{lema}
+
+\begin{teorema}[Energía electrostática en función del campo]\label{teo:energia-campo}
+Para una distribución de carga localizada en el vacío,
+\begin{equation}\label{eq:energia-campo}
+  \boxed{\;U_e=\frac12\int_V\rho\,\phi\,\dd V=\frac{\eo}{2}\int_{\mathbb R^3}E^2\,\dd V\; ,}
+\end{equation}
+donde la segunda integral se extiende a todo el espacio.
+\end{teorema}
+
+\begin{proof}
+\paso{Paso 1: eliminar $\rho$} Por la ley de Gauss diferencial, $\rho=\eo\,\divg\vE$, de modo que
+$U_e=\dfrac{\eo}{2}\displaystyle\int_V\phi\,\divg\vE\,\dd V$. Como $\rho=0$ fuera de la distribución, podemos tomar como $V$ una bola $B_R$ de radio $R$
+tan grande como queramos (\cref{fig:volumen}).
+
+\paso{Paso 2: integrar por partes} Por el \cref{lem:herramientas}\,(i), $\phi\,\divg\vE=\divg(\phi\vE)-\grad\phi\cdot\vE=\divg(\phi\vE)+E^2$, ya que
+$\grad\phi=-\vE$. Por tanto,
+\[
+  U_e=\frac{\eo}{2}\int_{B_R}\divg(\phi\vE)\,\dd V+\frac{\eo}{2}\int_{B_R}E^2\,\dd V .
+\]
+\paso{Paso 3: el teorema de la divergencia} Aplicándolo a la primera integral, con $S_R=\partial B_R$,
+\[
+  U_e=\frac{\eo}{2}\oiint_{S_R}\phi\,\vE\cdot\dS+\frac{\eo}{2}\int_{B_R}E^2\,\dd V .
+\]
+Esta igualdad vale para todo $R$ suficientemente grande, aunque cada término por separado dependa de $R$.
+
+\paso{Paso 4: límite $R\to\infty$} Lejos de una distribución localizada, $\phi=\mathcal O(1/R)$ y $E=\mathcal O(1/R^2)$, mientras que el área de $S_R$ es $4\pi R^2$:
+\[
+  \abs{\oiint_{S_R}\phi\,\vE\cdot\dS}\leq\max_{S_R}\abs\phi\,\max_{S_R}\abs{\vE}\,4\pi R^2=\mathcal O\Big(\frac1R\cdot\frac{1}{R^2}\cdot R^2\Big)=\mathcal O\Big(\frac1R\Big)\xrightarrow{R\to\infty}0 .
+\]
+(Si la distribución es neutra, $\phi$ y $E$ decaen aún más deprisa.) La segunda integral converge, pues, a la integral de $E^2$ a todo el
+espacio, y se obtiene \eqref{eq:energia-campo}.
+\end{proof}
+
+\input{figuras5/f-volumen}
+
+\begin{definicion}[Densidad de energía electrostática]\label{def:densidad}
+Se llama \emph{densidad de energía electrostática} a
+\begin{equation}\label{eq:densidad}
+  u_e(\vr)\defeq\frac{\eo}{2}\,E^2(\vr)\qquad[\si{J/m^3}],\qquad U_e=\int_{\mathbb R^3}u_e\,\dd V .
+\end{equation}
+\end{definicion}
+
+\begin{corolario}[Positividad]\label{cor:positiva}
+La energía electrostática total de una distribución continua es positiva o nula, $U_e\geq0$, y solo se anula si $\vE\equiv\vcero$, es decir, si
+no hay carga.
+\end{corolario}
+
+\begin{proof}
+El integrando de \eqref{eq:energia-campo} es no negativo, y la integral de una función continua no negativa solo se anula si la
+función es idénticamente nula.
+\end{proof}
+
+\begin{observacion}[¿Dónde está la energía?]\label{obs:localizacion}
+Las dos expresiones de \eqref{eq:energia-campo} dan el mismo número, pero cuentan historias distintas: la primera localiza la energía
+donde hay carga; la segunda, en todo punto donde hay campo, aunque allí no haya carga (\cref{fig:corteza}). En electrostática ambas
+interpretaciones son equivalentes. La segunda, sin embargo, es la que sobrevive fuera de la electrostática: una onda
+electromagnética transporta energía por regiones vacías, y $u_e=\frac{\eo}{2}E^2$ sigue siendo válida para campos variables en el
+tiempo~\cite{Griffiths,Jackson}.
+\end{observacion}
+
+\begin{ejemplo}[Corteza esférica, de nuevo]\label{ej:corteza-campo}
+Para la corteza del \cref{ej:corteza}, el campo es nulo dentro y vale $\vE=\frac{Q}{4\pi\eo r^2}\uv r$ fuera. Con $\dd V=4\pi r^2\dd r$ (simetría
+esférica),
+\[
+  U_e=\frac{\eo}{2}\int_a^\infty\Big(\frac{Q}{4\pi\eo r^2}\Big)^2 4\pi r^2\,\dd r=\frac{Q^2}{8\pi\eo}\int_a^\infty\frac{\dd r}{r^2}
+     =\frac{Q^2}{8\pi\eo}\Big[-\frac1r\Big]_a^\infty=\frac{Q^2}{8\pi\eo a},
+\]
+como antes. La energía almacenada más allá de un radio $r$ es $Q^2/(8\pi\eo r)$: la mitad está fuera de $2a$ (\cref{fig:corteza}).
+\end{ejemplo}
+
+\input{figuras5/f-corteza}
+
+\subsection{La energía no es aditiva}
+
+El campo verifica el principio de superposición; la energía, que es cuadrática en el campo, no.
+
+\begin{proposicion}[Término cruzado]\label{prop:no-aditiva}
+Si $\vE=\vE_1+\vE_2$ es el campo de dos distribuciones de carga, con energías propias $U_1$ y $U_2$,
+\begin{equation}\label{eq:no-aditiva}
+  U_e=\frac{\eo}{2}\int\big(E_1^2+E_2^2+2\,\vE_1\cdot\vE_2\big)\dd V=U_1+U_2+\eo\int_{\mathbb R^3}\vE_1\cdot\vE_2\,\dd V\neq U_1+U_2 .
+\end{equation}
+El término cruzado es la energía de interacción entre ambas distribuciones,
+\begin{equation}\label{eq:cruzado}
+  \Uint=\eo\int_{\mathbb R^3}\vE_1\cdot\vE_2\,\dd V=\int\rho_2\,\phi_1\,\dd V=\int\rho_1\,\phi_2\,\dd V .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+La primera igualdad es el desarrollo de $(\vE_1+\vE_2)^2$. Para la segunda, con $\vE_1=-\grad\phi_1$ y la misma integración por partes
+del \cref{teo:energia-campo},
+\[
+  \eo\int_{B_R}\vE_1\cdot\vE_2\,\dd V=-\eo\int_{B_R}\grad\phi_1\cdot\vE_2\,\dd V=-\eo\oiint_{S_R}\phi_1\vE_2\cdot\dS+\eo\int_{B_R}\phi_1\,\divg\vE_2\,\dd V ,
+\]
+y al hacer $R\to\infty$ el término de superficie se anula mientras que $\eo\,\divg\vE_2=\rho_2$. Intercambiando los papeles de 1 y 2 se obtiene la
+otra forma.
+\end{proof}
+
+\begin{ejemplo}[Dos cargas puntuales]\label{ej:termino-cruzado}
+Para dos cargas puntuales $q_1$ y $q_2$ separadas una distancia $d$, $U_1$ y $U_2$ son las energías propias, infinitas, de cada carga; el
+término cruzado, en cambio, es finito y vale $\int\rho_2\phi_1\,\dd V=q_2\,\phi_1(\vr_2)=\dfrac{q_1q_2}{4\pi\eo d}$: la energía de interacción de la
+\cref{prop:puntuales}. Para cargas iguales, $\vE_1\cdot\vE_2$ es negativo dentro de la circunferencia que tiene por diámetro el segmento que
+las une (allí los campos forman un ángulo obtuso) y positivo fuera; el balance es positivo (\cref{fig:superposicion}).
+\end{ejemplo}
+
+\input{figuras5/f-superposicion}
+
+\begin{trampa}[Trampa habitual]
+Si se duplica la carga de un sistema, su energía se multiplica por cuatro, no por dos; y la energía de dos sistemas juntos no es la suma
+de sus energías por separado. Hay que calcular el campo total y elevarlo al cuadrado, o usar $\frac12\int\rho\phi\,\dd V$ con el potencial
+total.
+\end{trampa}

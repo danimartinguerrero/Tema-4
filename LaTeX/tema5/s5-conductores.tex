@@ -1,0 +1,57 @@
+% =============================================================================
+\section{Energía de un sistema de conductores}\label{sec:conductores}
+% =============================================================================
+
+Un conductor en equilibrio es una distribución superficial de carga con una peculiaridad: su superficie es equipotencial~\cite{T3}. Eso
+simplifica enormemente la energía.
+
+\begin{proposicion}[Energía de un sistema de conductores]\label{prop:conductores}
+La energía electrostática de un sistema de $N$ conductores con cargas $Q_i$ y potenciales $\phi_i$ es
+\begin{equation}\label{eq:conductores}
+  \boxed{\;U_e=\frac12\sum_{i=1}^NQ_i\,\phi_i\;}
+  =\frac12\sum_{i,j=1}^Np_{ij}\,Q_iQ_j=\frac12\sum_{i,j=1}^Nc_{ij}\,\phi_i\phi_j .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+La carga reside en las superficies $S_i$ de los conductores, y sobre cada una el potencial es constante, $\phi=\phi_i$. Por la
+\cref{prop:continua},
+\[
+  U_e=\frac12\sum_{i=1}^N\oiint_{S_i}\sigma_i\,\phi\,\dd S=\frac12\sum_{i=1}^N\phi_i\oiint_{S_i}\sigma_i\,\dd S=\frac12\sum_{i=1}^N\phi_i\,Q_i .
+\]
+Las otras dos formas se obtienen sustituyendo $\phi_i=\sum_jp_{ij}Q_j$ o $Q_i=\sum_jc_{ij}\phi_j$~\cite{T3}.
+\end{proof}
+
+\begin{observacion}[Lectura de la fórmula]\label{obs:conductores}
+\begin{enumerate}
+  \item Formalmente se parece a la energía de cargas puntuales \eqref{eq:puntuales}, pero el significado es otro: aquí $\phi_i$ es el
+        potencial del conductor $i$ creado por \emph{todas} las cargas, incluida la suya, $Q_i$. Es energía \emph{total}, no solo de
+        interacción, y por el \cref{cor:positiva} es positiva o nula.
+  \item En consecuencia, las formas cuadráticas $\sum p_{ij}Q_iQ_j$ y $\sum c_{ij}\phi_i\phi_j$ son definidas positivas: se anulan solo si todas las
+        cargas (o todos los potenciales) son nulos. Es otra forma de ver las propiedades de signo de $p_{ij}$ y $c_{ij}$ del Tema~3.
+  \item Un conductor a tierra ($\phi_i=0$) o descargado ($Q_i=0$) no contribuye explícitamente a la suma, aunque sí a través de los
+        potenciales o las cargas de los demás.
+\end{enumerate}
+\end{observacion}
+
+\begin{corolario}[Energía de un condensador]\label{cor:condensador}
+Un condensador de capacidad $C$, con cargas $\pm Q$ en sus armaduras y diferencia de potencial $V=\phi_1-\phi_2$, almacena la energía
+\begin{equation}\label{eq:condensador}
+  \boxed{\;U_e=\frac12\,QV=\frac12\,CV^2=\frac{Q^2}{2C}\;}.
+\end{equation}
+\end{corolario}
+
+\begin{proof}
+Con $Q_1=Q$ y $Q_2=-Q$, la \cref{prop:conductores} da $U_e=\frac12\big[Q\phi_1+(-Q)\phi_2\big]=\frac12Q(\phi_1-\phi_2)=\frac12QV$, y las otras dos formas se
+siguen de $Q=CV$.
+\end{proof}
+
+\begin{ejemplo}[Esfera conductora aislada]\label{ej:esfera-aislada}
+Para una esfera de radio $a$ y carga $Q$, $C=4\pi\eo a$ (Tema~3) y $U_e=Q^2/2C=Q^2/(8\pi\eo a)$, como en el \cref{ej:corteza}. Con $p_{11}=1/C$, es
+también $\frac12p_{11}Q^2$.
+\end{ejemplo}
+
+\begin{ejemplo}[Condensador plano]\label{ej:plano}
+Con $C=\eo S/d$, la energía es $U_e=\frac12CV^2=\frac12\eo SV^2/d$. Con el campo, $E=V/d$ uniforme en el volumen $Sd$ entre las placas y nulo
+fuera (despreciando los bordes): $U_e=\frac{\eo}{2}\big(V/d\big)^2Sd$, idéntico. La energía está repartida uniformemente entre las placas.
+\end{ejemplo}

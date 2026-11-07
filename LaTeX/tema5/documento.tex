@@ -1,0 +1,77 @@
+% =============================================================================
+%  Cuerpo del Tema 5. Energía y fuerzas (primera parte)
+% =============================================================================
+\hacerportada
+
+% ------------------------------------------------------------- Página de resumen
+\thispagestyle{empty}
+\begin{center}
+  {\small\color{tenue}\espaciado{Electromagnetismo I}\quad$\cdot$\quad\espaciado{Tema 5}}\\[1.6em]
+  {\fuentetitulo\fontsize{21}{25}\selectfont Energía y fuerzas}\\[0.4em]
+  {\large\itshape Primera parte}\\[0.9em]
+  {\color{acentoA}\rule{2.6cm}{0.6pt}}\\[1.1em]
+  {\large Daniel Martín Guerrero}\\[0.3em]
+  {\small\itshape\color{tenue} Grado en Física, Facultad de Ciencias, Universidad de Salamanca}
+\end{center}
+\vspace{1.6em}
+
+\noindent
+\begin{minipage}[t]{0.6\textwidth}
+\small
+{\color{acentoA}\espaciado{Resumen.}}\enspace
+Definimos la energía electrostática de un sistema como el trabajo reversible necesario para formarlo trayendo
+sus cargas desde el infinito. Para cargas puntuales obtenemos la energía de interacción
+$\frac12\sum_iq_i\phi_i$; para distribuciones continuas, la energía total $\frac12\int\rho\phi\,\dd V$, que el teorema de la
+divergencia transforma en $\frac{\eo}{2}\int E^2\dd V$: la energía queda almacenada en el campo, con densidad
+$u_e=\frac{\eo}{2}E^2$, es siempre positiva y no es aditiva. En un sistema de conductores la energía es
+$\frac12\sum_iQ_i\phi_i$, y para un condensador, $\frac12QV=\frac12CV^2=Q^2/2C$. Tras demostrar el teorema de Earnshaw,
+calculamos las fuerzas sobre conductores con el método de los trabajos virtuales, a carga constante,
+$\vF_e=-\grad U_e|_Q$, y a potencial constante, $\vF_e=+\grad U_e|_\phi$, y probamos que ambos conducen a la misma
+fuerza. Los seminarios resuelven los problemas de esta parte del tema.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\textwidth}\centering\vspace{-0.6em}
+\begin{tikzpicture}
+\begin{axis}[marco, width=6.0cm, xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8, enlargelimits=false]
+  \addplot graphics[xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8] {t5-ue-opuestas-\modotema};
+  \input{datos/t5-dos-cargas-opuestas.tex}
+  \fill[cargapos] (axis cs:-1,0) circle[radius=0.075];
+  \fill[carganeg] (axis cs:1,0) circle[radius=0.075];
+\end{axis}
+\end{tikzpicture}\\[-0.1em]
+{\scriptsize\color{tenue}\itshape Densidad de energía y líneas de campo\\ de dos cargas opuestas.}
+\end{minipage}
+
+\vspace{1.4em}
+\noindent{\small{\color{acentoA}\espaciado{Palabras clave.}}\enspace energía electrostática $\cdot$ energía de interacción
+$\cdot$ energía propia $\cdot$ densidad de energía $\cdot$ coeficientes de potencial $\cdot$ condensador $\cdot$ teorema de
+Earnshaw $\cdot$ trabajos virtuales $\cdot$ fuerza a carga constante $\cdot$ fuerza a potencial constante}
+
+\vspace{0.6em}
+\noindent{\small{\color{acentoA}\espaciado{Clasificación PACS.}}\enspace 41.20.Cv (electrostática; ecuaciones de Poisson
+y Laplace, problemas de contorno) $\cdot$ 84.32.Tt (condensadores)}
+
+\vfill
+\begin{center}
+\small
+$\displaystyle U_e=\frac12\int_V\rho\,\phi\,\dd V=\frac{\eo}{2}\int_{\mathbb R^3}E^2\,\dd V
+\qquad U_e=\frac12\sum_{i,j}p_{ij}Q_iQ_j
+\qquad F_\xi=-\frac{\partial U_e}{\partial\xi}\bigg|_{Q}=+\frac{\partial U_e}{\partial\xi}\bigg|_{\phi}$
+\end{center}
+\vspace{1em}
+\newpage
+
+% ------------------------------------------------------------- Índice
+\thispagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\input{tema5/s1-introduccion}
+\input{tema5/s2-puntuales}
+\input{tema5/s3-continuas}
+\input{tema5/s4-campo}
+\input{tema5/s5-conductores}
+\input{tema5/s6-fuerzas}
+\input{tema5/s7-seminarios}
+\input{tema5/apendice}

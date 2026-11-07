@@ -1,0 +1,40 @@
+% =============================================================================
+\section{Introducción: por qué la energía}\label{sec:introduccion}
+% =============================================================================
+
+Hasta ahora hemos calculado campos y potenciales; en el Tema~3, además, la presión electrostática sobre la
+superficie de un conductor~\cite{T3}. Calcular fuerzas entre cuerpos extensos sumando, o más bien integrando,
+la fuerza de Coulomb sobre cada elemento de carga es casi siempre impracticable: las cargas de un conductor
+no son un dato, sino que se redistribuyen al mover los cuerpos. En este tema introducimos la \emph{energía
+electrostática}, que nos permitirá calcular esas fuerzas de un modo mucho más sencillo, derivando una sola
+función escalar respecto a la coordenada que describe el movimiento.
+
+El razonamiento tiene dos etapas. Primero (\cref{sec:puntuales,sec:continuas,sec:campo,sec:conductores}) definimos
+la energía como el trabajo necesario para formar el sistema y la expresamos de tres maneras: en función de las
+cargas y los potenciales, en función del campo y, para conductores, en función de sus cargas y potenciales
+totales. Después (\cref{sec:fuerzas}) relacionamos las fuerzas con las variaciones de esa energía mediante el
+principio de los trabajos virtuales. Esta primera parte se limita al vacío y a los conductores; la energía en
+presencia de dieléctricos se tratará en la segunda.
+
+Seguimos el orden de los apuntes manuscritos de la asignatura y nos apoyamos en los apuntes de teoría y en sus
+figuras~\cite{DFA-teoria,DFA-figuras}, que hemos rehecho; para ampliar pueden consultarse los textos
+clásicos~\cite{Griffiths,Wangsness,Purcell,Feynman,Jackson}.
+
+\subsection{Notación y convenios}\label{sec:notacion}
+
+\begin{notacion}\label{not:tema5}
+Usamos la notación de los temas anteriores~\cite{T0,T1,T2,T3,T4} y, además:
+\begin{itemize}
+  \item $U_e$ es la energía electrostática del sistema y $u_e$ su densidad volúmica ($\si{J/m^3}$); $\Uint$, la energía de
+        interacción entre partes del sistema.
+  \item $\Wext$ es el trabajo realizado por un agente externo, $\Wmec=\int\vFe\cdot\dl$ el trabajo realizado por la fuerza
+        electrostática $\vFe$ que actúa sobre un cuerpo, y $\Wbat$ el trabajo aportado por las baterías.
+  \item En un sistema de cargas puntuales, $\vr_{ij}=\vr_i-\vr_j$ y $r_{ij}=\abs{\vr_{ij}}$; $\phi_i$ denota el potencial en $\vr_i$
+        creado por todas las cargas \emph{salvo} la $i$-ésima.
+  \item En un sistema de $N$ conductores, $Q_i$ y $\phi_i$ son la carga y el potencial del conductor $i$, y $p_{ij}$ y $c_{ij}$ los
+        coeficientes de potencial y de capacidad e influencia del Tema~3~\cite{T3}.
+  \item $\xi$ es una coordenada generalizada que describe la posición de un cuerpo (una distancia o un ángulo $\theta$), y
+        $\eval{\cdot}{Q}$, $\eval{\cdot}{\phi}$ indican derivadas a cargas o a potenciales constantes.
+  \item Las cargas están localizadas y $\phi(\infty)=0$; $k\equiv1/(4\pi\eo)$.
+\end{itemize}
+\end{notacion}

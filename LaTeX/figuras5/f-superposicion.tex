@@ -1,0 +1,48 @@
+% Figura (simulación): la energía no es aditiva. Densidad de energía de dos cargas
+% iguales y opuestas, y término cruzado eps0 E1.E2.
+% Mapas: scripts/tema5.py -> img/t5-ue-*.png ; líneas: datos/t5-dos-cargas-*.tex
+\begin{figure}[t]
+\centering
+\pgfplotsset{mapa/.style={marco, width=5.6cm, xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8,
+   enlargelimits=false, axis on top}}
+\begin{subfigure}[b]{0.325\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[mapa]
+  \addplot graphics[xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8] {t5-ue-iguales-\modotema};
+  \input{datos/t5-dos-cargas-iguales.tex}
+  \fill[cargapos] (axis cs:-1,0) circle[radius=0.075];
+  \fill[cargapos] (axis cs:1,0) circle[radius=0.075];
+\end{axis}
+\end{tikzpicture}
+\caption{$+q$ y $+q$: $u_e$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[mapa]
+  \addplot graphics[xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8] {t5-ue-opuestas-\modotema};
+  \input{datos/t5-dos-cargas-opuestas.tex}
+  \fill[cargapos] (axis cs:-1,0) circle[radius=0.075];
+  \fill[carganeg] (axis cs:1,0) circle[radius=0.075];
+\end{axis}
+\end{tikzpicture}
+\caption{$+q$ y $-q$: $u_e$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[mapa]
+  \addplot graphics[xmin=-2.6, xmax=2.6, ymin=-1.8, ymax=1.8] {t5-ue-cruzado-\modotema};
+  \draw[equipot] (axis cs:0,0) circle[radius=1];
+  \fill[cargapos] (axis cs:-1,0) circle[radius=0.075];
+  \fill[cargapos] (axis cs:1,0) circle[radius=0.075];
+\end{axis}
+\end{tikzpicture}
+\caption{$+q$ y $+q$: $\eo\,\vE_1\cdot\vE_2$}
+\end{subfigure}
+\caption{La energía electrostática no cumple el principio de superposición. (a), (b) Densidad de energía
+$u_e=\frac{\eo}{2}E^2$ (escala logarítmica, más brillante cuanto mayor) con las líneas de campo superpuestas: entre dos cargas
+iguales el campo se anula en el punto medio y $u_e$ es pequeña; entre cargas opuestas los campos se refuerzan.
+(c) Término cruzado $\eo\,\vE_1\cdot\vE_2$ para dos cargas iguales: es positivo (rojo) fuera de la circunferencia de
+trazos, que tiene por diámetro el segmento entre las cargas, y negativo (azul) dentro. Su integral a todo el espacio
+es exactamente la energía de interacción, $q^2/(4\pi\eo d)$ (\cref{ej:termino-cruzado}).}
+\label{fig:superposicion}
+\end{figure}

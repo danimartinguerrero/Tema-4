@@ -74,6 +74,7 @@
 \colorlet{campoD}{acentoB}
 \colorlet{campoP}{acentoC}
 \pagecolor{fondo}
+\ifoscuro\def\modotema{oscuro}\else\def\modotema{claro}\fi
 \makeatletter
 \AtBeginDocument{\color{texto}\let\default@color\current@color}
 \makeatother
@@ -86,7 +87,7 @@
                 intersections,backgrounds,3d,perspective}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usepgfplotslibrary{fillbetween,groupplots}
+\usepgfplotslibrary{fillbetween,groupplots,polar}
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{needspace}

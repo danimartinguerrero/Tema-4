@@ -1,0 +1,44 @@
+% Figura: problema 5.5. Tres placas paralelas a potenciales fijos; la central puede
+% moverse.  Energía potencial mecánica U_mec = -U_e (a potencial constante) y fuerza.
+% Valores de la gráfica: phi1 = 0, phi3 = 0,4, phi2 = 1 (unidades V0), d = 1.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.4\textwidth}\centering
+\begin{tikzpicture}[scale=0.85, x={(1cm,0cm)}, y={(0.42cm,0.3cm)}, z={(0cm,1cm)}]
+  \def\L{3.0}\def\W{2.2}
+  \foreach \h/\c/\n in {2.0/conductor!70!fondo/1, 1.15/acentoC!45!conductor/2, 0/conductor!70!fondo/3} {
+    \fill[\c, opacity=0.92] (0,0,\h) -- (\L,0,\h) -- (\L,\W,\h) -- (0,\W,\h) -- cycle;
+    \draw[texto, line width=0.5pt] (0,0,\h) -- (\L,0,\h) -- (\L,\W,\h) -- (0,\W,\h) -- cycle;
+    \node[etiq, anchor=west] at (\L+0.15,\W,\h) {$\phi_{\n}$};
+  }
+  \draw[cota] (-0.3,0,2.0) -- (-0.3,0,1.15) node[midway, left, etiq] {$x$};
+  \draw[cota] (-0.3,0,1.15) -- (-0.3,0,0) node[midway, left, etiq] {$d-x$};
+  \draw[cota] (-1.85,0,2.0) -- (-1.85,0,0) node[midway, left, etiq] {$d$};
+  \draw[vecD] (1.5,1.1,1.15) -- (1.5,1.1,1.65);
+  \node[etiqm, font=\footnotesize, text=campoD, anchor=west] at (1.55,1.1,1.5) {$F$};
+  \node[etiqt, anchor=north] at (\L/2,0,-0.15) {área $S$};
+\end{tikzpicture}
+\caption{Geometría}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.56\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=7.4cm, height=5.0cm, xmin=0.18, xmax=0.92, ymin=-3.2, ymax=-0.85, grid=major,
+   xlabel={$x/d$}, ylabel={$U_{\mathrm{mec}}=-U_e$ \ (unid. $\eo SV_0^2/d$)}, xtick={0.2,0.4,0.625,0.8},
+   xticklabels={$0{,}2$,$0{,}4$,$x_{\mathrm{eq}}$,$0{,}8$}, ytick={-3,-2,-1}, clip=false]
+  \addplot[curvaD, domain=0.18:0.92, samples=120] {-0.5*(1/x + 0.36/(1-x))};
+  \draw[equipot] (axis cs:0.625,-3.2) -- (axis cs:0.625,-1.28);
+  \addplot[only marks, mark=*, mark size=1.7pt, color=acentoC] coordinates {(0.625,-1.28)};
+  \node[etiqf, font=\scriptsize, anchor=south] at (axis cs:0.625,-1.2) {máximo: equilibrio inestable};
+  \draw[vecE] (axis cs:0.52,-1.55) -- (axis cs:0.38,-1.8);
+  \draw[vecE] (axis cs:0.73,-1.55) -- (axis cs:0.82,-1.85);
+\end{axis}
+\end{tikzpicture}
+\caption{Energía potencial de la placa central}
+\end{subfigure}
+\caption{\Cref{prob:tres-placas}. (a) Tres placas de área $S$ a potenciales $\phi_1$, $\phi_2$ y $\phi_3$, con $\phi_2>\phi_1,\phi_3$; la central está a
+distancia $x$ de la superior. (b) A potencial constante, la fuerza es $F=+\partial U_e/\partial x$, de modo que el papel de energía
+potencial mecánica lo desempeña $-U_e$. Con $\phi_1=0$, $\phi_3=0{,}4V_0$ y $\phi_2=V_0$, $-U_e$ tiene un máximo en
+$x_{\mathrm{eq}}=d(\phi_2-\phi_1)/(2\phi_2-\phi_1-\phi_3)=0{,}625\,d$: cualquier desplazamiento aleja la placa del equilibrio (flechas), como
+predice el teorema de Earnshaw.}
+\label{fig:p55}
+\end{figure}

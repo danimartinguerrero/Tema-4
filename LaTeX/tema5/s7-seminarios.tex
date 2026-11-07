@@ -1,0 +1,378 @@
+% =============================================================================
+\section{Seminarios prácticos}\label{sec:seminarios}
+% =============================================================================
+
+Esta sección resuelve con detalle los problemas de la relación del tema~\cite{DFA-problemas} que corresponden a la primera parte: la energía en el
+vacío y en sistemas de conductores, y las fuerzas sobre conductores y distribuciones de carga. Los problemas 5.1(b), 5.6 y 5.10 involucran la
+energía en presencia de dieléctricos y se resolverán en la segunda parte. Cada problema sigue la estructura habitual: enunciado, idea, resolución
+paso a paso y comentario. La guía de métodos~\cite{Guia-T5} los recoge en formato de ficha.
+
+\subsection{Cómo plantear un problema de energía y fuerzas}\label{sec:plantear}
+
+\begin{table}[H]
+\centering
+\caption{Mapa de decisión: qué método conviene según lo que pide el enunciado.}\label{tab:decision}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{5.0cm}l@{}}
+\toprule
+Lo que pide el enunciado & Método & Problemas\\
+\midrule
+Energía de cargas puntuales o de una distribución con $\phi$ sencillo & M1. $\frac12\sum q_i\phi_i$,\ \ $\frac12\int\rho\phi\,\dd V$ & 5.1\\
+Energía con simetría, o en una región del espacio & M2. $\frac{\eo}{2}\int E^2\dd V$ & 5.1, 5.2\\
+Energía de conductores con cargas o potenciales dados & M3. $\frac12\sum Q_i\phi_i$, coeficientes $p_{ij}$ & 5.3\\
+Fuerza o par sobre un conductor & M4. Trabajos virtuales: $\mp\partial_\xi U_e$ & 5.4, 5.5, 5.9\\
+Fuerza sobre una distribución dada en un campo externo & M5. $\int\dd q\,\vE_{\mathrm{ext}}$ o $-\grad\Uint$ & 5.7, 5.8\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{metodo}{Los cinco métodos}
+\begin{description}[leftmargin=0pt, itemsep=0.35em, font=\normalfont\bfseries\color{acentoA}]
+  \item[M1. Cargas y potenciales.] Calcular el potencial total en cada carga (o en cada punto de la distribución) y aplicar
+        $U_e=\frac12\sum_iq_i\phi_i$ o $\frac12\int\rho\phi\,\dd V$. Si hay simetría, un solo potencial basta.
+  \item[M2. Campo.] Calcular $\vE$ en todo el espacio (Gauss, si hay simetría) e integrar $u_e=\frac{\eo}{2}E^2$ con el elemento de volumen adecuado:
+        $4\pi r^2\dd r$ (esférica), $2\pi\rho\ell\,\dd\rho$ (cilíndrica), $S\,\dd z$ (plana), o $r^2\sen\theta\,\dd r\,\dd\theta\,\dd\varphi$ en general.
+  \item[M3. Conductores.] $U_e=\frac12\sum_iQ_i\phi_i$ con los potenciales totales; con esferas lejanas, $p_{ii}\simeq k/R_i$ y $p_{ij}\simeq k/d_{ij}$ (Tema~3).
+  \item[M4. Trabajos virtuales.] Escribir $U_e(\xi)$ y derivar: $F_\xi=-\partial_\xi U_e|_Q$ (aislado) o $+\partial_\xi U_e|_\phi$ (baterías); para un condensador,
+        $F_\xi=\frac12V^2\,\dd C/\dd\xi$.
+  \item[M5. Distribución en un campo externo.] Si el campo externo $\vE_{\mathrm{ext}}$ es conocido y no cambia al mover el cuerpo, $\vF=\int\vE_{\mathrm{ext}}\,\dd q$; o bien
+        $\vF=-\grad\Uint$ con $\Uint=\int\phi_{\mathrm{ext}}\,\dd q$.
+\end{description}
+\end{metodo}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.1(a). Esfera uniformemente cargada}\label{sec:p51}
+
+\begin{problema}[Esfera uniformemente cargada]\label{prob:esfera-cargada}
+Calcula la energía electrostática asociada a una distribución uniforme de carga $Q$ en una esfera de radio $a$ cuando (a) tanto la esfera como el
+resto del espacio son el vacío.
+\end{problema}
+
+\begin{resolucion}
+\idea Simetría esférica: el campo sale de Gauss. Lo resolvemos con los dos métodos, M1 y M2, que deben coincidir.
+
+\paso{Paso 1: campo} Con una esfera gaussiana de radio $r$, la carga encerrada es $Q(r/a)^3$ si $r<a$ y $Q$ si $r>a$:
+\[
+  \vE=\frac{Q\,r}{4\pi\eo a^3}\,\uv r\quad(r<a),\qquad \vE=\frac{Q}{4\pi\eo r^2}\,\uv r\quad(r>a).
+\]
+\paso{Paso 2: potencial (para M1)} Fuera, $\phi=Q/(4\pi\eo r)$. Dentro, integrando desde el infinito por los dos tramos,
+\[
+  \begin{aligned}
+  \phi(r)&=-\int_\infty^a\frac{Q}{4\pi\eo r'^2}\,\dd r'-\int_a^r\frac{Q\,r'}{4\pi\eo a^3}\,\dd r'\\
+         &=\frac{Q}{4\pi\eo a}+\frac{Q}{8\pi\eo a^3}\big(a^2-r^2\big)=\frac{Q}{8\pi\eo a^3}\big(3a^2-r^2\big).
+  \end{aligned}
+\]
+\paso{Método 1: $\frac12\int\rho\phi\,\dd V$} Con $\rho=\dfrac{Q}{\frac43\pi a^3}=\dfrac{3Q}{4\pi a^3}$ y $\dd V=4\pi r^2\dd r$,
+\[
+  \begin{aligned}
+  U_e&=\frac12\int_0^a\frac{3Q}{4\pi a^3}\,\frac{Q}{8\pi\eo a^3}\big(3a^2-r^2\big)\,4\pi r^2\,\dd r\\
+     &=\frac{3Q^2}{16\pi\eo a^6}\int_0^a\big(3a^2r^2-r^4\big)\dd r=\frac{3Q^2}{16\pi\eo a^6}\Big(a^5-\frac{a^5}{5}\Big).
+  \end{aligned}
+\]
+\paso{Método 2: $\frac{\eo}{2}\int E^2\dd V$} Hay que integrar en todo el espacio, dentro y fuera:
+\[
+  \begin{aligned}
+  U_e&=\frac{\eo}{2}\Big(\frac{Q}{4\pi\eo}\Big)^2 4\pi\left[\frac{1}{a^6}\int_0^a r^4\,\dd r+\int_a^\infty\frac{\dd r}{r^2}\right]\\
+     &=\frac{Q^2}{8\pi\eo}\Big(\frac{1}{5a}+\frac1a\Big)=\frac{Q^2}{8\pi\eo a}\cdot\frac65 .
+  \end{aligned}
+\]
+Ambos dan
+\begin{equation}\label{eq:p51}
+  \recuadro{U_e=\frac{3Q^2}{20\pi\eo a}=\frac35\,\frac{Q^2}{4\pi\eo a}.}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Interpretación]\label{obs:p51}
+(a) El método 2 muestra el reparto: $\frac16$ de la energía está dentro de la esfera y $\frac56$ fuera (\cref{fig:p51}). (b) La esfera maciza almacena $\frac65$ de la
+energía de una corteza con la misma carga y radio, $Q^2/8\pi\eo a$: tiene además el campo interior. (c) Es la energía de formación de un núcleo atómico
+modelado como esfera uniforme de protones; de ella procede el término coulombiano de la fórmula semiempírica de masas~\cite{Griffiths}.
+(d) Trampa: en el método 1 basta integrar donde hay carga ($r<a$); en el método 2 hay que integrar donde hay campo, es decir, en todo el espacio.
+\end{observacion}
+
+\input{figuras5/f-p51}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.2. Energía del campo de un dipolo fuera de una esfera}\label{sec:p52}
+
+\begin{problema}[Dipolo en el centro de una esfera]\label{prob:dipolo}
+Calcula la energía electrostática almacenada en la región exterior a una esfera de radio $a$ en cuyo centro hay un dipolo de momento $\vp$.
+\end{problema}
+
+\begin{resolucion}
+\idea Se pide la energía de una \emph{región}, no de todo el sistema: solo tiene sentido con la densidad de energía (método M2).
+
+\paso{Paso 1: campo del dipolo} Con $\vp$ según el eje polar~\cite{T2},
+\[
+  \vE=\frac{p}{4\pi\eo r^3}\big(2\cos\theta\,\uv r+\sen\theta\,\uv\theta\big),\qquad
+  E^2=\Big(\frac{p}{4\pi\eo r^3}\Big)^2\big(3\cos^2\theta+1\big),
+\]
+pues $4\cos^2\theta+\sen^2\theta=3\cos^2\theta+1$.
+\paso{Paso 2: integral en $r>a$} Con $\dd V=r^2\sen\theta\,\dd r\,\dd\theta\,\dd\varphi$ y $u=\cos\theta$,
+\[
+  \begin{aligned}
+  U_e&=\frac{\eo}{2}\Big(\frac{p}{4\pi\eo}\Big)^2\int_0^{2\pi}\!\dd\varphi\int_{-1}^{1}\big(3u^2+1\big)\dd u\int_a^\infty\frac{r^2\,\dd r}{r^6}\\
+     &=\frac{p^2}{32\pi^2\eo}\cdot2\pi\cdot\Big[u^3+u\Big]_{-1}^{1}\cdot\Big[-\frac{1}{3r^3}\Big]_a^\infty .
+  \end{aligned}
+\]
+Como $\big[u^3+u\big]_{-1}^{1}=2-(-2)=4$ y la integral radial vale $1/(3a^3)$,
+\begin{equation}\label{eq:p52}
+  \recuadro{U_e(r>a)=\frac{p^2}{32\pi^2\eo}\cdot2\pi\cdot4\cdot\frac{1}{3a^3}=\frac{p^2}{12\pi\eo a^3}.}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Divergencia y anisotropía]\label{obs:p52}
+Si $a\to0$, la energía diverge como $a^{-3}$: la energía propia de un dipolo puntual es infinita, como la de una carga puntual. Por eso no se puede
+calcular con $\frac12\int\rho\phi$, que exigiría la estructura interna del dipolo. La densidad de energía es cuatro veces mayor en el eje que en el plano
+ecuatorial (\cref{fig:p52}).
+\end{observacion}
+
+\input{figuras5/f-p52}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.3. Dos esferas conductoras lejanas}\label{sec:p53}
+
+\begin{problema}[Dos esferas con cargas opuestas]\label{prob:dos-esferas}
+Sean dos esferas conductoras de radios $a$ y $b$ separadas una distancia $d$ ($a,b\ll d$) y con cargas $+Q$ y $-Q$, respectivamente. Calcula la energía del
+sistema.
+\end{problema}
+
+\begin{resolucion}
+\idea Sistema de dos conductores (método M3). Como están lejos, cada esfera ve a la otra como una carga puntual y su carga sigue repartida casi
+uniformemente: $p_{11}\simeq k/a$, $p_{22}\simeq k/b$, $p_{12}\simeq k/d$ (Tema~3).
+
+\paso{Paso 1: potenciales} Cada esfera tiene el potencial de su propia carga más el de la otra, vista como puntual:
+\[
+  \phi_1=k\Big(\frac Qa-\frac Qd\Big),\qquad \phi_2=k\Big(-\frac Qb+\frac Qd\Big).
+\]
+\paso{Paso 2: energía}
+\[
+  U_e=\frac12\big(Q_1\phi_1+Q_2\phi_2\big)=\frac12Q\big(\phi_1-\phi_2\big)=\frac12\,kQ^2\Big[\frac1a-\frac1d-\Big(-\frac1b+\frac1d\Big)\Big],
+\]
+\begin{equation}\label{eq:p53}
+  \recuadro{U_e=\frac{Q^2}{8\pi\eo}\Big(\frac1a+\frac1b-\frac2d\Big)=\frac{Q^2}{8\pi\eo}\Big(\frac{a+b}{ab}-\frac2d\Big).}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Energía total y de interacción]\label{obs:p53}
+El resultado separa sus dos contribuciones: $\frac{Q^2}{8\pi\eo a}+\frac{Q^2}{8\pi\eo b}$ son las energías de formación de cada esfera (\cref{ej:esfera-aislada}) y
+$-\frac{Q^2}{4\pi\eo d}$ es la energía de interacción, la de dos cargas puntuales opuestas, negativa porque se atraen. La energía total es positiva, como
+debe ser, porque $d\gg a,b$. Si se hubiera usado la fórmula de cargas puntuales, solo se habría obtenido el último término. Equivalentemente, el sistema
+es un condensador de capacidad $C=Q/(\phi_1-\phi_2)=\big[k\big(\frac1a+\frac1b-\frac2d\big)\big]^{-1}$, y $U_e=Q^2/2C$.
+\end{observacion}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.4. Fuerza entre las placas de un condensador}\label{sec:p54}
+
+\begin{problema}[Fuerza entre placas]\label{prob:fuerza-placas}
+Calcula las fuerzas de atracción entre las placas de un condensador plano.
+\end{problema}
+
+\begin{resolucion}
+\idea Trabajos virtuales con la separación $x$ como coordenada (método M4), a carga constante y a potencial constante; deben coincidir. Sean $S$ el
+área, $\pm Q$ las cargas y $C(x)=\eo S/x$.
+
+\paso{A carga constante} $U_e=\dfrac{Q^2}{2C}=\dfrac{Q^2x}{2\eo S}$, y
+\[
+  F_x=-\frac{\partial U_e}{\partial x}\bigg|_Q=-\frac{Q^2}{2\eo S}.
+\]
+\paso{A potencial constante} $U_e=\tfrac12CV^2=\dfrac{\eo SV^2}{2x}$, y
+\[
+  F_x=+\frac{\partial U_e}{\partial x}\bigg|_V=-\frac{\eo SV^2}{2x^2}=-\frac{CV^2}{2x}.
+\]
+\paso{Coincidencia} Con $Q=CV$ y $C=\eo S/d$ en la separación real $x=d$: $\dfrac{Q^2}{2\eo S}=\dfrac{C^2V^2}{2\eo S}=\dfrac{CV^2}{2d}$. Por tanto,
+\begin{equation}\label{eq:p54}
+  \recuadro{F_x=-\frac{Q^2}{2\eo S}=-\frac{CV^2}{2d}=-\frac{\sigma^2}{2\eo}\,S .}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Signo y origen físico]\label{obs:p54}
+El signo negativo indica que la fuerza tiende a reducir $x$: las placas se atraen. Es la presión electrostática $\sigma^2/2\eo$ del Tema~3 multiplicada por el
+área (\cref{ej:presion}). También puede verse directamente: la carga $Q$ de una placa está en el campo de la otra, $\sigma/2\eo$ (no en el campo total $\sigma/\eo$,
+que incluye el de la propia placa), y $F=Q\,\sigma/2\eo$. A carga constante la fuerza no depende de la separación; a potencial constante crece como $1/x^2$
+al acercarlas, porque la batería aporta más carga.
+\end{observacion}
+
+\input{figuras5/f-p53-p54}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.5. Equilibrio de la placa central}\label{sec:p55}
+
+\begin{problema}[Tres placas a potenciales fijos]\label{prob:tres-placas}
+Tres placas metálicas paralelas de área $S$ están conectadas a potenciales $\phi_1$, $\phi_2$ y $\phi_3$ tales que $\phi_2>\phi_1,\phi_3$, como se indica en la
+\cref{fig:p55}. Calcula la posición de equilibrio de la placa central.
+\end{problema}
+
+\begin{resolucion}
+\idea Las placas están unidas a baterías: trabajos virtuales a potencial constante (método M4), con $x$ la distancia de la placa central a la superior
+(placa 1) y $d$ la separación total. Despreciamos los efectos de borde.
+
+\paso{Paso 1: energía en función de $x$} Entre las placas 1 y 2 hay un campo uniforme $E_1=(\phi_2-\phi_1)/x$ en el volumen $Sx$, y entre la 2 y la 3,
+$E_2=(\phi_2-\phi_3)/(d-x)$ en el volumen $S(d-x)$. Con la densidad de energía,
+\[
+  U_e=\frac{\eo}{2}E_1^2\,Sx+\frac{\eo}{2}E_2^2\,S(d-x)=\frac{\eo S}{2}\left[\frac{(\phi_2-\phi_1)^2}{x}+\frac{(\phi_2-\phi_3)^2}{d-x}\right].
+\]
+Es la energía de dos condensadores, $\frac12C_1V_1^2+\frac12C_2V_2^2$, con $C_1=\eo S/x$ y $C_2=\eo S/(d-x)$.
+
+\paso{Paso 2: fuerza a potencial constante}
+\[
+  F_x=+\frac{\partial U_e}{\partial x}\bigg|_\phi=\frac{\eo S}{2}\left[-\frac{(\phi_2-\phi_1)^2}{x^2}+\frac{(\phi_2-\phi_3)^2}{(d-x)^2}\right].
+\]
+El primer término tira de la placa hacia la placa 1 (reduce $x$) y el segundo hacia la placa 3: cada placa atrae a la central.
+
+\paso{Paso 3: equilibrio} $F_x=0$ exige $\dfrac{\phi_2-\phi_1}{x}=\dfrac{\phi_2-\phi_3}{d-x}$ (ambas diferencias son positivas), es decir, que los campos a ambos lados
+sean iguales. Despejando,
+\begin{equation}\label{eq:p55}
+  \recuadro{x_{\mathrm{eq}}=\frac{d\,(\phi_2-\phi_1)}{2\phi_2-\phi_1-\phi_3}.}
+\end{equation}
+\end{resolucion}
+
+\begin{observacion}[Estabilidad]\label{obs:p55}
+Derivando otra vez,
+\[
+  \frac{\partial F_x}{\partial x}=\eo S\left[\frac{(\phi_2-\phi_1)^2}{x^3}+\frac{(\phi_2-\phi_3)^2}{(d-x)^3}\right]>0 :
+\]
+si la placa se desplaza hacia abajo, la fuerza la empuja
+aún más hacia abajo, y al revés. El equilibrio es inestable, como exige el teorema de Earnshaw: a potencial constante, $-U_e$ hace de energía potencial
+mecánica y presenta un máximo en $x_{\mathrm{eq}}$ (\cref{fig:p55}). En un acelerómetro, unos muelles proporcionan la estabilidad (\cref{ej:acelerometro}). Comprobación: si
+$\phi_1=\phi_3$, $x_{\mathrm{eq}}=d/2$, como exige la simetría.
+\end{observacion}
+
+\input{figuras5/f-p55}
+
+% -----------------------------------------------------------------------------
+\setcounter{problema}{6}
+\subsection{Problema 5.7. Barra cargada en el eje de un anillo}\label{sec:p57}
+
+\begin{problema}[Barra y anillo]\label{prob:barra-anillo}
+Una barra cilíndrica delgada está uniformemente cargada con una carga $Q$ y tiene una longitud $2\ell$. A una distancia $z_0$ del centro de la barra y
+perpendicular a esta se coloca un anillo de radio $a$ con carga $Q'$ uniformemente repartida. ¿Qué fuerza experimenta la barra?
+\end{problema}
+
+\begin{resolucion}
+\idea La barra está sobre el eje del anillo, donde conocemos su campo. La fuerza sobre la barra es la suma de las fuerzas sobre cada elemento de carga en el
+campo del anillo (método M5); la comprobamos con la energía de interacción. Tomamos el anillo en el plano $z=0$ y la barra sobre el eje $z$, entre
+$z_0-\ell$ y $z_0+\ell$ (\cref{fig:p57}).
+
+\paso{Paso 1: campo del anillo en su eje}~\cite{T1}
+\[
+  \vE_{\mathrm{anillo}}(z)=\frac{Q'}{4\pi\eo}\,\frac{z}{(a^2+z^2)^{3/2}}\,\uv z .
+\]
+\paso{Paso 2: fuerza sobre la barra} Con $\lambda=Q/2\ell$ y $\dd q=\lambda\,\dd z$,
+\[
+  \vF=\int_{z_0-\ell}^{z_0+\ell}\lambda\,\vE_{\mathrm{anillo}}(z)\,\dd z=\frac{\lambda Q'}{4\pi\eo}\left[-\frac{1}{\sqrt{a^2+z^2}}\right]_{z_0-\ell}^{z_0+\ell}\uv z ,
+\]
+\begin{equation}\label{eq:p57}
+  \recuadro{\vF=\frac{QQ'}{8\pi\eo\ell}\left[\frac{1}{\sqrt{a^2+(z_0-\ell)^2}}-\frac{1}{\sqrt{a^2+(z_0+\ell)^2}}\right]\uv z .}
+\end{equation}
+\paso{Comprobación con la energía de interacción} Con $\phi_{\mathrm{anillo}}(z)=\dfrac{Q'}{4\pi\eo\sqrt{a^2+z^2}}$, la energía de interacción es
+$\Uint(z_0)=\int_{z_0-\ell}^{z_0+\ell}\lambda\,\phi_{\mathrm{anillo}}\,\dd z$, y por la regla de Leibniz,
+\[
+  F_z=-\frac{\dd\Uint}{\dd z_0}=-\lambda\big[\phi_{\mathrm{anillo}}(z_0+\ell)-\phi_{\mathrm{anillo}}(z_0-\ell)\big],
+\]
+que es \eqref{eq:p57}.
+\end{resolucion}
+
+\begin{observacion}[Límites]\label{obs:p57}
+Si $z_0=0$, la fuerza es nula por simetría. Si $z_0\gg\ell,a$, con $f(z)=(a^2+z^2)^{-1/2}$, $f(z_0-\ell)-f(z_0+\ell)\simeq-2\ell f'(z_0)\simeq2\ell/z_0^2$, y $F\simeq QQ'/(4\pi\eo z_0^2)$: la ley de
+Coulomb entre dos cargas puntuales. La fuerza sobre el anillo es la opuesta, por la tercera ley de Newton.
+\end{observacion}
+
+\input{figuras5/f-p57}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.8. Fuerza sobre un dipolo}\label{sec:p58}
+\input{figuras5/f-p58-p59}
+
+\begin{problema}[Fuerza sobre un dipolo rígido]\label{prob:dipolo-fuerza}
+Demuestra que la fuerza que actúa sobre un dipolo rígido de momento $\vp$ sometido a un campo $\vE$ es de la forma
+\[
+  \vF=\big(\vp\cdot\grad\big)\vE=\Big(p_x\frac{\partial}{\partial x}+p_y\frac{\partial}{\partial y}+p_z\frac{\partial}{\partial z}\Big)\big(E_x\uv x+E_y\uv y+E_z\uv z\big).
+\]
+\end{problema}
+
+\begin{resolucion}
+\idea Dos demostraciones: sumando las fuerzas sobre las dos cargas, y derivando la energía de interacción del dipolo con el campo (método M5).
+
+\paso{Demostración 1: fuerzas sobre las cargas} Sea el dipolo formado por $-q$ en $\vr$ y $+q$ en $\vr+\vec d$, con $\vp=q\vec d$ fijo (\cref{fig:p58-p59}\,(a)). La fuerza total
+es $\vF=q\big[\vE(\vr+\vec d)-\vE(\vr)\big]$. Desarrollando cada componente en serie de Taylor hasta primer orden,
+\[
+  E_i(\vr+\vec d)=E_i(\vr)+\vec d\cdot\grad E_i+\mathcal O(d^2)\quad\Longrightarrow\quad F_i=q\,\vec d\cdot\grad E_i=\big(\vp\cdot\grad\big)E_i ,
+\]
+y en el límite de dipolo puntual ($d\to0$ con $p$ constante) el resto se anula.
+
+\paso{Demostración 2: energía} La energía de interacción del dipolo con el campo externo es $\Uint=q\phi(\vr+\vec d)-q\phi(\vr)\simeq\vp\cdot\grad\phi=-\vp\cdot\vE$ (Tema~4), y
+$\vF=-\grad\Uint=\grad(\vp\cdot\vE)$. Con $\vp$ constante, la identidad del gradiente de un producto escalar da
+\[
+  \grad(\vp\cdot\vE)=\big(\vp\cdot\grad\big)\vE+\vp\times\big(\rot\vE\big)=\big(\vp\cdot\grad\big)\vE ,
+\]
+pues el campo electrostático es irrotacional. \qedhere
+\end{resolucion}
+
+\begin{observacion}[Campo uniforme y no uniforme]\label{obs:p58}
+En un campo uniforme la fuerza es nula y solo queda el par $\vtau=\vp\times\vE$ del Tema~4. En un campo no uniforme, un dipolo alineado con el campo es atraído hacia
+las regiones de campo más intenso: es el principio de la dielectroforesis, que se tratará en la segunda parte.
+\end{observacion}
+
+% -----------------------------------------------------------------------------
+\subsection{Problema 5.9. Condensador cilíndrico con el cilindro interior móvil}\label{sec:p59}
+
+\begin{problema}[Condensador coaxial]\label{prob:coaxial}
+En un condensador cilíndrico como el de la \cref{fig:p58-p59}\,(b) se conectan las armaduras a una diferencia de potencial $V_0$. Despreciando el efecto de bordes,
+calcula la fuerza que experimenta el cilindro de menor radio.
+\end{problema}
+
+\begin{resolucion}
+\idea Batería: trabajos virtuales a potencial constante (método M4) con la longitud introducida $x$ como coordenada. Basta conocer $C(x)$.
+
+\paso{Paso 1: capacidad} Despreciando los bordes, la parte solapada, de longitud $x$, es un condensador cilíndrico de radios $R_1>R_2$, y el resto del sistema aporta una
+capacidad $C_0$ que no depende de $x$:
+\[
+  C(x)=\frac{2\pi\eo\,x}{\ln(R_1/R_2)}+C_0 .
+\]
+\paso{Paso 2: fuerza} Por el \cref{cor:fuerza-condensador},
+\begin{equation}\label{eq:p59}
+  \recuadro{F_x=\frac12V_0^2\,\frac{\dd C}{\dd x}=\frac{\pi\eo V_0^2}{\ln(R_1/R_2)} ,}
+\end{equation}
+positiva: tiende a aumentar $x$, es decir, a introducir el cilindro interior.
+\end{resolucion}
+
+\begin{observacion}[Una fuerza constante]\label{obs:p59}
+La fuerza no depende de $x$: al introducir el cilindro, solo se añade un tramo más de condensador idéntico a los anteriores; los efectos de borde, que
+dependen de la geometría de los extremos, no cambian. A carga constante se obtendría $F=\frac{Q^2}{2C^2}\dd C/\dd x$, que sí depende de $x$ a través de $C$, pero que coincide
+con \eqref{eq:p59} en cada configuración con $V_0=Q/C$ (\cref{prop:equivalencia}).
+\end{observacion}
+
+% -----------------------------------------------------------------------------
+\subsection{Resumen de resultados y lista de control}\label{sec:resumen-seminarios}
+
+\begin{table}[H]
+\centering
+\caption{Resultados de los seminarios del Tema 5 (primera parte).}\label{tab:resultados}
+\small
+\renewcommand{\arraystretch}{1.95}
+\begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}Xc@{}}
+\toprule
+Problema & Resultado & Método\\
+\midrule
+5.1(a) & $U_e=\dfrac{3Q^2}{20\pi\eo a}$ \quad ($\tfrac16$ dentro, $\tfrac56$ fuera) & M1, M2\\
+5.2 & $U_e(r>a)=\dfrac{p^2}{12\pi\eo a^3}$ & M2\\
+5.3 & $U_e=\dfrac{Q^2}{8\pi\eo}\Big(\dfrac{a+b}{ab}-\dfrac2d\Big)$ & M3\\
+5.4 & $F=-\dfrac{Q^2}{2\eo S}=-\dfrac{CV^2}{2d}$ (atractiva) & M4\\
+5.5 & $x_{\mathrm{eq}}=\dfrac{d(\phi_2-\phi_1)}{2\phi_2-\phi_1-\phi_3}$ (inestable) & M4\\
+5.7 & $\vF=\dfrac{QQ'}{8\pi\eo\ell}\Big[\dfrac{1}{\sqrt{a^2+(z_0-\ell)^2}}-\dfrac{1}{\sqrt{a^2+(z_0+\ell)^2}}\Big]\uv z$ & M5\\
+5.8 & $\vF=(\vp\cdot\grad)\vE=\grad(\vp\cdot\vE)$ & M5\\
+5.9 & $F=\dfrac{\pi\eo V_0^2}{\ln(R_1/R_2)}$ (hacia dentro) & M4\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{metodo}{Lista de control}
+\begin{itemize}
+  \item ¿Es energía de interacción ($\frac12\sum q_i\phi_i$, sin términos propios) o total ($\frac12\int\rho\phi$, $\frac{\eo}{2}\int E^2$, $\frac12\sum Q_i\phi_i$)? ¿Tiene el signo esperado?
+  \item Con $\frac{\eo}{2}\int E^2$, ¿he integrado en \emph{todo} el espacio donde hay campo, dentro y fuera?
+  \item ¿He usado el campo \emph{total} al cuadrado, sin sumar energías por separado?
+  \item En $\frac12\sum Q_i\phi_i$, ¿es $\phi_i$ el potencial total del conductor, incluida su propia carga?
+  \item En las fuerzas: ¿está el sistema aislado ($-\partial_\xi U_e|_Q$) o conectado a baterías ($+\partial_\xi U_e|_\phi$)? ¿He derivado con la variable correcta constante?
+  \item ¿Coincide la fuerza por las dos vías y tiene el signo esperado ($C$ tiende a aumentar)? ¿Recupero los límites (cargas lejanas, simetría)?
+\end{itemize}
+\end{metodo}

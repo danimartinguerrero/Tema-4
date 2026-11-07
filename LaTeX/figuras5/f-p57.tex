@@ -1,0 +1,44 @@
+% Figura: problema 5.7. Barra cargada (Q, longitud 2l) a lo largo del eje de un
+% anillo (Q', radio a); fuerza sobre la barra en función de la altura z0 de su centro.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.42\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  % anillo en perspectiva
+  \draw[texto!45!fondo, line width=1.4pt] (0,0) ellipse (1.6 and 0.42);
+  \draw[acentoB, line width=1.6pt] (-1.6,0) arc (180:360:1.6 and 0.42);
+  % ejes
+  \draw[tenue, line width=0.45pt, -{Stealth[length=1.6mm]}] (0,0) -- (2.4,0) node[below, etiqt] {$y$};
+  \draw[tenue, line width=0.45pt, -{Stealth[length=1.6mm]}] (0,0) -- (-1.1,-0.85) node[left, etiqt] {$x$};
+  % barra
+  \fill[campoP!80!fondo] (-0.06,-0.55) rectangle (0.06,2.75);
+  \draw[texto, line width=0.4pt] (-0.06,-0.55) rectangle (0.06,2.75);
+  \draw[tenue, line width=0.45pt, -{Stealth[length=1.6mm]}] (0,2.75) -- (0,3.25) node[left, etiqt] {$z$};
+  \fill[texto] (0,1.1) circle (0.035);
+  \draw[cota] (0.45,-0.55) -- (0.45,2.75) node[pos=0.78, right, etiq] {$2\ell$};
+  \draw[cota] (-0.4,0) -- (-0.4,1.1) node[midway, left, etiq] {$z_0$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.4mm]}] (0,0) -- (1.05,-0.33);
+  \node[etiq, anchor=north] at (0.75,-0.38) {$a$};
+  \node[etiq, text=campoP, anchor=west] at (0.1,2.35) {$Q$};
+  \node[etiq, text=acentoB, anchor=north west] at (1.25,-0.32) {$Q'$};
+\end{tikzpicture}
+\caption{Geometría}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.54\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=7.2cm, height=5.0cm, xmin=-4, xmax=4, ymin=-1.75, ymax=1.75, grid=major,
+   xlabel={$z_0/\ell$}, ylabel={$F_z\big/\frac{QQ'}{8\pi\eo\ell^2}$}, xtick={-4,-2,0,2,4}, ytick={-1.5,-1,-0.5,0,0.5,1,1.5},
+   legend style={at={(0.02,0.98)}, anchor=north west, font=\scriptsize}]
+  \addplot[curvaE, domain=-4:4, samples=241] {1/sqrt(0.25+(x-1)^2)-1/sqrt(0.25+(x+1)^2)};
+  \addlegendentry{$a=\ell/2$}
+  \addplot[curvaD, domain=-4:4, samples=241] {1/sqrt(1+(x-1)^2)-1/sqrt(1+(x+1)^2)};
+  \addlegendentry{$a=\ell$}
+\end{axis}
+\end{tikzpicture}
+\caption{Fuerza sobre la barra}
+\end{subfigure}
+\caption{\Cref{prob:barra-anillo}. (a) Barra de longitud $2\ell$ y carga $Q$ sobre el eje de un anillo de radio $a$ y carga $Q'$, con su centro a altura
+$z_0$. (b) Fuerza axial sobre la barra (cargas del mismo signo): es repulsiva, impar en $z_0$ y nula cuando la barra está centrada
+en el anillo. Para $\abs{z_0}\gg\ell,a$ decae como $QQ'/(4\pi\eo z_0^2)$, la ley de Coulomb entre dos cargas puntuales.}
+\label{fig:p57}
+\end{figure}

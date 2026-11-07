@@ -1,0 +1,43 @@
+% Figura: problemas 5.3 (dos esferas lejanas con cargas opuestas) y 5.4 (fuerza
+% entre las placas de un condensador plano).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.5\textwidth}\centering
+\begin{tikzpicture}[scale=0.92]
+  \shade[ball color=conductorluz] (0,0) circle (0.45);
+  \draw[texto, line width=0.5pt] (0,0) circle (0.45);
+  \shade[ball color=conductorluz] (4.6,0) circle (0.3);
+  \draw[texto, line width=0.5pt] (4.6,0) circle (0.3);
+  \draw[texto!60!fondo, line width=0.4pt, dashed] (0.45,0) -- (4.3,0);
+  \node[cpos, font=\small] at (0,0.75) {$+Q$};
+  \node[cneg, font=\small] at (4.6,0.6) {$-Q$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.4mm]}] (0,0) -- (-130:0.45);
+  \node[etiq, anchor=north east] at (-130:0.48) {$a$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.4mm]}] (4.6,0) -- ++(-50:0.3);
+  \node[etiq, anchor=north west] at ($(4.6,0)+(-50:0.33)$) {$b$};
+  \draw[cota] (0,-0.95) -- (4.6,-0.95) node[midway, below, etiq] {$d\gg a,\,b$};
+\end{tikzpicture}
+\caption{Problema 5.3}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\textwidth}\centering
+\begin{tikzpicture}[scale=0.92]
+  \fill[conductor] (0,1.6) rectangle (3.6,1.75);
+  \fill[conductor] (0,-0.15) rectangle (3.6,0);
+  \draw[texto, line width=0.5pt] (0,1.6) rectangle (3.6,1.75) (0,-0.15) rectangle (3.6,0);
+  \node[etiq, anchor=west] at (3.7,1.68) {$+Q$};
+  \node[etiq, anchor=west] at (3.7,-0.08) {$-Q$};
+  \foreach \x in {0.5,1.3,2.1,2.9} \draw[campoE, line width=0.55pt, flechamedio=0.55] (\x,1.55) -- (\x,0.05);
+  \draw[vecD] (1.8,1.8) -- (1.8,1.25);
+  \draw[vecD] (1.8,-0.2) -- (1.8,0.35);
+  \node[etiqm, font=\footnotesize, text=campoD, anchor=west] at (1.88,1.32) {$\vF$};
+  \node[etiqm, font=\footnotesize, text=campoD, anchor=west] at (1.88,0.3) {$-\vF$};
+  \draw[cota] (-0.35,0) -- (-0.35,1.6) node[midway, left, etiq] {$d$};
+  \node[etiq, anchor=south] at (1.0,1.78) {$S$};
+\end{tikzpicture}
+\caption{Problema 5.4}
+\end{subfigure}
+\caption{(a) Dos esferas conductoras de radios $a$ y $b$, con cargas $\pm Q$, separadas una distancia $d$ mucho mayor que sus radios
+(\cref{prob:dos-esferas}). (b) Condensador plano de área $S$ y separación $d$: las placas se atraen con una fuerza
+$F=Q^2/(2\eo S)$ que no depende de $d$ a carga constante (\cref{prob:fuerza-placas}).}
+\label{fig:p53-p54}
+\end{figure}

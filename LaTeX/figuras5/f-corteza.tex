@@ -1,0 +1,45 @@
+% Figura: energía de una corteza esférica conductora de radio a y carga Q:
+% densidad de energía u_e(r) y fracción de la energía almacenada fuera de r.
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  \shade[ball color=conductorluz] (0,0) circle (1.0);
+  \draw[texto, line width=0.5pt] (0,0) circle (1.0);
+  \foreach \t in {0,30,...,330} \node[cpos, font=\scriptsize\bfseries] at (\t:1.2) {$+$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.5mm]}] (0,0) -- (35:1.0);
+  \node[font=\small, text=black] at (35:0.45) [above left=-2pt] {$a$};
+  \node[etiq] at (0,-1.6) {$Q$, \ $\phi=\dfrac{Q}{4\pi\eo a}$};
+\end{tikzpicture}
+\caption{Corteza cargada}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.0cm, height=4.3cm, axis lines=left, xmin=0, xmax=4, ymin=0, ymax=1.15,
+   xlabel={$r/a$}, ylabel={$u_e/u_e(a^{+})$}, xtick={0,1,2,3,4}, ytick={0,0.5,1}]
+  \addplot[curvaE, domain=1:4, samples=80] {1/x^4};
+  \addplot[curvaE] coordinates {(0,0) (1,0)};
+  \draw[equipot] (axis cs:1,0) -- (axis cs:1,1.15);
+  \node[etiqt, anchor=west] at (axis cs:1.4,0.55) {$\propto r^{-4}$};
+\end{axis}
+\end{tikzpicture}
+\caption{Densidad de energía}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.33\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.0cm, height=4.3cm, axis lines=left, xmin=0, xmax=6, ymin=0, ymax=1.1,
+   xlabel={$r/a$}, ylabel={$U_e(>r)/U_e$}, xtick={0,1,2,4,6}, ytick={0,0.5,1}, grid=major]
+  \addplot[curvaD, domain=1:6, samples=80] {1/x};
+  \addplot[curvaD] coordinates {(0,1) (1,1)};
+  \addplot[only marks, mark=*, mark size=1.4pt, color=acentoC] coordinates {(2,0.5)};
+  \node[etiqf, font=\scriptsize, anchor=south west] at (axis cs:2.15,0.55) {$\tfrac12$ en $r>2a$};
+\end{axis}
+\end{tikzpicture}
+\caption{Energía fuera de $r$}
+\end{subfigure}
+\caption{\Cref{ej:corteza}. (a) Corteza esférica de radio $a$ con carga $Q$, equipotencial. (b) La densidad de energía
+$u_e=\frac{\eo}{2}E^2$ es nula dentro y decae como $r^{-4}$ fuera. (c) La energía almacenada fuera de una esfera de radio $r>a$
+es $U_e(>r)=Q^2/(8\pi\eo r)$: la mitad de la energía total está más allá de $r=2a$, lejos de la carga. Es la imagen que da
+la \cref{obs:localizacion}: la energía «vive» en el campo.}
+\label{fig:corteza}
+\end{figure}

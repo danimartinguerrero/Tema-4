@@ -1,0 +1,60 @@
+% Figura: problemas 5.8 (dipolo rígido en un campo no uniforme) y 5.9 (cilindro
+% interior de un condensador coaxial parcialmente introducido, a potencial fijo).
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.4\textwidth}\centering
+\begin{tikzpicture}[scale=1.0]
+  % líneas de un campo no uniforme (divergentes desde la izquierda)
+  \foreach \a in {-24,-12,0,12,24}
+    \draw[campoE!55!fondo, line width=0.45pt, flechamedio=0.92] (-1.9,0) -- ++(\a:4.3);
+  \coordinate (m) at (0.2,-0.25); \coordinate (p) at (1.25,0.35);
+  \draw[texto, line width=0.6pt] (m) -- (p);
+  \fill[carganeg] (m) circle (0.075); \fill[cargapos] (p) circle (0.075);
+  \draw[vecP, line width=1.1pt] (m) -- ($(m)!0.62!(p)$);
+  \node[etiqf, font=\footnotesize, anchor=south east] at ($(m)!0.42!(p)+(0,0.08)$) {$\vp=q\vec d$};
+  \draw[draw=cargapos, line width=1.0pt, -{Stealth[length=2mm]}] (p) -- ++(14:0.85);
+  \draw[draw=carganeg, line width=1.0pt, -{Stealth[length=2mm]}] (m) -- ++(186:1.05);
+  \node[etiqf, font=\footnotesize, anchor=south] at ($(p)+(0.55,0.25)$) {$q\vE(\vr+\vec d)$};
+  \node[etiqf, font=\footnotesize, anchor=north] at ($(m)+(-0.5,-0.22)$) {$-q\vE(\vr)$};
+\end{tikzpicture}
+\caption{Problema 5.8}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.56\textwidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  % cilindro exterior (radio R1, longitud l)
+  \fill[dielec] (0,-1.0) -- (4.2,-1.0) arc (-90:90:0.3 and 1.0) -- (0,1.0) arc (90:270:0.3 and 1.0);
+  \draw[borde] (0,-1.0) -- (4.2,-1.0) (0,1.0) -- (4.2,1.0);
+  \draw[borde] (0,0) ellipse (0.3 and 1.0);
+  \draw[borde] (4.2,0) ellipse (0.3 and 1.0);
+  % cilindro interior (radio R2), introducido una longitud x
+  \fill[conductor] (2.4,-0.45) rectangle (5.9,0.45);
+  \fill[conductor] (5.9,0) ellipse (0.135 and 0.45);
+  \draw[texto, line width=0.6pt] (2.4,-0.45) -- (5.9,-0.45) (2.4,0.45) -- (5.9,0.45);
+  \draw[texto, line width=0.6pt] (5.9,0) ellipse (0.135 and 0.45);
+  \draw[texto, line width=0.6pt] (2.4,0) ellipse (0.135 and 0.45);
+  \draw[texto!60!fondo, line width=0.4pt, dashed] (-0.6,0) -- (6.4,0);
+  % cotas
+  \draw[cota] (2.4,-1.3) -- (4.2,-1.3) node[midway, below, etiq] {$x$};
+  \draw[cota] (0,-1.85) -- (4.2,-1.85) node[midway, below, etiq] {$\ell$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.4mm]}] (0.5,0) -- (0.5,0.98);
+  \node[etiq, anchor=west] at (0.55,0.6) {$R_1$};
+  \draw[texto, line width=0.4pt, -{Stealth[length=1.4mm]}] (5.0,0) -- (5.0,0.43);
+  \node[font=\small, text=black, anchor=west] at (5.05,0.2) {$R_2$};
+  % fuerza
+  \draw[vecD] (5.25,-0.75) -- (4.45,-0.75);
+  \node[etiq, text=campoD, anchor=north] at (4.85,-0.8) {$F$};
+  % batería
+  \draw[texto, line width=0.55pt] (4.2,1.0) -- (4.2,1.55) -- (5.0,1.55);
+  \draw[texto, line width=1.1pt] (5.05,1.33) -- (5.05,1.77);
+  \draw[texto, line width=0.6pt] (5.25,1.42) -- (5.25,1.68);
+  \draw[texto, line width=0.55pt] (5.25,1.55) -- (6.3,1.55) -- (6.3,0) -- (6.04,0);
+  \node[etiq, anchor=south] at (5.15,1.8) {$V_0$};
+\end{tikzpicture}
+\caption{Problema 5.9}
+\end{subfigure}
+\caption{(a) Dipolo rígido $\vp=q\vec d$ en un campo no uniforme: las fuerzas sobre sus cargas no se compensan y la resultante es
+$(\vp\cdot\grad)\vE$ (\cref{prob:dipolo-fuerza}). (b) Condensador cilíndrico de longitud $\ell$ y radios $R_1>R_2$ con el cilindro interior
+introducido una longitud $x$; las armaduras están a diferencia de potencial $V_0$. El cilindro interior es atraído hacia dentro con una
+fuerza constante (\cref{prob:coaxial}).}
+\label{fig:p58-p59}
+\end{figure}

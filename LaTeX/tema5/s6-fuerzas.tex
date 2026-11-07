@@ -1,0 +1,165 @@
+% =============================================================================
+\section{Fuerzas electrostáticas sobre conductores}\label{sec:fuerzas}
+% =============================================================================
+
+Dos conductores cargados se ejercen fuerzas. En principio podrían calcularse con la ley de Coulomb, integrando la fuerza sobre cada
+elemento de superficie, o con la presión electrostática $\sigma^2/2\eo$ del Tema~3; pero la distribución de carga cambia al mover los
+conductores y el cálculo directo es casi siempre intratable. La alternativa es la conservación de la energía.
+
+\subsection{El teorema de Earnshaw}
+
+Si un conductor está en reposo y sobre él actúa una fuerza electrostática neta no nula, algo tiene que equilibrarla. El siguiente
+teorema muestra que ese algo no puede ser otra fuerza electrostática.
+
+\begin{teorema}[Earnshaw, 1842]\label{teo:earnshaw}
+Una carga puntual no puede estar en equilibrio estable bajo la acción exclusiva de fuerzas electrostáticas~\cite{Earnshaw}. En consecuencia, ningún
+sistema de cargas puede mantenerse en equilibrio estable solo por interacciones coulombianas.
+\end{teorema}
+
+\begin{proof}
+Sea $q>0$ una carga situada en $\vr_0$, en una región sin otras cargas, y sea $\phi$ el potencial creado por las demás. La energía potencial de
+$q$ es $q\phi(\vr)$. Para que $\vr_0$ fuese una posición de equilibrio estable, $q\phi$ debería tener allí un mínimo local estricto: cualquier
+desplazamiento debería aumentar la energía, de modo que la fuerza devolviera la carga a $\vr_0$. Ahora bien, en esa región $\phi$ satisface la
+ecuación de Laplace, $\lap\phi=0$, porque las cargas que lo crean están en otro sitio. Si $\phi$ tuviese un mínimo estricto en $\vr_0$, en sus
+proximidades sería
+\[
+  \frac{\partial^2\phi}{\partial x^2}\geq0,\qquad\frac{\partial^2\phi}{\partial y^2}\geq0,\qquad\frac{\partial^2\phi}{\partial z^2}\geq0,
+\]
+y como su suma es nula, las tres deberían anularse. Más rigurosamente, por la propiedad del valor medio de las funciones armónicas~\cite{T3,Kellogg},
+$\phi(\vr_0)$ es el promedio de $\phi$ sobre cualquier esfera centrada en $\vr_0$ contenida en la región, y un promedio no puede ser estrictamente
+menor que todos los valores promediados: $\phi$ no tiene mínimos ni máximos locales estrictos donde no hay carga. Para $q<0$ se razona igual con los
+máximos. Como el razonamiento vale para cada carga del sistema, el sistema tampoco puede estar en equilibrio estable.
+\end{proof}
+
+\begin{observacion}[Puntos de silla]\label{obs:silla}
+Sí puede haber puntos de \emph{equilibrio}, donde $\vE=\vcero$; pero son puntos de silla del potencial: estables en unas direcciones e inestables
+en otras (\cref{fig:earnshaw}). Por eso, junto a las fuerzas electrostáticas sobre un conductor en reposo, siempre debe actuar una fuerza
+mecánica (sujeciones, muelles, la cohesión del propio material) que las equilibre. Ya lo vimos en el Tema~3: la presión electrostática tiende a
+arrancar la carga de la superficie, y lo impide la ligadura del metal.
+\end{observacion}
+
+\input{figuras5/f-earnshaw}
+
+\subsection{El método de los trabajos virtuales}
+
+Imaginemos que uno de los conductores sufre un desplazamiento infinitesimal $\dl$ (o un giro $\dd\theta$), lento y reversible, mientras los
+demás permanecen fijos (\cref{fig:desplazamiento}). La fuerza electrostática sobre él realiza el trabajo
+\begin{equation}\label{eq:trabajo-mec}
+  \dd\Wmec=\vFe\cdot\dl \qquad(\text{o } \dd\Wmec=\vtau_e\cdot\dd\vec\theta \text{ en un giro}),
+\end{equation}
+y el balance de energía depende de qué se mantiene constante durante el desplazamiento. Estudiamos los dos casos más sencillos.
+
+\input{figuras5/f-desplazamiento}
+
+\begin{teorema}[Fuerza a carga constante]\label{teo:fuerza-Q}
+Si el sistema de conductores está aislado, de modo que las cargas $Q_i$ permanecen constantes, la fuerza electrostática y el momento sobre un
+conductor son
+\begin{equation}\label{eq:fuerza-Q}
+  \boxed{\;\vFe=-\grad U_e\big|_{Q}\;},\qquad F_\xi=-\frac{\partial U_e}{\partial\xi}\bigg|_{Q},\qquad \tau_\theta=-\frac{\partial U_e}{\partial\theta}\bigg|_{Q},
+\end{equation}
+donde el gradiente se toma respecto a las coordenadas que describen la posición del conductor. En función de los coeficientes de potencial,
+\begin{equation}\label{eq:fuerza-pij}
+  F_\xi=-\frac12\sum_{i,j}Q_iQ_j\,\frac{\partial p_{ij}}{\partial\xi} .
+\end{equation}
+\end{teorema}
+
+\begin{proof}
+Al estar aislado, no entra energía de fuera: el trabajo mecánico que realiza la fuerza electrostática se obtiene a costa de la energía
+almacenada,
+\[
+  \dd\Wmec+\dd U_e=0\quad\Longrightarrow\quad \vFe\cdot\dl=-\dd U_e\big|_Q .
+\]
+Como $U_e$ es función de la configuración, $\dd U_e=\grad U_e\cdot\dl$ y, al ser $\dl$ arbitrario, $\vFe=-\grad U_e|_Q$. Para un giro, $\tau_\theta\,\dd\theta=-\dd U_e|_Q$. Por
+último, con $U_e=\frac12\sum p_{ij}Q_iQ_j$ y las $Q_i$ constantes, solo dependen de la posición los coeficientes $p_{ij}$, que son puramente geométricos, y se obtiene
+\eqref{eq:fuerza-pij}.
+\end{proof}
+
+\begin{teorema}[Fuerza a potencial constante]\label{teo:fuerza-phi}
+Si cada conductor está unido a una batería que mantiene fijo su potencial $\phi_i$, la fuerza y el momento sobre un conductor son
+\begin{equation}\label{eq:fuerza-phi}
+  \boxed{\;\vFe=+\grad U_e\big|_{\phi}\;},\qquad F_\xi=+\frac{\partial U_e}{\partial\xi}\bigg|_{\phi},\qquad \tau_\theta=+\frac{\partial U_e}{\partial\theta}\bigg|_{\phi},
+  \qquad F_\xi=\frac12\sum_{i,j}\phi_i\phi_j\,\frac{\partial c_{ij}}{\partial\xi}.
+\end{equation}
+\end{teorema}
+
+\begin{proof}
+Ahora el sistema no está aislado. Para mantener los potenciales al desplazar el conductor, las baterías deben suministrar cargas $\dd Q_i$, trayéndolas
+desde un potencial nulo hasta $\phi_i$; por el \cref{lem:trabajo}, su trabajo es
+\[
+  \dd\Wbat=\sum_i\phi_i\,\dd Q_i .
+\]
+La variación de energía electrostática, con los $\phi_i$ fijos, es $\dd U_e=\dd\big(\frac12\sum_i\phi_iQ_i\big)=\frac12\sum_i\phi_i\,\dd Q_i=\frac12\dd\Wbat$. El balance de energía es
+\[
+  \begin{aligned}
+  \dd\Wmec+\dd U_e=\dd\Wbat\quad\Longrightarrow\quad \dd\Wmec&=\dd\Wbat-\dd U_e=\sum_i\phi_i\,\dd Q_i-\frac12\sum_i\phi_i\,\dd Q_i\\
+  &=\frac12\sum_i\phi_i\,\dd Q_i=\dd U_e\big|_\phi .
+  \end{aligned}
+\]
+Así $\vFe\cdot\dl=+\dd U_e|_\phi$ y $\vFe=+\grad U_e|_\phi$. La última forma se obtiene de $U_e=\frac12\sum c_{ij}\phi_i\phi_j$ con los $\phi_i$ constantes.
+\end{proof}
+
+\begin{observacion}[El reparto de la energía de las baterías]\label{obs:baterias}
+A potencial constante, de la energía que aportan las baterías, la mitad se convierte en trabajo mecánico y la otra mitad aumenta la energía
+almacenada en el campo. Por eso el signo cambia: el sistema evoluciona hacia estados de \emph{mayor} energía electrostática, porque las baterías
+pagan el doble de lo que se almacena. A carga constante, en cambio, el sistema tiende al mínimo de $U_e$.
+\end{observacion}
+
+\subsection{Las dos fórmulas dan la misma fuerza}
+
+El signo opuesto de \eqref{eq:fuerza-Q} y \eqref{eq:fuerza-phi} podría hacer pensar que la fuerza depende del proceso. No es así: la fuerza sobre un
+conductor depende solo de la configuración en un instante, de las cargas y de los campos que hay en ese momento, no de lo que vaya a ocurrir en el
+desplazamiento imaginario.
+
+\begin{proposicion}[Equivalencia de ambos métodos]\label{prop:equivalencia}
+En una misma configuración, con cargas $Q_i$ y potenciales $\phi_i$ relacionados por $\boldsymbol\phi=\mathsf P\boldsymbol Q$,
+\begin{equation}\label{eq:equivalencia}
+  -\frac{\partial U_e}{\partial\xi}\bigg|_{Q}=+\frac{\partial U_e}{\partial\xi}\bigg|_{\phi} .
+\end{equation}
+\end{proposicion}
+
+\begin{proof}
+Sea $\mathsf P(\xi)$ la matriz de coeficientes de potencial y $\mathsf C(\xi)=\mathsf P(\xi)^{-1}$ la de capacidad. Derivando $\mathsf C\mathsf P=\mathsf 1$ respecto a $\xi$ se obtiene
+$\mathsf C'\mathsf P+\mathsf C\mathsf P'=\mathsf 0$, es decir, $\mathsf C'=-\mathsf C\mathsf P'\mathsf C$. Entonces, con $\boldsymbol Q=\mathsf C\boldsymbol\phi$ y la simetría de $\mathsf C$,
+\[
+  \frac{\partial U_e}{\partial\xi}\bigg|_{\phi}=\frac12\,\boldsymbol\phi^{\mathsf T}\mathsf C'\boldsymbol\phi=-\frac12\,\boldsymbol\phi^{\mathsf T}\mathsf C\mathsf P'\mathsf C\boldsymbol\phi
+  =-\frac12\,\boldsymbol Q^{\mathsf T}\mathsf P'\boldsymbol Q=-\frac{\partial U_e}{\partial\xi}\bigg|_{Q}. \qedhere
+\]
+\end{proof}
+
+\begin{corolario}[Fuerza sobre una armadura de condensador]\label{cor:fuerza-condensador}
+Si la capacidad de un condensador depende de una coordenada $\xi$, la fuerza generalizada sobre la armadura móvil es
+\begin{equation}\label{eq:fuerza-C}
+  \boxed{\;F_\xi=\frac12\,V^2\,\frac{\dd C}{\dd\xi}=\frac{Q^2}{2C^2}\,\frac{\dd C}{\dd\xi}\;},
+\end{equation}
+y el momento, $\tau_\theta=\frac12V^2\,\dd C/\dd\theta$. El sistema tiende a aumentar su capacidad.
+\end{corolario}
+
+\begin{proof}
+A carga constante, $F_\xi=-\dfrac{\dd}{\dd\xi}\Big(\dfrac{Q^2}{2C}\Big)=\dfrac{Q^2}{2C^2}\dfrac{\dd C}{\dd\xi}$; a potencial constante, $F_\xi=\dfrac{\dd}{\dd\xi}\Big(\dfrac12CV^2\Big)=\dfrac12V^2\dfrac{\dd C}{\dd\xi}$.
+Ambas coinciden porque $Q=CV$.
+\end{proof}
+
+\begin{metodo}{Receta: fuerza por trabajos virtuales}
+\begin{pasos}
+  \item Elegir la coordenada $\xi$ que describe el movimiento posible (distancia, longitud introducida, ángulo).
+  \item Expresar la energía en función de $\xi$: $U_e=Q^2/2C(\xi)$ o $\frac12C(\xi)V^2$ para un condensador; en general $\frac{\eo}{2}\int E^2\dd V$ o
+        $\frac12\sum p_{ij}Q_iQ_j$.
+  \item Derivar con el signo que corresponda: $-\partial_\xi U_e$ a carga constante, $+\partial_\xi U_e$ a potencial constante.
+  \item Interpretar el signo: $F_\xi>0$ significa que la fuerza tiende a aumentar $\xi$.
+\end{pasos}
+\end{metodo}
+
+\begin{ejemplo}[Comprobación con la presión electrostática]\label{ej:presion}
+En un condensador plano de área $S$ con cargas $\pm Q$ y separación $\xi$, $C=\eo S/\xi$ y $F_\xi=\frac{Q^2}{2C^2}\frac{\dd C}{\dd\xi}=-\frac{Q^2}{2\eo S}$: las placas se atraen.
+Con la presión del Tema~3, cada placa sufre $P=\sigma^2/2\eo$ dirigida hacia el exterior del metal, es decir, hacia la otra placa:
+$F=\frac{\sigma^2}{2\eo}S=\frac{Q^2}{2\eo S}$. Coinciden (\cref{prob:fuerza-placas}).
+\end{ejemplo}
+
+\begin{ejemplo}[El acelerómetro capacitivo]\label{ej:acelerometro}
+Los acelerómetros de los teléfonos móviles son condensadores diferenciales microfabricados: una placa unida a una masa sísmica se mueve
+entre dos placas fijas, y la aceleración se mide por el desequilibrio $C_1-C_2$ (\cref{fig:acelerometro}). Las fuerzas electrostáticas sobre la
+placa móvil se calculan exactamente como en el \cref{prob:tres-placas}; y, por el teorema de Earnshaw, son los muelles los que proporcionan un
+equilibrio estable.
+\end{ejemplo}
+
+\input{figuras5/f-acelerometro}
