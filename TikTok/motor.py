@@ -256,6 +256,7 @@ class Video:
         self.golpes = []         # (t, intensidad): zoom punch
         self.destellos = []      # (t, intensidad, color)
         self.ondas = []          # (t, cy): onda expansiva de luz
+        self.deriva = 0.0        # zoom lento acumulado a lo largo del vídeo (versión tranquila)
 
     def clip(self, t0, t1):
         def deco(fn):
@@ -276,7 +277,7 @@ class Video:
             if t0 - 1e-6 <= t < t1 - 1e-6:          # tolerancia: sin huecos en los cortes
                 fn(L, t, t - t0, t1 - t0)
         # golpes de zoom (decaen en ~0,25 s)
-        z = 1.0
+        z = 1.0 + self.deriva * t / self.dur
         for tg, k in self.golpes:
             if 0 <= t - tg < 0.5:
                 z += k * math.exp(-(t - tg) / 0.09)

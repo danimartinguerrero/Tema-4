@@ -18,3 +18,13 @@ python3 edits.py todos              # renderiza la serie (≈ 4 min con 4 núcle
 python3 edits.py energia --preview  # fotogramas de control
 ```
 Requiere pdflatex, pdftocairo, ffmpeg, numpy, scipy y matplotlib.
+
+## Serie tranquila (`videos/tranquilos/`)
+
+Los mismos cuatro temas en seis bloques de 5 s (título, cuatro capítulos y cierre), con fundidos a negro,
+visuales que evolucionan de forma continua (la carga que llega, las cargas que se separan, la permitividad que
+crece, la cavidad que pasa de aguja a lenteja…), polvo de luz, un zoom muy lento y música ambient sin percusión.
+
+```
+python3 edits_calma.py todos
+```

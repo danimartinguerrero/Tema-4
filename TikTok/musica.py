@@ -231,3 +231,52 @@ def pista(raiz=50, progresion=((0, 3, 7), (-4, 0, 3), (3, 7, 10), (-2, 2, 5)), s
 if __name__ == "__main__":
     import sys
     pista(ruta=sys.argv[1] if len(sys.argv) > 1 else "pista.wav")
+
+
+# ============================================================= versión tranquila
+def pista_calma(raiz=50, progresion=((0, 3, 7, 14), (-4, 0, 3, 10), (3, 7, 10, 17), (-2, 2, 5, 12),
+                                     (5, 8, 12, 19), (0, 3, 7, 14)),
+                semilla=0, bloque=5.0, ruta="calma.wav"):
+    """Ambient sin percusión: colchones lentos, arpegio suave muy espaciado, campanas en
+    cada cambio de bloque y un aire de ruido rosa.  Bloques de 5 s (título, 4 capítulos, cierre)."""
+    rng = np.random.default_rng(semilla)
+    arm = np.zeros(N); melo = np.zeros(N); fx = np.zeros(N); grave = np.zeros(N)
+    nb = int(round(DUR / bloque))
+    paso = bloque / 8                                   # 0,625 s
+    patrones = [[0, None, 2, None, 3, 2, None, 1], [1, None, 3, 2, None, 0, None, 2],
+                [0, 2, None, 3, None, 1, None, None], [3, None, 2, None, 1, None, 0, None]]
+    for b in range(nb):
+        t0 = b * bloque
+        acorde = progresion[b % len(progresion)]
+        fs = [nota(raiz + s) for s in acorde]
+        x = pad(fs, bloque + 1.6)
+        n = len(x); tt = np.arange(n) / SR
+        x *= np.minimum(tt / 1.6, 1)                     # ataque lento
+        pon(arm, 0.7 * x, max(0, t0 - 0.4))
+        pon(grave, 0.22 * sub(nota(raiz - 24 + acorde[0]), bloque + 0.3) * np.r_[np.minimum(np.arange(int((bloque + 0.3) * SR)) / SR / 1.0, 1)], t0)
+        if 0 < b < nb - 1:
+            notas = [raiz + 12 + s for s in acorde]
+            for k, i in enumerate(patrones[b % len(patrones)]):
+                if i is not None:
+                    pon(melo, 0.16 * pluck(nota(notas[i]), 1.4, 0.12, rng), t0 + k * paso + rng.uniform(0, 0.02))
+        pon(fx, 0.14 * campana(nota(raiz + 24 + acorde[-1] % 12), 4.0), t0 + (0.0 if b else 0.6))
+    # final: campana grave y acorde suspendido
+    pon(fx, 0.12 * campana(nota(raiz + 12), 5.0), (nb - 1) * bloque + 0.2)
+    # aire: ruido rosa muy suave
+    blanco = rng.standard_normal(N)
+    rosa = lfilter([0.049922, -0.095993, 0.050612, -0.004408], [1, -2.494956, 2.017265, -0.522189], blanco)
+    aire = pasa_bajos(rosa, 2500) * 0.035
+    m = reverb(arm, 3.2, 0.45) + reverb(melo, 3.0, 0.55) + reverb(fx, 3.5, 0.5) + grave + aire
+    d = int(0.018 * SR)
+    izq = m + 0.3 * np.r_[np.zeros(d), (melo + fx)[:-d]]
+    der = m + 0.3 * np.r_[(melo + fx)[d:], np.zeros(d)]
+    st = np.stack([izq, der], 1)
+    t = np.arange(N) / SR
+    st *= np.clip(t / 1.5, 0, 1)[:, None] * np.clip((DUR - t) / 3.0, 0, 1)[:, None]
+    st = np.tanh(st / (np.abs(st).max() + 1e-9) * 1.1)
+    st = st / np.abs(st).max() * 0.8
+    import wave
+    with wave.open(ruta, "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((st * 32767).astype(np.int16).tobytes())
+    return ruta
